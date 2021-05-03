@@ -1,0 +1,23 @@
+hr.for_h2{
+  height: 4px;
+}
+
+.h2_hr{
+  margin-top: -38px;
+  text-align: center;
+  /* display: flex; */
+  /* margin: 0 auto; */
+}
+
+.h2_hr span{
+  background:white;
+  padding:8px;
+  position: relative;
+  z-index: 999;
+}
+
+.prod_img{
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+}
