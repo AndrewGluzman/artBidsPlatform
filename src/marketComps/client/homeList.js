@@ -9,6 +9,8 @@ function Homelist(props){
         <div className="container">
           <HomeCatList  catId="3" />
           <HomeCatList catId="1" />
+          <HomeCatList catId="2" />
+          <HomeCatList catId="5" />
         </div>
       </div>
      

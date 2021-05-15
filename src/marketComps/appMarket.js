@@ -1,25 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
-import {createStore} from 'redux';
-import { Provider } from 'react-redux';
-import {composeWithDevTools} from "redux-devtools-extension"
-import {marketReducer} from "../reducer/marketReducer"
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { marketReducer } from "../reducer/marketReducer";
 
-
-import AppAdmin from './admin/appAdmin';
+import AppAdmin from "./admin/appAdmin";
 import Home from "./client/home";
-import LoginClient from './client/loginClient';
+import LoginClient from "./client/loginClient";
 import "./client/css/homeList.css";
-import SignUp from './client/signup';
-import CategoryPage from './client/categoryPage';
+import SignUp from "./client/signup";
+import CategoryPage from "./client/categoryPage";
+import Checkout from "./client/checkout";
 
-let myStore = createStore(marketReducer , composeWithDevTools());
+let myStore = createStore(marketReducer, composeWithDevTools());
 
-function AppMarket(props){
-  return(
+function AppMarket(props) {
+  return (
     <Provider store={myStore}>
-    <Router>
-      {/* switch of the content */}
+      <Router>
+        {/* switch of the content */}
 
         <Switch>
           <Route exact path={`/`} component={Home} />
@@ -27,14 +27,13 @@ function AppMarket(props){
           <Route exact path={`/signup`} component={SignUp} />
           <Route exact path={`/cat/:id`} component={CategoryPage} />
           <Route exact path={`/cat/:id/:page`} component={CategoryPage} />
+          <Route exact path={`/checkout`} component={Checkout} />
           {/* show appADmin when there /admin in the url */}
           <Route path={`/admin`} component={AppAdmin} />
-      
-        </Switch>  
-    </Router>
+        </Switch>
+      </Router>
     </Provider>
-  )
+  );
 }
 
-export default AppMarket
-
+export default AppMarket;

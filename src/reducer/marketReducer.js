@@ -12,7 +12,7 @@ export const marketReducer = (state= stateInit , action) => {
       return saveToLocal({...state, showCart:action.flag})
     break;
     case "UPDATE_THE_CART":
-      return saveToLocal(addToCart(state,action));
+      return saveToLocal(updateCart(state,action));
     break;
     default:
     // check if there localstorage and update itself
@@ -21,7 +21,7 @@ export const marketReducer = (state= stateInit , action) => {
   }
 }
 
-const addToCart = (state,action) => {
+const updateCart = (state,action) => {
   // נבדוק אם המוצר נמצא
   // אם המוצר נמצא אנחנו פשוט נעדכן את הקאונט לקאונט שנשלח בשיגור האחרון
   // ואם לא אנחנו נוסיף את המוצר לתוך המערך
@@ -32,10 +32,14 @@ const addToCart = (state,action) => {
     if(item._id == action.item._id){
       item.count = action.item.count;   
       prodFound = true; 
+      // אם הקאונט שווה 0 נמחוק את הפריט מהמערך של העגלה
+      if(action.item.count <= 0){
+        temp_ar.splice(i,1);
+      }
     }
   })
   if(!prodFound) {
-    temp_ar.push(action.item)
+    temp_ar.push(action.item) 
   }
   return {...state, carts_ar:temp_ar}
 

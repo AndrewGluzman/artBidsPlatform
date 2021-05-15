@@ -26,33 +26,36 @@ function Header(props) {
             <div className="col-lg-6 d-flex">
               <input type="search" className="form-control" />
               <button className="btn btn-dark">
-               {searchIcon()}
+                {searchIcon()}
               </button>
             </div>
           </div>
-          <div className="col-lg-6 d-flex justify-content-end">
-            <h3  className="cart_header_icon me-2 text-success" style={{cursor:"pointer"}} onClick={() => {
-              dispatch({type:"SHOW_HIDE_CART",flag:true})
+          <div className="col-lg-6 d-flex justify-content-end align-items-center">
+            <h3 className="cart_header_icon me-2 text-success" style={{ cursor: "pointer" }} onClick={() => {
+              dispatch({ type: "SHOW_HIDE_CART", flag: true })
             }}>
               {/* פונקציה שיש בה את האייקון
               של הקניות נמצא למטה בקובץ */}
               {cartIcon()}
               {// רק אם יש מוצרים בעגלה יוצג האייקון 
-              (carts_ar.length > 0) && 
-              <div className="badge bg-danger" style={{fontSize:"0.5em"}}>
-                {cartTotal(carts_ar)}
-              </div>
+                (carts_ar.length > 0) &&
+                <div className="badge bg-danger" style={{ fontSize: "0.5em" }}>
+                  {cartTotal(carts_ar)}
+                </div>
               }
-              </h3>
+            </h3>
             {(!localStorage["tok"]) ?
               <Link to="/login" className="btn btn-outline-success">
                 login/signup
             </Link>
               :
-              <button onClick={onLogOut} className="btn btn-outline-danger">
-                {/* TODO: show the name of the user */}
+              <React.Fragment>
+                <Link to="/checkout" className="btn btn-outline-success me-2">Checkout</Link>
+                <button onClick={onLogOut} className="btn btn-outline-danger">
+                  {/* TODO: show the name of the user */}
               log out
             </button>
+              </React.Fragment>
             }
           </div>
         </div>
@@ -79,10 +82,10 @@ const cartIcon = () => {
 }
 
 const searchIcon = () => {
-  return(
+  return (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-  </svg>
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+    </svg>
   )
 }
 

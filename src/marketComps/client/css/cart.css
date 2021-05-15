@@ -7,7 +7,15 @@
   height: 80%;
   z-index: 99;
   border:1px solid grey;
+  /* overflow: scroll; */
+ 
 }
+
+.cart_side .cart_items{
+  height: 80%;
+  overflow-y: scroll;
+}
+
 
 .cart_header_icon{
   position: relative;
@@ -19,3 +27,5 @@
   bottom: -6px;
 }
 /* 13:10 */
+
+
