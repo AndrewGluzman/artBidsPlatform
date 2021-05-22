@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { URL_API } from '../../services/apiSer';
 
 function ProdBox(props) {
@@ -43,6 +44,7 @@ function ProdBox(props) {
   return (
     <div className="col-lg-3 p-2 text-center">
       <div className="p-2 shadow pb-4" style={{height:"100%"}}>
+        {/* בודק אם היו אר אל חיצוני או קובץ שהעלנו לשרת נוד */}
         {(item.img.includes("http")) ? 
         <div className="prod_img" style={{ backgroundImage: `url(${item.img})` }}> 
             {/* The  img */}
@@ -54,11 +56,12 @@ function ProdBox(props) {
         <h3>{item.name}</h3>
         <div>Price: {item.price} nis</div>
         <div>Info: {item.info.substr(0, 50)}</div>
-        <div className="mt-3 d-flex justify-content-center align-items-center">
+        <div className="my-3 d-flex justify-content-center align-items-center">
           <button className="btn btn-outline-success rounded-circle me-3" onClick={reduceProd}>-</button>
           <span className="h4 mt-1"> {countProd} </span>
           <button className="btn btn-outline-success rounded-circle ms-3" onClick={addProd} >+</button>
         </div>
+        <Link to={"/single/"+item._id} className="text-success text-decoration-none">More info</Link>
       </div>
     </div>
   )

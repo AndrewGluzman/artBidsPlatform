@@ -1,5 +1,12 @@
 // export const URL_API = "http://monkeys.co.il";
-export const URL_API = "http://localhost:3004";
+
+ let myApi = "http://localhost:3004";
+if(!window.location.href.includes("localhost:")){
+  // say that its in real service:
+  myApi = "https://my-market2025.herokuapp.com"
+}
+
+export const URL_API = myApi;
 
 export const doApiGet = async (_url) => {
   try {

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer';
 import { Link, useHistory } from "react-router-dom";
 
@@ -12,7 +13,7 @@ function AddProd(props) {
 
 
   
-
+  let fileRef = useRef()
   let nameRef = register({ required: true, minLength: 3 });
   let infoRef = register({ required: true, minLength: 3 });
   let priceRef = register({ required: true, min: 1 });
@@ -49,12 +50,47 @@ function AddProd(props) {
     // if succed we will get _id prop
     // console.log(data);
     if(data._id){
+      if(fileRef.current.files.length > 0){
+        uploadFile(data._id)
+      }
+      else{
       alert("prod added");
       history.push("/admin/list");
+      }
     }
     else{
       alert("There is problem try again later");
     }
+  }
+
+
+  const uploadFile = async (_idProd) => {
+    // ככה אוספים מידע מקובץ שרוצים לשלוח
+    let editId = _idProd;
+    console.log(fileRef.current.files[0])
+    // שיטה לשליחת מידע כגון קובץ
+    const myData = new FormData();
+    // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
+    myData.append("fileSend", fileRef.current.files[0])
+    let url = URL_API + "/prods/upload/" + editId;
+    try {
+      let resp = await axios.put(url, myData, {
+        headers: {
+          'auth-token': localStorage["tok"],
+          'content-type': "multipart/form-data"
+        }
+      });
+      // אם הצליח נקבל 1
+      if(resp.data.n == 1){
+        alert("prod added and image uploaded");
+        history.push("/admin/list");
+      }
+      console.log(resp.data)
+    }
+    catch (err) {
+      console.log(err);
+    }
+
   }
 
   // 15:02
@@ -84,6 +120,9 @@ function AddProd(props) {
           <label htmlFor="image" className="form-label">Image:</label>
           <input defaultValue="http://" ref={imageRef} name="img" type="text" className="form-control" id="image" />
           {errors.img && <span className="text-danger">Enter valid image higer than 0</span>}
+          <label>Upload image from computer:</label>
+          <br/>
+          <input ref={fileRef} type="file" className="me-3" />
         </div>
         <div className="mb-3">
           <label htmlFor="qty" className="form-label">QTY:</label>

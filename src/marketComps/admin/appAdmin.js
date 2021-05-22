@@ -9,6 +9,8 @@ import CategoryList from './categoryList';
 import AddCat from './addCat';
 import UserList from './usersList';
 import EditProd from './editProd';
+import UserCartsOrders from './userCartsOrders';
+import CartInfo from './cartInfo';
 
 function AppAdmin(props) {
   return (
@@ -24,6 +26,7 @@ function AppAdmin(props) {
              <Link className="d-block" to="/admin/list">Products</Link>
              <Link  className="d-block" to="/admin/category">Category</Link>
              <Link  className="d-block" to="/admin/users">Users</Link>
+             <Link  className="d-block" to="/admin/userCarts">Users orders</Link>
            </nav> : 
            <nav className="col-2  admin_nav_side" style={{ minHeight: "100vh" }}>
            <Link className="d-block" to="/">Home page</Link>
@@ -39,6 +42,8 @@ function AppAdmin(props) {
               <Route exact path={`/admin/category`} component={CategoryList} />
               <Route exact path={`/admin/addCategory`} component={AddCat} />
               <Route exact path={`/admin/users`} component={UserList} />
+              <Route exact path={`/admin/userCarts`} component={UserCartsOrders} />
+              <Route exact path={`/admin/cartInfo/:id`} component={CartInfo} />
             </Switch>
           </div>
         </div>

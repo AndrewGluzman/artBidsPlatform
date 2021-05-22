@@ -6,6 +6,7 @@ import CartSide from './cartSide';
 import AuthClient from './authClient';
 import { doApiMethod, URL_API } from '../../services/apiSer';
 function Checkout(props) {
+  let dispatch = useDispatch();
   let carts_ar = useSelector(myStore => myStore.carts_ar);
   let totalCart = 0;
 
@@ -32,6 +33,18 @@ function Checkout(props) {
       alert("there problem come back tommrow 222")
     }
 
+  }
+
+  const addProd = (item) => {
+    item.count += 1;
+    dispatch({type:"UPDATE_THE_CART",item:item})
+  }
+
+  const reduceProd = (item) => {
+    if(item.count > 0){
+      item.count -= 1;
+      dispatch({type:"UPDATE_THE_CART",item:item})
+    }
   }
 
   return (
@@ -67,8 +80,12 @@ function Checkout(props) {
                       <td className="w-25"><img src={item.img} className="w-50" /></td>
                       <td >
                         <div className="d-flex">
-                          <button className="btn btn-info">-</button>
-                          <button className="btn btn-info">+</button>
+                          <button onClick={() => {
+                            reduceProd(item)
+                          }}  className="btn btn-danger">-</button>
+                          <button onClick={() => {
+                            addProd(item)
+                          }} className="btn btn-info">+</button>
                         </div>
                       </td>
                     </tr>

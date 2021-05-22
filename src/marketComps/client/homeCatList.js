@@ -33,6 +33,7 @@ function HomeCatList(props){
             {cat.name}
             </span>
           </h2>
+          {prods_ar.length == 0 && <div className="text-center"><img width="100" src="/images/loading.gif" /></div>}
           <div className="row mb-5">
             {prods_ar.map(item => {
               return(

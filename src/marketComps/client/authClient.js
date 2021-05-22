@@ -1,33 +1,37 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router";
-import { doApiMethod, URL_API } from "../../services/apiSer";
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { doApiMethod, URL_API } from '../../services/apiSer';
 
-function AuthClient(props) {
-  let history = useHistory();
+function AuthClient(props){
+  let history = useHistory()
 
-  useEffect(() => {
-    console.log("auth log");
+  useEffect(()=> {
+    console.log("auth log")
     // check if there token
     //TODO: check if already in /admin
-    if (!localStorage["tok"]) {
+    if(!localStorage["tok"]){
       history.push("/login");
-    } else {
+    }
+    else{
       doApi();
     }
-  }, [props.match]);
+  },[props.match]);
 
-  const doApi = async () => {
-    let url = URL_API + "/users/myInfo";
-    let data = await doApiMethod(url, "GET");
+  const doApi = async() => {
+    let url = URL_API+"/users/myInfo";
+    let data = await doApiMethod(url,"GET");
     // check if the token is valid and the user is admin
-    if (!data._id) {
+    if(!data._id){
       localStorage.removeItem("tok");
       history.push("/login");
-      // 13:10
+// 13:10
     }
-  };
+  }
 
-  return <React.Fragment></React.Fragment>;
+  return(
+    <React.Fragment>
+    </React.Fragment> 
+  )
 }
 
-export default AuthClient;
+export default AuthClient

@@ -7,21 +7,28 @@ import "./css/cart.css"
 
 function CartSide(props) {
   let dispatch = useDispatch();
+  let [animClassCss,setAnimCss] = useState("");
   let total = 0;
   console.log("total",total)
   
   let showCart = useSelector((myStore) => myStore.showCart);
   let carts_ar = useSelector((myStore) => myStore.carts_ar);
   useEffect(() => {
-
-  }, [])
+    console.log("show")
+    if(showCart){
+      setAnimCss("cart_side_start");
+    }
+    else{
+      setAnimCss("cart_side_out")
+    }
+  }, [showCart])
 
   return (
     <React.Fragment>
       {
         // todo: enter in animation from right side
-        showCart &&
-        <div className="cart_side p-3">
+       
+        <div className={"cart_side p-3 "+animClassCss}>
           <button onClick={() => {
             dispatch({ type: "SHOW_HIDE_CART", flag: false })
           }} className="btn btn-danger float-end">X</button>
