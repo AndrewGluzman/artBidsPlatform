@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { doApiGet, URL_API } from '../../services/apiSer';
 import PageNav from '../misc/pagesNav';
 import CartSide from './cartSide';
@@ -11,8 +13,12 @@ function CategoryPage(props) {
   let selectRef = useRef()
 
 
+
+
   useEffect(() => {
+
     doApi();
+
     // props.match -  חשוב מכיוון שנרצה שהפונקציה תפעל כל פעם שיו אר אל משתנה למעלה 
   }, [props.match])
 
@@ -48,9 +54,13 @@ function CategoryPage(props) {
         <h1 className="text-center h2_hr h2">
           <span>Product of {cat.name}</span>
         </h1>
+        <div className="breadcrumb">
+          <Link className="breadcrumb-item" to="/">Home</Link>
+          <a className="breadcrumb-item active" href="#">{cat.name}</a>
+        </div>
         <h3 className="text-center">{cat.info}</h3>
         <div className="text-center row">
-          <div className="col-lg-6 text-start">
+          <div className="col-lg-6 text-center text-lg-start my-3 my-lg-0">
           {cat.s_id &&
             <PageNav
               urlPageApi={"/prods/count?cat=" + cat.s_id}
@@ -61,7 +71,7 @@ function CategoryPage(props) {
             />
           }
           </div>
-          <div className="d-flex col-lg-6 justify-content-end">
+          <div className="d-flex col-lg-6 justify-content-center justify-content-lg-end">
             <label className="mt-1 me-2">Sort by:</label>
             <select onChange={onSortchange} ref={selectRef} className="form-select w-50">
               <option value="name">Name</option>

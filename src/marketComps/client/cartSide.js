@@ -33,7 +33,7 @@ function CartSide(props) {
             dispatch({ type: "SHOW_HIDE_CART", flag: false })
           }} className="btn btn-danger float-end">X</button>
             <h2>Cart:</h2>
-          <div class="cart_items">
+          <div className="cart_items">
             {carts_ar.map(item => {
               
               if (item.count > 0) {

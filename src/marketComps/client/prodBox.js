@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
+import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
 import { URL_API } from '../../services/apiSer';
 
@@ -42,7 +43,7 @@ function ProdBox(props) {
   }
 
   return (
-    <div className="col-lg-3 p-2 text-center">
+    <LazyLoad height="200" className="col-lg-3 p-2 text-center">
       <div className="p-2 shadow pb-4" style={{height:"100%"}}>
         {/* בודק אם היו אר אל חיצוני או קובץ שהעלנו לשרת נוד */}
         {(item.img.includes("http")) ? 
@@ -63,7 +64,7 @@ function ProdBox(props) {
         </div>
         <Link to={"/single/"+item._id} className="text-success text-decoration-none">More info</Link>
       </div>
-    </div>
+    </LazyLoad>
   )
 }
 

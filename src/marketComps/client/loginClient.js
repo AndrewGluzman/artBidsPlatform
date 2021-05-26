@@ -71,7 +71,7 @@ function LoginClient(props) {
             {errors.pass && <span className="text-danger">Please enter valid Password min 3 charts</span>}
           </div>
           <div className="d-flex justify-content-between">
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Log in</button>
             <Link to="/signup" className="btn btn-danger">Sign up</Link>
           </div>
 

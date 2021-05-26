@@ -96,7 +96,7 @@ function Checkout(props) {
 
 
           </div>
-          <div className="col-lg-3 border p-2 d-flex align-items-center" style={{ height: "300px" }}>
+          <div className="col-lg-3 border p-2 d-flex justify-content-center align-items-center text-center" style={{ height: "300px" }}>
             <div>
               <h3>Total price: {totalCart.toFixed(2)} nis</h3>
               <button onClick={checkoutReal} className="btn btn-outline-info w-100">Commit buy</button>

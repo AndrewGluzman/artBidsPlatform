@@ -30,11 +30,11 @@ function Header(props) {
     <div className="container-fluid">
       <div className="container">
         <div className="row  align-items-center p-2">
-          <div className="col-lg-6 d-flex align-items-center">
-            <Link to="/" className="float-start me-2 col-lg-6">
+          <div className="col-lg-6 row align-items-center text-center justify-content-center m-0">
+            <Link to="/" className="col-lg-6 d-block text-center">
               <img src="/logo.png" className="w-100" />
             </Link>
-            <div className="col-lg-6 d-flex">
+            <div className="col-lg-6 d-flex my-3 my-lg-0 justify-content-center">
               <input onKeyDown={(evt) => {
                 // בדיקת לחיצה אנטר במקלדת
                 if(evt.key == "Enter"){ onSearchClick() }
@@ -44,7 +44,7 @@ function Header(props) {
               </button>
             </div>
           </div>
-          <div className="col-lg-6 d-flex justify-content-end align-items-center">
+          <div className="col-lg-6 d-flex justify-content-center justify-content-lg-end align-items-center my-2 my-lg-0">
             <h3 className="cart_header_icon me-2 text-success" style={{ cursor: "pointer" }} onClick={() => {
               dispatch({ type: "SHOW_HIDE_CART", flag: true })
             }}>

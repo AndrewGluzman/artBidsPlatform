@@ -12,9 +12,10 @@
   width:30%;
   background:white;
   height: 80%;
-  z-index: 99;
+  z-index: 999999;
   border:1px solid grey;
   transition: 1000ms;
+  
   /* overflow: scroll; */
  
 }
@@ -39,6 +40,19 @@
   left:-12px;
   bottom: -6px;
 }
-/* 13:10 */
 
 
+/* Tablet horizontal  */
+@media screen and (max-width:1150px) {
+  .cart_side{
+    width:60%;
+  }
+}
+
+
+/* mobile */
+@media screen and (max-width:580px) {
+  .cart_side{
+    width:80%;
+  }
+}

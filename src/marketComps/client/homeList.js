@@ -1,20 +1,36 @@
-import React from 'react';
-import HomeCatList from './homeCatList';
+import React, { useState, useEffect } from "react";
+import LazyLoad from "react-lazyload";
+import HomeCatList from "./homeCatList";
+import { doApiGet, doApiMethod, URL_API } from "../../services/apiSer";
 
+function Homelist(props) {
+  // const orderCategoriesId = ["3", "1", "2", "5"]
+  let [cat_ar, setcatAr] = useState([]);
 
-function Homelist(props){
-  return(
-    
-      <div className="container-fluid">
-        <div className="container">
-          <HomeCatList  catId="3" />
-          <HomeCatList catId="1" />
-          <HomeCatList catId="2" />
-          <HomeCatList catId="5" />
-        </div>
+  useEffect(() => {
+    doApi();
+  }, []);
+
+  const doApi = async () => {
+    let url = URL_API + "/categories";
+    let data = await doApiGet(url);
+    setcatAr(data);
+    console.log(data);
+  };
+
+  return (
+    <div className="container-fluid">
+      <div className="container">
+        {cat_ar.map((item) => {
+          return (
+            <LazyLoad key={item.s_id} height={500}>
+              <HomeCatList catId={item.s_id} />
+            </LazyLoad>
+          );
+        })}
       </div>
-     
-  )
+    </div>
+  );
 }
 
-export default Homelist
+export default Homelist;
