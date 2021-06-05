@@ -4,8 +4,9 @@ import axios from "axios";
 import { doApiGet, doApiMethod, URL_API } from "../../services/apiSer";
 import { Link, useHistory } from "react-router-dom";
 
-function AddProd(props) {
+function EditProd(props) {
   let [cat_ar, setCatAr] = useState([]);
+  let [prodData, setProdData] = useState({});
 
   let history = useHistory();
   const { register, handleSubmit, errors } = useForm();
@@ -21,6 +22,7 @@ function AddProd(props) {
 
   useEffect(() => {
     doApiGetCat();
+    getInfoOfProdToEdit();
   }, []);
 
   // COLLECT category from db
@@ -30,39 +32,41 @@ function AddProd(props) {
     setCatAr(data);
   };
 
+  const getInfoOfProdToEdit = async () => {
+    let editId = props.match.params.id;
+    let url = URL_API + "/prods/single/" + editId;
+    let data = await doApiGet(url);
+    setProdData(data);
+  };
+
   const onFormSub = (dataBody) => {
-    //copying price to starting bid
     dataBody.starting_bid = dataBody.price;
-    // doApi(dataBody)
     doApi(dataBody);
   };
 
   const doApi = async (dataBody) => {
-    let url = URL_API + "/prods";
-    let data = await doApiMethod(url, "POST", dataBody);
-    // if succed we will get _id prop
+    let editId = props.match.params.id;
+    let url = URL_API + "/prods/userRegular/" + editId;
+    let data = await doApiMethod(url, "PUT", dataBody);
+    // if succed we will get n = 1
     // console.log(data);
-    if (data._id) {
-      if (fileRef.current.files.length > 0) {
-        uploadFile(data._id);
-      } else {
-        alert("prod added");
-        history.push("/admin/list");
-      }
+    if (data.n == 1) {
+      alert("prod updated");
+      history.push("/profile/userProducts");
     } else {
       alert("There is problem try again later");
     }
   };
 
-  const uploadFile = async (_idProd) => {
+  const uploadFile = async () => {
     // ככה אוספים מידע מקובץ שרוצים לשלוח
-    let editId = _idProd;
+    let editId = props.match.params.id;
     console.log(fileRef.current.files[0]);
     // שיטה לשליחת מידע כגון קובץ
     const myData = new FormData();
     // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
     myData.append("fileSend", fileRef.current.files[0]);
-    let url = URL_API + "/prods/upload/" + editId;
+    let url = URL_API + "/prods/userRegular/upload/" + editId;
     try {
       let resp = await axios.put(url, myData, {
         headers: {
@@ -72,8 +76,8 @@ function AddProd(props) {
       });
       // אם הצליח נקבל 1
       if (resp.data.n == 1) {
-        alert("prod added and image uploaded");
-        history.push("/admin/list");
+        // כדי שירפרש את העריכה קראנו לפוקנציה שתביא שוב את המידע על המוצר
+        getInfoOfProdToEdit();
       }
       console.log(resp.data);
     } catch (err) {
@@ -89,13 +93,13 @@ function AddProd(props) {
         onSubmit={handleSubmit(onFormSub)}
         className="col-lg-6 mx-auto p-2 shadow mt-3"
       >
-        <h1>Add new Product</h1>
+        <h1>Edit product</h1>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             name
           </label>
           <input
-            defaultValue="pizza"
+            defaultValue={prodData.name}
             ref={nameRef}
             name="name"
             type="text"
@@ -114,7 +118,7 @@ function AddProd(props) {
             info
           </label>
           <input
-            defaultValue="bla bla"
+            defaultValue={prodData.info}
             ref={infoRef}
             name="info"
             type="text"
@@ -131,7 +135,7 @@ function AddProd(props) {
             Price:
           </label>
           <input
-            defaultValue="5"
+            defaultValue={prodData.price}
             ref={priceRef}
             name="price"
             type="text"
@@ -147,7 +151,7 @@ function AddProd(props) {
             Image:
           </label>
           <input
-            defaultValue="http://"
+            defaultValue={prodData.img}
             ref={imageRef}
             name="img"
             type="text"
@@ -157,16 +161,30 @@ function AddProd(props) {
           {errors.img && (
             <span className="text-danger">Enter valid image higer than 0</span>
           )}
-          <label>Upload image from computer:</label>
+          <label>Upload image from computer</label>
+          {/* אם הקובץ מקומי צריך להוסיף את הכתובת של השרת
+          ואם זה יו אר לא  מהשרת שלנו אז אין צורך  */}
+          {prodData.img?.includes("http") ? (
+            <img src={prodData.img} height="100" />
+          ) : (
+            // הוספנו את הקווארי סטרינג ? כדי שירפרש את התמונה כל פעם מחדש
+            // כי שמעלים תמונה היא נשארת על אותה כתובת
+            <img src={URL_API + prodData.img + "?" + Date.now()} height="100" />
+          )}
           <br />
-          <input ref={fileRef} type="file" className="me-3" />
+          <input
+            ref={fileRef}
+            type="file"
+            onChange={uploadFile}
+            className="me-3"
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="qty" className="form-label">
             QTY:
           </label>
           <input
-            defaultValue="4"
+            defaultValue={prodData.qty}
             ref={qtyRef}
             name="qty"
             type="number"
@@ -182,7 +200,7 @@ function AddProd(props) {
             Comments:
           </label>
           <input
-            defaultValue="bla bla 222"
+            defaultValue={prodData.comments}
             ref={commentsRef}
             name="comments"
             type="text"
@@ -199,6 +217,7 @@ function AddProd(props) {
             Category
           </label>
           <select
+            defaultValue={prodData.category_s_id}
             ref={catRef}
             name="category_s_id"
             id="category"
@@ -206,7 +225,11 @@ function AddProd(props) {
           >
             {cat_ar.map((item) => {
               return (
-                <option key={item.s_id} value={item.s_id}>
+                <option
+                  selected={prodData.category_s_id == item.s_id}
+                  key={item.s_id}
+                  value={item.s_id}
+                >
                   {item.name}
                 </option>
               );
@@ -219,11 +242,11 @@ function AddProd(props) {
           )}
         </div>
         <button type="submit" className="btn btn-primary">
-          Add product
+          update product
         </button>
       </form>
     </div>
   );
 }
 
-export default AddProd;
+export default EditProd;

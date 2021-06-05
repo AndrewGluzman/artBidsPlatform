@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 import { doApiMethod, URL_API } from "../../services/apiSer";
 
 function AccSettings(props) {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, getValues } = useForm();
   const [userData, setUserData] = useState({});
   const history = useHistory();
 
@@ -26,13 +26,22 @@ function AccSettings(props) {
     required: true,
     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
   });
-  let passRef = register({ required: true, minLength: 3 });
+  let passRef = register({ required: false, minLength: 3 });
+  let passRef2 = register({
+    required: true,
+    minLength: 3,
+    validate: (val) => {
+      return val === getValues().pass;
+    },
+  });
   let nameRef = register({ required: true, minLength: 2 });
   let phoneRef = register({ required: true, minLength: 3 });
   let addressRef = register({ required: false, minLength: 3 });
 
   const onFormSub = (dataBody) => {
     //dataBody -> מכיל אובייקט עם המאפיינים לפי השמות של האינפוטים והסלקטים
+    delete dataBody.pass2;
+
     console.log(dataBody);
     doApi(dataBody);
   };
@@ -46,13 +55,6 @@ function AccSettings(props) {
     if (data.n == 1) {
       alert("Updated");
     } else {
-      // addToast("Try again , user or password worng",
-      //   {
-      //     appearance: 'error',
-      //     autoDismiss: true
-      //   }
-      // )
-      // TODO : show toaste message
       alert("There problem , come back next week :) ");
     }
   };
@@ -116,6 +118,21 @@ function AccSettings(props) {
             <span className="text-danger">
               Please enter valid Password min 3 charts
             </span>
+          )}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="pass" className="form-label">
+            Repeat password
+          </label>
+          <input
+            ref={passRef2}
+            name="pass2"
+            type="text"
+            className="form-control"
+            id="pass2"
+          />
+          {errors.pass2 && (
+            <span className="text-danger">passwords dont match!</span>
           )}
         </div>
 
