@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { doApiGet, doApiMethod, URL_API } from "../../services/apiSer";
-import Timer from "./timerProd";
+import Timer from "../profilePageClient/timerProd";
 
-function UserProd(props) {
+function AdminProdSingle(props) {
   let item = props.item;
 
   const delProd = async (_id) => {
     if (window.confirm("are you sure you want to delete?")) {
-      let url = URL_API + "/prods/userRegular/" + _id;
+      let url = URL_API + "/prods/" + _id;
       let data = await doApiMethod(url, "DELETE", {});
       if (data.n == 1) {
         //refresh the table
@@ -54,7 +54,7 @@ function UserProd(props) {
 
   const statusUpdate = async (prodId, status) => {
     let data = await doApiMethod(
-      URL_API + "/prods/statusUpate/" + prodId + "?resubmit=0",
+      URL_API + "/prods/statusUpdateAdmin/" + prodId,
       "PUT",
       {
         status: status,
@@ -77,8 +77,10 @@ function UserProd(props) {
   return (
     <tr key={item._id}>
       <td>{props.prodNum + 1}</td>
-      <td>{item.name}</td>
-      <td>{item.category_s_id}</td>
+      <td>
+        <Link to={"/single/" + item._id}>{item.name}</Link>
+      </td>
+      <td>{item.ownerEmail}</td>
       <td>{item.price}</td>
       <td>
         {!item.bids[item.bids.length - 1]
@@ -101,11 +103,8 @@ function UserProd(props) {
               del
             </button>
             {item.status != 1 && item.status != 2 ? (
-              <Link
-                to={"/profile/editProd/" + item._id}
-                className="btn btn-dark"
-              >
-                Edit
+              <Link to={"/admin/editProd/" + item._id} className="btn btn-dark">
+                edit
               </Link>
             ) : (
               ""
@@ -122,6 +121,28 @@ function UserProd(props) {
             ) : (
               ""
             )}
+            {item.status == -1 ? (
+              <React.Fragment>
+                <button
+                  onClick={() => {
+                    statusUpdate(item._id, 0);
+                  }}
+                  className="btn btn-primary mx-2"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => {
+                    statusUpdate(item._id, -2);
+                  }}
+                  className="btn btn-warning mx-2"
+                >
+                  Reject
+                </button>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
           </div>
         )}
       </td>
@@ -129,4 +150,4 @@ function UserProd(props) {
   );
 }
 
-export default UserProd;
+export default AdminProdSingle;

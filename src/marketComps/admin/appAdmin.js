@@ -50,7 +50,7 @@ function AppAdmin(props) {
             </nav>
           )}
 
-          <div className="col-9">
+          <div className="col-10">
             <Switch>
               <Route exact path={`/admin`} component={Login} />
               <Route exact path={`/admin/list`} component={ListProdAdmin} />

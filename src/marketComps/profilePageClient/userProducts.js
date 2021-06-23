@@ -21,7 +21,6 @@ function UserProducts(props) {
     <div>
       <h1>List of works:</h1>
       <table className="table table-striped">
-        {/* TODO: mouseover will shoe info of prod */}
         <thead>
           <tr>
             <th>#</th>
