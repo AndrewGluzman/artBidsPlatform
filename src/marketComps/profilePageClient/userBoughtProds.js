@@ -20,6 +20,7 @@ function UserBidedProducts(props) {
     let thisUser = await doApiMethod(URL_API + "/users/myInfo", "GET");
     setUser(thisUser);
     setProdsAr(data);
+    console.log(data);
   };
 
   const delProd = async (_id) => {
@@ -77,7 +78,7 @@ function UserBidedProducts(props) {
   //
 
   return (
-    <div>
+    <div className="">
       <h1>My Bids:</h1>
       <table className="table table-striped">
         {/* TODO: mouseover will shoe info of prod */}

@@ -64,7 +64,7 @@ function ProfilePage(props) {
             </nav>
           )} */}
 
-          <div className="col-9">
+          <div className="col-10 px-0">
             <Switch>
               <Route
                 exact

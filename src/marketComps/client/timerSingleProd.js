@@ -25,13 +25,6 @@ function TimerSingleProd(props) {
     );
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    // setCounter({
-    //   days: days,
-    //   hours: hours,
-    //   minutes: minutes,
-    //   seconds: seconds,
-    // });
-    // console.log(seconds);
 
     let dateObj = {
       days: days,
@@ -39,18 +32,58 @@ function TimerSingleProd(props) {
       minutes: minutes,
       seconds: seconds,
     };
-    
+
     setCounter(dateObj);
-    console.log(counter.seconds + "blyat");
   };
   return (
     <React.Fragment>
-      <span>{counter.days}<br/>days</span>
-              <span>{counter.hours}<br/>hours</span>
-              <span>{counter.minutes}<br/>minutes</span>
-              <span>{counter.seconds}<br/>seconds</span>
+      <span className="fw-bolder fs-6">
+        {counter.days}
+        <br />
+        <p className=" h6">DAYS</p>
+      </span>
+      <span className="fw-bolder">
+        {counter.hours}
+        <br />
+        <p className=" h6">HOURS</p>
+      </span>
+      <span className="fw-bolder">
+        {counter.minutes}
+        <br />
+        <p className=" h6">MINUTES</p>
+      </span>
+      <span className="fw-bolder">
+        {counter.seconds}
+        <br />
+        <p className=" h6">SECONDS</p>
+      </span>
     </React.Fragment>
   );
 }
 
 export default TimerSingleProd;
+{
+  /* <span>
+{counter.days}
+<br />
+<p className="fw-bolder fs-6">DAYS</p>
+</span>
+<span>
+{counter.hours}
+<br />
+<p className="fw-bolder fs-6">HOURS</p>
+
+</span>
+<span>
+{counter.minutes}
+<br />
+<p className="fw-bolder fs-6">MINUTES</p>
+
+</span>
+<span>
+{counter.seconds}
+<br />
+<p className="fw-bolder fs-6">SECONDS</p>
+</span>
+</React.Fragment> */
+}
