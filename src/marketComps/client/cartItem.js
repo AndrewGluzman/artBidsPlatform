@@ -6,8 +6,8 @@ function CartItem(props){
 
   let item = props.item;
 
-  useEffect(() => {
-    item.name = item.name.length > 11 ? item.name.substr(0,10)+"..." : item.name ;
+  useEffect(async() => {
+    item.name = await item.name.length > 11 ? item.name.substr(0,10)+"..." : item.name ;
   },[props])
 
   const delFromCart = () => {

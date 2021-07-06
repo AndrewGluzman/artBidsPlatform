@@ -66,8 +66,8 @@ function ProdSingleInfo(props) {
   };
 
   const buyNow = () => {
-    prodData.count = 1;
-    dispatch({ type: "UPDATE_THE_CART", item: prodData });
+    prodData[0].count = 1;
+    dispatch({ type: "UPDATE_THE_CART", item: prodData[0] });
     history.push("/checkout");
   };
 
