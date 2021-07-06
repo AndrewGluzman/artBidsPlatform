@@ -167,7 +167,7 @@ function EditProd(props) {
           <label>Upload image from computer</label>
           {/* אם הקובץ מקומי צריך להוסיף את הכתובת של השרת
           ואם זה יו אר לא  מהשרת שלנו אז אין צורך  */}
-          {prodData.img?.includes("http") ? (
+          {prodData.img.includes("http") ? (
             <img src={prodData.img} height="100" />
           ) : (
             // הוספנו את הקווארי סטרינג ? כדי שירפרש את התמונה כל פעם מחדש

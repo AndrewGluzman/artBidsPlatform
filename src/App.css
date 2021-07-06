@@ -1,24 +1,18 @@
-
-
-
-
-.admin_nav_side{
-  background:black;
-  color:white;
+.admin_nav_side {
+  background: black;
+  color: white;
 }
 
 .admin_nav_side a {
-  color:white;
+  color: white;
   text-decoration: none;
-  padding:16px;
-  border-bottom:2px solid white;
+  padding: 16px;
+  border-bottom: 2px solid white;
 }
 
 .admin_nav_side a:hover {
-  background:#444;
+  background: #444;
 }
-
-
 
 /* scroll bar */
 /* width */
@@ -28,17 +22,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* 10:50 */
