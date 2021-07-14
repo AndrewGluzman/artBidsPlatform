@@ -8,6 +8,8 @@ import { doApiGet, doApiMethod, URL_API } from "../../services/apiSer";
 
 import Header from "./header";
 import TimerSingleProd from "./timerSingleProd";
+import ReactImageZoom from 'react-image-zoom';
+
 
 function ProdSingleInfo(props) {
   let dispatch = useDispatch();
@@ -23,6 +25,7 @@ function ProdSingleInfo(props) {
 
   useEffect(() => {
     doApiGetProdInfo();
+    
   }, []);
 
   const doApiGetProdInfo = async () => {
@@ -32,7 +35,7 @@ function ProdSingleInfo(props) {
     let dataCat = await doApiGet(url_cat);
     data.catName = dataCat.name;
 
-    setProdData([prodData[0]=data]);
+    setProdData([data]);
     setProdArrBids(data.bids.length);
 
     const getCurrentPricePromise = new Promise((resolve, reject) => {
@@ -80,18 +83,32 @@ function ProdSingleInfo(props) {
       history.push("/login");
     }
   };
+const deadline =(someDate)=>{
+  var date = new Date(someDate); // Now
+  date.setDate(date.getDate() + 30);
 
+  let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
+  console.log(formatted_date)
+
+
+
+  return date;
+}
   return (
     <React.Fragment>
       <Header />
 
-      <div className="container">
+      <div className="container mb-3">
         {prodData.map(item=>{
-
-          return(<div>
+          let img =item.img.includes("http")?item.img:URL_API+ item.img
+          const props = {zoomPosition:"original", width: 350,  zoomWidth: 350, img:img};//Properties for zoom
+        
+          return(<div key={item._id}>
             <hr className="for_h2" />
             <h2 className="h2_hr">
               <div>More info:</div>
+
+
             </h2>
             <div className="breadcrumb">
               <Link className="breadcrumb-item" to="/">
@@ -112,24 +129,11 @@ function ProdSingleInfo(props) {
               <p className="text-secondary bi bi-eye-fill"> 3456 views</p>
             </div>
             <div className="row">
-              <div className="col-lg-5 ">
-              <img
-                    src={URL_API + item.img}
-                    className="w-100 p-5 img-thumbnail shadow"
-                  />
-                {/* {prodData.img.includes("http") ? (
-                  <img
-                    src={prodData.img}
-                    className="w-100 p-5 img-thumbnail shadow"
-                  />
-                ) : (
-                  // הוספנו את הקווארי סטרינג ? כדי שירפרש את התמונה כל פעם מחדש
-                  // כי שמעלים תמונה היא נשארת על אותה כתובת
-                  <img
-                    src={URL_API + prodData.img}
-                    className="w-100 p-5 img-thumbnail shadow"
-                  />
-                )} */}
+              <div className="col-lg-5 "><div className="w-100 p-5 img-thumbnail shadow">
+                <ReactImageZoom  {...props} />
+                </div>
+        
+
                 {/* <Link to="/" className="btn btn-dark w-100">
                   Back to list
                 </Link> */}
@@ -155,8 +159,8 @@ function ProdSingleInfo(props) {
                   <TimerSingleProd date={item.date_created} />
                 </div>
                 <div>
-                  <p className="mb-0 mt-4">Auction ends: June 30, 2021 12:00 am</p>
-                  <p>Timezone: UTC 0</p>
+                  <p className="mb-0 mt-4">Auction ends: {deadline(item.date_created).toDateString()}</p>
+                  <p>Timezone: UTC {deadline(item.date_created).getTimezoneOffset()/60}</p>
                 </div>
                 <form
                   onSubmit={handleSubmit(onBidSub)}
@@ -221,8 +225,8 @@ function ProdSingleInfo(props) {
                   </div>
                 </form>
                 <div>
-                  <p>SKU:980FD9</p>
-                  <p className="mb-0 mt-4">Categorie: {item.catName}</p>
+                  <p>SKU:{item._id.substring(item._id.length-8,item._id.length).toUpperCase()}</p>
+                  <p className="mb-0 mt-4">Category: {item.catName}</p>
                   <p>Tags: {item.tags}</p>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 
 function EditProd(props) {
   let [cat_ar, setCatAr] = useState([]);
-  let [prodData, setProdData] = useState({});
+  let [prodData, setProdData] = useState([]);
 
   let history = useHistory();
   const { register, handleSubmit, errors } = useForm();
@@ -36,7 +36,7 @@ function EditProd(props) {
     let editId = props.match.params.id;
     let url = URL_API + "/prods/single/" + editId;
     let data = await doApiGet(url);
-    setProdData(data);
+    setProdData([data]);
   };
 
   const onFormSub = (dataBody) => {
@@ -89,7 +89,9 @@ function EditProd(props) {
 
   return (
     <div className="container">
-      <form
+      {prodData.map(itemprod=>{
+        return(
+          <form
         onSubmit={handleSubmit(onFormSub)}
         className="col-lg-6 mx-auto p-2 shadow mt-3"
       >
@@ -99,7 +101,7 @@ function EditProd(props) {
             name
           </label>
           <input
-            defaultValue={prodData.name}
+            defaultValue={itemprod.name}
             ref={nameRef}
             name="name"
             type="text"
@@ -118,7 +120,7 @@ function EditProd(props) {
             info
           </label>
           <input
-            defaultValue={prodData.info}
+            defaultValue={itemprod.info}
             ref={infoRef}
             name="info"
             type="text"
@@ -135,7 +137,7 @@ function EditProd(props) {
             Price:
           </label>
           <input
-            defaultValue={prodData.price}
+            defaultValue={itemprod.price}
             ref={priceRef}
             name="price"
             type="text"
@@ -151,7 +153,7 @@ function EditProd(props) {
             Image:
           </label>
           <input
-            defaultValue={prodData.img}
+            defaultValue={itemprod.img}
             ref={imageRef}
             name="img"
             type="text"
@@ -164,12 +166,12 @@ function EditProd(props) {
           <label>Upload image from computer</label>
           {/* אם הקובץ מקומי צריך להוסיף את הכתובת של השרת
           ואם זה יו אר לא  מהשרת שלנו אז אין צורך  */}
-          {prodData.img.includes("http") ? (
-            <img src={prodData.img} height="100" />
+          {itemprod.img.includes("http") ? (
+            <img src={itemprod.img} height="100" />
           ) : (
             // הוספנו את הקווארי סטרינג ? כדי שירפרש את התמונה כל פעם מחדש
             // כי שמעלים תמונה היא נשארת על אותה כתובת
-            <img src={URL_API + prodData.img + "?" + Date.now()} height="100" />
+            <img src={URL_API + itemprod.img + "?" + Date.now()} height="100" />
           )}
           <br />
           <input
@@ -184,7 +186,7 @@ function EditProd(props) {
             QTY:
           </label>
           <input
-            defaultValue={prodData.qty}
+            defaultValue={itemprod.qty}
             ref={qtyRef}
             name="qty"
             type="number"
@@ -200,7 +202,7 @@ function EditProd(props) {
             Comments:
           </label>
           <input
-            defaultValue={prodData.comments}
+            defaultValue={itemprod.comments}
             ref={commentsRef}
             name="comments"
             type="text"
@@ -217,7 +219,7 @@ function EditProd(props) {
             Category
           </label>
           <select
-            defaultValue={prodData.category_s_id}
+            defaultValue={itemprod.category_s_id}
             ref={catRef}
             name="category_s_id"
             id="category"
@@ -245,6 +247,8 @@ function EditProd(props) {
           update product
         </button>
       </form>
+        )
+      })}
     </div>
   );
 }
