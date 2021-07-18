@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import '../../App.css'
+import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
 
 function BottomTabs(props) {
   const [toggleState, setToggleState] = useState(1)
   const [bid, setBids] = useState([])
+  const [artist, setArtist] = useState({})
 
   useEffect(() => {
-    console.log(props.bids)
+    getApiArtistInfo()
+    setBids(props.item.bids)
+  }, [props.item.bids])
 
-    setBids(props.bids)
-  }, [props])
+  const getApiArtistInfo = async () => {
+    let url = URL_API + '/artists/single/' + props.item.artistId
+    let data = await doApiGet(url)
+    setArtist(data)
+  }
 
   const toggleTab = (index) => {
     setToggleState(index)
@@ -54,20 +61,9 @@ function BottomTabs(props) {
         <div
           className={toggleState === 1 ? 'content  active-content' : 'content'}
         >
-          <h2>Van Goh Painting</h2>
+          <h2>{props.item.name}</h2>
           <hr />
-          <p>
-            Going forward knowledge is power or we need to button up our
-            approach old boys club. Please use “solutionise” instead of solution
-            ideas! 🙂 draw a line in the sand, for take five, punch the tree,
-            and come back in here with a clear head. Out of scope data-point
-            work flows , nor critical mass, and time to open the kimono yet move
-            the needle. You better eat a reality sandwich before you walk back
-            in that boardroom fire up your browser, so come up with something
-            buzzworthy, for it’s about managing expectations yet baseline into
-            the weeds. Gain traction product management breakout fastworks we
-            just need to put these last issues to bed, or table the discussion .
-          </p>
+          <p>{props.item.description}</p>
         </div>
 
         <div
@@ -98,7 +94,7 @@ function BottomTabs(props) {
                 .reverse()
                 .map((bidItem, i) => {
                   return (
-                    <tr>
+                    <tr key={i}>
                       <th scope="row">{bid.length - i}</th>
                       <td>{bidDate(bidItem.date_created).toLocaleString()}</td>
                       <td className="tw-bolder fs-6">
@@ -108,6 +104,11 @@ function BottomTabs(props) {
                     </tr>
                   )
                 })}
+              <tr>
+                <th>--</th>
+                <td>{bidDate(props.item.date_created).toLocaleString()}</td>
+                <td>Auction started</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -115,16 +116,24 @@ function BottomTabs(props) {
         <div
           className={toggleState === 3 ? 'content  active-content' : 'content'}
         >
-          <h2>Content 3</h2>
-          <hr />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-            nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-            Accusamus in quia odit aspernatur provident et ad vel distinctio
-            recusandae totam quidem repudiandae omnis veritatis nostrum
-            laboriosam architecto optio rem, dignissimos voluptatum beatae
-            aperiam voluptatem atque. Beatae rerum dolores sunt.
-          </p>
+          <div className="row d-flex">
+            <div className="col-lg-2">
+              <img
+                className="w-100 p-2 float-start profileImg"
+                src={artist.avatar}
+              ></img>
+            </div>
+            <div className=" row d-flex col-lg-4 p-3">
+              <h2>{artist.name}</h2>
+              <h5>Art field: {artist.artistType}</h5>
+              <p>Studio Location: {artist.address}</p>
+            </div>
+          </div>
+          <div className="px-2">
+            <h5>About me</h5>
+            <hr />
+            <p>{artist.bio}</p>
+          </div>
         </div>
         <div
           className={toggleState === 4 ? 'content  active-content' : 'content'}

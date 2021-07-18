@@ -47,7 +47,7 @@
   padding: 15px;
   text-align: center;
   width: 50%;
-  background: rgba(192, 3, 3, 0.897);
+  background: rgba(192, 3, 3, 0.849);
   cursor: pointer;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.274); */
   box-sizing: content-box;
@@ -121,4 +121,8 @@
   top: -10px;
   left: 13px;
   font-weight: lighter;
+}
+
+.profileImg {
+  border-radius: 50%;
 }

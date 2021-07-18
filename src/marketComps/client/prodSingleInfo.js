@@ -9,7 +9,7 @@ import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
 import Header from './header'
 import TimerSingleProd from './timerSingleProd'
 import ReactImageZoom from 'react-image-zoom'
-import BottomTabs from '../profilePageClient/bottomTabs'
+import BottomTabs from './bottomTabs'
 
 function ProdSingleInfo(props) {
   let dispatch = useDispatch()
@@ -102,10 +102,6 @@ function ProdSingleInfo(props) {
 
           return (
             <div key={item._id}>
-              <hr className="for_h2" />
-              <h2 className="h2_hr">
-                <div>More info:</div>
-              </h2>
               <div className="breadcrumb">
                 <Link className="breadcrumb-item" to="/">
                   Home
@@ -126,11 +122,11 @@ function ProdSingleInfo(props) {
               </div>
               <div className="row">
                 <div className="col-lg-5  position-relative ">
-                  <div className="w-100 p-5 img-thumbnail shadow">
+                  <div className="w-100 p-5 shadow">
                     <ReactImageZoom {...props} />
                     <i className="bi bi-search rounded-circle py-1 px-2 bg-light"></i>
                     <div className="yflag bg-warning p-5 ps-1 col-5">
-                      <h5 className="">NO RESERVE</h5>
+                      <h6 className="">NO RESERVE</h6>
                     </div>
                   </div>
 
@@ -252,7 +248,7 @@ function ProdSingleInfo(props) {
                   </div>
                 </div>
               </div>
-              <BottomTabs bids={item.bids} />
+              <BottomTabs item={item} />
             </div>
           )
         })}
