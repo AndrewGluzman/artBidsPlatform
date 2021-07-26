@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../../App.css'
 import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
+import ProdBox from './prodBox'
 
 function BottomTabs(props) {
   const [toggleState, setToggleState] = useState(1)
   const [bid, setBids] = useState([])
+  const [artistWorks, setArtistWorks] = useState([])
   const [artist, setArtist] = useState({})
 
   useEffect(() => {
@@ -13,9 +15,13 @@ function BottomTabs(props) {
   }, [props.item.bids])
 
   const getApiArtistInfo = async () => {
-    let url = URL_API + '/artists/single/' + props.item.artistId
+    let url = URL_API + '/artists/single/' + props.item.artist_id
     let data = await doApiGet(url)
     setArtist(data)
+    let url2 = URL_API + '/prods/artistprods?artist_id=' + props.item.artist_id
+    let artistProds = await doApiGet(url2)
+    console.log(artistProds)
+    setArtistWorks(artistProds)
   }
 
   const toggleTab = (index) => {
@@ -90,20 +96,24 @@ function BottomTabs(props) {
             </thead>
             <tbody className="border-1">
               {bid
-                .slice(0)
-                .reverse()
-                .map((bidItem, i) => {
-                  return (
-                    <tr key={i}>
-                      <th scope="row">{bid.length - i}</th>
-                      <td>{bidDate(bidItem.date_created).toLocaleString()}</td>
-                      <td className="tw-bolder fs-6">
-                        ${bidItem.price.toFixed(2)}
-                      </td>
-                      <td>{bidItem.email}</td>
-                    </tr>
-                  )
-                })}
+                ? bid
+                    .slice(0)
+                    .reverse()
+                    .map((bidItem, i) => {
+                      return (
+                        <tr key={i}>
+                          <th scope="row">{bid.length - i}</th>
+                          <td>
+                            {bidDate(bidItem.date_created).toLocaleString()}
+                          </td>
+                          <td className="tw-bolder fs-6">
+                            ${bidItem.price.toFixed(2)}
+                          </td>
+                          <td>{bidItem.email}</td>
+                        </tr>
+                      )
+                    })
+                : ''}
               <tr>
                 <th>--</th>
                 <td>{bidDate(props.item.date_created).toLocaleString()}</td>
@@ -116,7 +126,7 @@ function BottomTabs(props) {
         <div
           className={toggleState === 3 ? 'content  active-content' : 'content'}
         >
-          <div className="row d-flex">
+          <div className="row d-flex align-items-lg-center">
             <div className="col-lg-2">
               <img
                 className="w-100 p-2 float-start profileImg"
@@ -124,26 +134,31 @@ function BottomTabs(props) {
               ></img>
             </div>
             <div className=" row d-flex col-lg-4 p-3">
-              <h2>{artist.name}</h2>
-              <h5>Art field: {artist.artistType}</h5>
-              <p>Studio Location: {artist.address}</p>
+              <h2>{artist.artist_name}</h2>
+              <h5>Art field: {artist.artist_type}</h5>
+              <p>Studio Location: {artist.artist_address}</p>
             </div>
           </div>
           <div className="px-2">
             <h5>About me</h5>
             <hr />
-            <p>{artist.bio}</p>
+            <p>{artist.artist_bio}</p>
           </div>
         </div>
         <div
           className={toggleState === 4 ? 'content  active-content' : 'content'}
         >
-          <h2>Content 2</h2>
+          {artistWorks[1] ? (
+            <h2>Current works on Auction</h2>
+          ) : (
+            <h3>Additional works soon...</h3>
+          )}
           <hr />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-            voluptatum qui adipisci.
-          </p>
+          <div className="row mb-5">
+            {artistWorks.map((item) => {
+              return <ProdBox key={item._id} item={item} />
+            })}
+          </div>
         </div>
       </div>
     </div>

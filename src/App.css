@@ -49,7 +49,6 @@
   width: 50%;
   background: rgba(192, 3, 3, 0.849);
   cursor: pointer;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.274); */
   box-sizing: content-box;
   position: relative;
   outline: none;
@@ -65,18 +64,6 @@
   border-bottom: 1px solid transparent;
   color: rgb(109, 108, 108);
 }
-
-/* .active-tabs::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% + 2px);
-  height: 5px;
-  background: rgb(88, 147, 241);
-} */
 
 .bloc-tabs button {
   border: none;
@@ -108,7 +95,7 @@
   display: block;
 }
 
-.bi-search {
+.iconZoom {
   position: absolute;
   top: 50px;
   right: 65px;
@@ -124,5 +111,48 @@
 }
 
 .profileImg {
-  border-radius: 50%;
+  clip-path: circle(60px at center);
+}
+
+/* cardbox css */
+.prod_box {
+  height: 400px;
+}
+.prod_box .bi {
+  background-color: #ffffff;
+  color: rgba(136, 136, 136, 0.767);
+  border: 0;
+}
+
+.prod_box .bi:hover {
+  background-color: rgb(212, 36, 36);
+  color: #ffffff;
+}
+
+.prod_box .bi-hammer {
+  position: absolute;
+  top: 18px;
+  right: 218px;
+  font-weight: 400;
+  background-color: rgb(212, 36, 36);
+  color: #ffffff;
+}
+
+.prod_box .bi-heart {
+  position: absolute;
+  top: 65px;
+  right: 218px;
+  font-weight: 400;
+}
+.prod_box .bi-eye {
+  position: absolute;
+  top: 113px;
+  right: 218px;
+  font-weight: 400;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

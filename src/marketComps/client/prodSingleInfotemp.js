@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,13 +19,14 @@ function ProdSingleInfo(props) {
   let [prodPriceInp, setProdPriceInp] = useState(Number)
   let [onloadPrice, setOnloadPrice] = useState()
   const { register, handleSubmit, errors } = useForm()
+  let refValue = useRef()
 
   let bidRef = register({ required: true, min: onloadPrice + 1 })
   let prodId = props.match.params.id
 
   useEffect(() => {
     doApiGetProdInfo()
-  }, [props.match.params.id])
+  }, [])
 
   const doApiGetProdInfo = async () => {
     let url = URL_API + '/prods/single/' + prodId
@@ -52,8 +53,10 @@ function ProdSingleInfo(props) {
     })
   }
 
-  const onBidSub = async (dataBody) => {
+  const onBidSub = (dataBody) => {
     checkIfTokenValid()
+    // setProdPriceInp(refValue.current.value)
+
     console.log(dataBody)
     postBid(dataBody)
   }
@@ -147,7 +150,7 @@ function ProdSingleInfo(props) {
                 </div>
                 <div className="col-lg-6 text-center text-lg-start ms-4 p-lg-0 text-secondary">
                   <p className="text-secondary">Info: {item.info} </p>
-                  {/* //checks if there is bids exist if no shows starting price */}
+
                   {prodArrBids != 0 ? (
                     <h4 className="text-dark">
                       Winning Bid:
@@ -178,15 +181,11 @@ function ProdSingleInfo(props) {
                     onSubmit={handleSubmit(onBidSub)}
                     className="row d-flex ms-1 align-items-center"
                   >
-                    <div
-                      className={`p-1 border my-3 ${
-                        prodPriceInp < 100000 ? 'col-lg-3' : 'col-lg-4'
-                      }`}
-                    >
-                      <div className="d-flex w-100">
+                    <div className="col-lg-3 p-1 border my-3 ">
+                      <div className="d-flex ">
                         <button
                           type="button"
-                          className="btn shadow-none fw-bolder"
+                          className="btn shadow-none"
                           onClick={() => {
                             if (onloadPrice < prodPriceInp)
                               setProdPriceInp(prodPriceInp - 1)
@@ -195,21 +194,16 @@ function ProdSingleInfo(props) {
                           -
                         </button>
                         <input
-                          id="inputPrice"
-                          defaultValue={
-                            prodPriceInp ? Number(prodPriceInp + 1) : ''
-                          }
+                          defaultValue={prodPriceInp ? prodPriceInp + 1 : ''}
                           ref={bidRef}
                           name="price"
-                          type="Number"
-                          // onBlur={(e) => {
-                          //   setProdPriceInp(Number(e.target.value + 1))
-                          // }}
+                          type="number"
+                          // ref={refValue}
                           // type="Number"
                           // onChange={() => {
-                          //   setProdPriceInp()
+                          //   setProdPriceInp(bidRef);
                           // }}
-                          className="fw-bolder form-control border-0 text-center text-decoration-none bg- bg-white"
+                          className="form-control border-0 text-center text-decoration-none bg- bg-white"
                           id="bidPriceInp"
                         />
 
@@ -218,7 +212,7 @@ function ProdSingleInfo(props) {
                           onClick={() => {
                             setProdPriceInp(prodPriceInp + 1)
                           }}
-                          className="btn shadow-none fw-bolder"
+                          className="btn shadow-none"
                         >
                           +
                         </button>
@@ -228,6 +222,10 @@ function ProdSingleInfo(props) {
                       <button
                         type="submit"
                         className="bi bi-hammer btn btn-danger rounded-pill  w-50"
+                        onClick={() => {
+                          // console.log(refValue.current.value)
+                          // setProdPriceInp(refValue.current.value)
+                        }}
                       ></button>
 
                       <button
@@ -236,7 +234,7 @@ function ProdSingleInfo(props) {
                       ></button>
                     </div>
 
-                    <div className="col-lg-5 p-lg-0  float-lg-end">
+                    <div className="col-lg-6 float-lg-end">
                       <button
                         onClick={buyNow}
                         type="button"
@@ -253,17 +251,11 @@ function ProdSingleInfo(props) {
                         .substring(item._id.length - 8, item._id.length)
                         .toUpperCase()}
                     </p>
-                    <p className="mb-0 mt-4">
-                      Category:{' '}
-                      <Link to={'/cat/' + item.category_s_id}>
-                        {item.catName}
-                      </Link>
-                    </p>
+                    <p className="mb-0 mt-4">Category: {item.catName}</p>
                     <p>Tags: {item.tags}</p>
                   </div>
                 </div>
               </div>
-
               <BottomTabs item={item} />
             </div>
           )
