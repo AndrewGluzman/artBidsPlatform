@@ -25,7 +25,7 @@ function ProdSingleInfo(props) {
 
   useEffect(() => {
     doApiGetProdInfo()
-  }, [props.match.params.id])
+  }, [props.match.params.id, onloadPrice])
 
   const doApiGetProdInfo = async () => {
     let url = URL_API + '/prods/single/' + prodId
@@ -123,7 +123,12 @@ function ProdSingleInfo(props) {
               <div className="row">
                 <div className="col-lg-5  position-relative ">
                   <div className="w-100 p-5 shadow">
-                    <ReactImageZoom {...props} />
+                    <div
+                      className="
+                   justify-content-center w-100 d-flex"
+                    >
+                      <ReactImageZoom {...props} />
+                    </div>
                     <i className="iconZoom bi bi-search rounded-circle py-1 px-2 bg-light"></i>
                     <div className="yflag bg-warning p-5 ps-1 col-5">
                       <h6 className="">NO RESERVE</h6>
@@ -195,10 +200,10 @@ function ProdSingleInfo(props) {
                           -
                         </button>
                         <input
-                          id="inputPrice"
-                          defaultValue={
-                            prodPriceInp ? Number(prodPriceInp + 1) : ''
-                          }
+                          // defaultValue={
+                          //   prodPriceInp ? Number(prodPriceInp + 1) : ''
+                          // }
+                          value={prodPriceInp + 1}
                           ref={bidRef}
                           name="price"
                           type="Number"

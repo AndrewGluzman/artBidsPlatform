@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import LazyLoad from 'react-lazyload'
 import { Link } from 'react-router-dom'
 import { URL_API } from '../../services/apiSer'
+import MyVerticallyCenteredModal from './modlal'
+import { Modal } from 'react-bootstrap'
+import './css/zoomOnImagePlugin.css'
+import InnerImageZoom from 'react-inner-image-zoom'
 
 function ProdBox(props) {
   let dispatch = useDispatch()
 
   // let cartProd = props.item.count || 0
   let [countProd, setCountProd] = useState(0)
+  const [modalShow, setModalShow] = React.useState(false)
   let carts_ar = useSelector((mystore) => mystore.carts_ar)
 
   let item = props.item
@@ -39,13 +44,22 @@ function ProdBox(props) {
   }
 
   return (
-    <LazyLoad height="500" className="col-lg-3 p-2 text-center">
-      <div className=" px-3 shadow prod_box w-100 card position-relative ">
+    <LazyLoad height="500" className="col-lg-3  p-2 text-center">
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        element={modal_test(item)}
+        itemModal={item}
+        animation={true}
+      />
+
+      <div className=" px-3 shadow prod_box w-100 card position-relative col-sm-3 ">
         <div className="p-3 overflow-hidden h-100 d-flex justify-content-center ">
-          <Link
+          <button
+            onClick={() => setModalShow(true)}
             to={'/single/' + item._id}
             className="shadow py-1 px-2 bi bi-eye btn btn-danger rounded-circle text-decoration-none position-absolute"
-          ></Link>
+          ></button>
 
           <Link
             to={'/single/' + item._id}
@@ -94,3 +108,83 @@ function ProdBox(props) {
 }
 
 export default ProdBox
+
+const modal_test = (itemModal) => {
+  let prodData = [itemModal]
+
+  return (
+    <>
+      <Modal.Header closeButton></Modal.Header>
+      <Modal.Body>
+        <div className="">
+          {prodData.map((item) => {
+            let img = item.img.includes('http') ? item.img : URL_API + item.img
+
+            return (
+              <div key={item._id}>
+                <div className="row">
+                  <div className="col-lg-5  position-relative ">
+                    <div className="w-100 p-4 shadow">
+                      <div
+                        className="
+                   justify-content-center mh-75 w-100 d-flex"
+                      >
+                        <InnerImageZoom
+                          src={img}
+                          zoomSrc={img}
+                          zoomType="hover"
+                          zoomPreload={true}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 text-center text-lg-start ms-4 p-lg-0 text-secondary">
+                    <p className="text-secondary">Info: {item.info} </p>
+                    {/* //checks if there is bids exist if no shows starting price */}
+                    {item.bids != 0 ? (
+                      <h4 className="text-dark">
+                        Winning Bid:
+                        <span className="tw-bold">
+                          ${item.bids[item.bids.length - 1].price.toFixed(2)}
+                        </span>
+                      </h4>
+                    ) : (
+                      <h4 className="text-dark">
+                        Starting price is : ${item.price}
+                      </h4>
+                    )}
+
+                    <div className="col-lg-5 p-lg-0  float-lg-end">
+                      <button
+                        // onClick={}
+                        type="button"
+                        className="float-lg-end ms-lg-1 btn btn-outline-secondary w-75 rounded-pill me-2"
+                      >
+                        BUY NOW FOR ${item.price + 100}
+                      </button>
+                    </div>
+                    <div>
+                      <p>
+                        SKU:
+                        {item._id
+                          .substring(item._id.length - 8, item._id.length)
+                          .toUpperCase()}
+                      </p>
+                      <p className="mb-0 mt-4">
+                        Category:{' '}
+                        <Link to={'/cat/' + item.category_s_id}>
+                          {item.catName}
+                        </Link>
+                      </p>
+                      <p>Tags: {item.tags}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </Modal.Body>
+    </>
+  )
+}
