@@ -8,6 +8,8 @@ function MyVerticallyCenteredModal(props) {
       size="xl"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      animation
+      contentClassName
     >
       {props.element}
     </Modal>

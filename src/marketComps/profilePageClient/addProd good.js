@@ -71,11 +71,11 @@ function AddProd(props) {
   const uploadFile = async (_idProd) => {
     // ככה אוספים מידע מקובץ שרוצים לשלוח
     let editId = _idProd
-    console.log(fileRef.current.files)
+    console.log(fileRef.current.files[0])
     // שיטה לשליחת מידע כגון קובץ
     const myData = new FormData()
     // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
-    myData.append('fileSend', fileRef.current.files)
+    myData.append('fileSend', fileRef.current.files[0])
     let url = URL_API + '/prods/upload/' + editId
     try {
       let resp = await axios.put(url, myData, {
@@ -94,6 +94,8 @@ function AddProd(props) {
       console.log(err)
     }
   }
+
+  // 15:02
 
   return (
     <div className="container">
@@ -229,13 +231,7 @@ function AddProd(props) {
             )}
             <label>Upload image from computer:</label>
             <br />
-            <input
-              ref={fileRef}
-              type="file"
-              className="me-3"
-              multiple
-              name="fileSend"
-            />
+            <input ref={fileRef} type="file" className="me-3" />
           </div>
 
           <div className="mb-3">
