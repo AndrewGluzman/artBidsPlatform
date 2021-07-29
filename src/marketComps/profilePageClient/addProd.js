@@ -11,6 +11,7 @@ function AddProd(props) {
   const { register, handleSubmit, errors } = useForm()
 
   let fileRef = useRef()
+  let fileRefProfile = useRef()
   let nameRef = register({ required: true, minLength: 3 })
   let infoRef = register({ required: true, minLength: 3 })
   let descriptionRef = register({ required: true, minLength: 3 })
@@ -60,45 +61,78 @@ function AddProd(props) {
     let url = URL_API + '/prods'
     let data = await doApiMethod(url, 'POST', dataBody)
     // if succed we will get _id prop
-    console.log(data)
+    console.log(fileRef.current.files)
+
     if (data._id) {
-      uploadFile(data._id)
+      uploadFile(data._id, 'upload', fileRef.current.files)
+      uploadFile(data.artist_id, 'upload_profile', fileRefProfile.current.files)
     } else {
       alert('There is problem try again later')
     }
   }
-
-  const uploadFile = async (_idProd) => {
+  ////////////////////////
+  const uploadFile = async (_idProd, location, arr) => {
     // ככה אוספים מידע מקובץ שרוצים לשלוח
     let editId = _idProd
-    // שיטה לשליחת מידע כגון קובץ
-    for (var i = 0; i < fileRef.current.files.length; i++) {
-      filesSendOnyByOne(i, editId)
+
+    for (var i = 0; i < arr.length; i++) {
+      // שיטה לשליחת מידע כגון קובץ
+      const myData = new FormData()
+      // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
+      myData.append('fileSend', arr[i])
+      let url = URL_API + '/prods/' + location + '/' + editId
+      try {
+        let resp = await axios.put(url, myData, {
+          headers: {
+            'auth-token': localStorage['tok'],
+            'content-type': 'multipart/form-data',
+          },
+        })
+        // אם הצליח נקבל 1
+        if (resp.data.n == 1) {
+          alert('prod added and image uploaded')
+          // history.push('/profile/userProducts')
+        }
+        console.log(resp.data)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 
-  const filesSendOnyByOne = async (fileArrayNumber, editId) => {
-    const myData = new FormData()
-    // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
-    myData.append('fileSend', fileRef.current.files[fileArrayNumber])
-    let url = URL_API + '/prods/upload/' + editId
-    try {
-      let resp = await axios.put(url, myData, {
-        headers: {
-          'auth-token': localStorage['tok'],
-          'content-type': 'multipart/form-data',
-        },
-      })
-      // אם הצליח נקבל 1
-      if (resp.data.n == 1) {
-        alert('prod added and image uploaded')
-        // history.push('/profile/userProducts')
-      }
-      console.log(resp.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  /////////////////
+
+  // const uploadFile = async (_idProd) => {
+  //   // ככה אוספים מידע מקובץ שרוצים לשלוח
+  //   let editId = _idProd
+  //   // שיטה לשליחת מידע כגון קובץ
+  //   for (var i = 0; i < fileRef.current.files.length; i++) {
+  //     filesSendOnyByOne(i, editId)
+  //   }
+  // }
+
+  // const filesSendOnyByOne = async (fileArrayNumber, editId) => {
+  //   const myData = new FormData()
+  //   // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
+  //   myData.append('fileSend', fileRef.current.files[fileArrayNumber])
+  //   let url = URL_API + '/prods/upload/' + editId
+  //   try {
+  //     let resp = await axios.put(url, myData, {
+  //       headers: {
+  //         'auth-token': localStorage['tok'],
+  //         'content-type': 'multipart/form-data',
+  //       },
+  //     })
+  //     // אם הצליח נקבל 1
+  //     if (resp.data.n == 1) {
+  //       alert('prod added and image uploaded')
+  //       // history.push('/profile/userProducts')
+  //     }
+  //     console.log(resp.data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
   // 15:02
 
   return (
@@ -371,7 +405,7 @@ function AddProd(props) {
             )}
             <label>Upload photo:</label>
             <br />
-            <input ref={avatarFileRef} type="file" className="me-3" />
+            <input ref={fileRefProfile} type="file" className="me-3" />
           </div>
         </div>
         <button type="submit" className="btn btn-primary">

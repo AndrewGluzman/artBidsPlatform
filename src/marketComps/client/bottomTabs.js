@@ -130,7 +130,7 @@ function BottomTabs(props) {
             <div className="col-lg-2">
               <img
                 className="w-100 p-2 float-start profileImg"
-                src={artist.avatar}
+                src={URL_API + artist.avatar}
               ></img>
             </div>
             <div className=" row d-flex col-lg-4 p-3">
