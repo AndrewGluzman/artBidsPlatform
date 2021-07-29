@@ -52,17 +52,17 @@ function AddProd(props) {
   }
 
   const doApi = async (dataBody) => {
+    if (fileRef.current.files.length == 0 || fileRef.current.files.length > 4) {
+      alert('up to 4 Imgages allowed') //checks that no mre works been uploaded
+      return
+    }
+
     let url = URL_API + '/prods'
     let data = await doApiMethod(url, 'POST', dataBody)
     // if succed we will get _id prop
-    // console.log(data);
+    console.log(data)
     if (data._id) {
-      if (fileRef.current.files.length > 0) {
-        uploadFile(data._id)
-      } else {
-        alert('prod added')
-        history.push('/profile/userProducts')
-      }
+      uploadFile(data._id)
     } else {
       alert('There is problem try again later')
     }
@@ -92,7 +92,7 @@ function AddProd(props) {
       // אם הצליח נקבל 1
       if (resp.data.n == 1) {
         alert('prod added and image uploaded')
-        history.push('/profile/userProducts')
+        // history.push('/profile/userProducts')
       }
       console.log(resp.data)
     } catch (err) {
@@ -221,19 +221,19 @@ function AddProd(props) {
               Image of your work:
             </label>
             <input
-              defaultValue="http://"
               ref={imageRef}
               name="img"
               type="text"
               className="form-control"
               id="image"
+              placeholder="http://"
             />
             {errors.img && (
               <span className="text-danger">
                 Enter valid image higer than 0
               </span>
             )}
-            <label>Upload image from computer:</label>
+            <label>Upload up to 4 Images</label>
             <br />
             <input ref={fileRef} type="file" className="me-3" multiple />
           </div>

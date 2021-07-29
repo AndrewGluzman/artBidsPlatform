@@ -34,6 +34,8 @@ function ProdSingleInfo(props) {
     let dataCat = await doApiGet(url_cat)
     data.catName = dataCat.name
 
+    data.imgArr.shift()
+
     setProdData([data])
     setProdArrBids(data.bids.length)
 
@@ -136,19 +138,15 @@ function ProdSingleInfo(props) {
                   </div>
 
                   <div className="row d-flex">
-                    <img
-                      className="col-3 p-3 mt-lg-1"
-                      src="https://images.pexels.com/photos/1762973/pexels-photo-1762973.jpeg"
-                    ></img>
-                    <img
-                      className="col-3 p-3 mt-lg-1"
-                      src="https://images.pexels.com/photos/1690351/pexels-photo-1690351.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                    ></img>
+                    {item.imgArr.map((pic) => {
+                      return (
+                        <img
+                          className="col-3 p-3 mt-lg-1"
+                          src={URL_API + pic}
+                        ></img>
+                      )
+                    })}
                   </div>
-
-                  {/* <Link to="/" className="btn btn-dark w-100">
-                  Back to list
-                </Link> */}
                 </div>
                 <div className="col-lg-6 text-center text-lg-start ms-4 p-lg-0 text-secondary">
                   <p className="text-secondary">Info: {item.info} </p>

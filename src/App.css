@@ -151,9 +151,6 @@
 .modal-button-buynow {
   border-color: rgb(212, 36, 36);
 }
-.contentClassName {
-  width: 60%;
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

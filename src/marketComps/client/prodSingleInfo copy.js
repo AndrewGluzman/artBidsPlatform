@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,14 +19,13 @@ function ProdSingleInfo(props) {
   let [prodPriceInp, setProdPriceInp] = useState(Number)
   let [onloadPrice, setOnloadPrice] = useState()
   const { register, handleSubmit, errors } = useForm()
-  let refValue = useRef()
 
   let bidRef = register({ required: true, min: onloadPrice + 1 })
   let prodId = props.match.params.id
 
   useEffect(() => {
     doApiGetProdInfo()
-  }, [])
+  }, [props.match.params.id, onloadPrice])
 
   const doApiGetProdInfo = async () => {
     let url = URL_API + '/prods/single/' + prodId
@@ -53,10 +52,8 @@ function ProdSingleInfo(props) {
     })
   }
 
-  const onBidSub = (dataBody) => {
+  const onBidSub = async (dataBody) => {
     checkIfTokenValid()
-    // setProdPriceInp(refValue.current.value)
-
     console.log(dataBody)
     postBid(dataBody)
   }
@@ -126,7 +123,12 @@ function ProdSingleInfo(props) {
               <div className="row">
                 <div className="col-lg-5  position-relative ">
                   <div className="w-100 p-5 shadow">
-                    <ReactImageZoom {...props} />
+                    <div
+                      className="
+                   justify-content-center w-100 d-flex"
+                    >
+                      <ReactImageZoom {...props} />
+                    </div>
                     <i className="iconZoom bi bi-search rounded-circle py-1 px-2 bg-light"></i>
                     <div className="yflag bg-warning p-5 ps-1 col-5">
                       <h6 className="">NO RESERVE</h6>
@@ -150,7 +152,7 @@ function ProdSingleInfo(props) {
                 </div>
                 <div className="col-lg-6 text-center text-lg-start ms-4 p-lg-0 text-secondary">
                   <p className="text-secondary">Info: {item.info} </p>
-
+                  {/* //checks if there is bids exist if no shows starting price */}
                   {prodArrBids != 0 ? (
                     <h4 className="text-dark">
                       Winning Bid:
@@ -181,11 +183,15 @@ function ProdSingleInfo(props) {
                     onSubmit={handleSubmit(onBidSub)}
                     className="row d-flex ms-1 align-items-center"
                   >
-                    <div className="col-lg-3 p-1 border my-3 ">
-                      <div className="d-flex ">
+                    <div
+                      className={`p-1 border my-3 ${
+                        prodPriceInp < 100000 ? 'col-lg-3' : 'col-lg-4'
+                      }`}
+                    >
+                      <div className="d-flex w-100">
                         <button
                           type="button"
-                          className="btn shadow-none"
+                          className="btn shadow-none fw-bolder"
                           onClick={() => {
                             if (onloadPrice < prodPriceInp)
                               setProdPriceInp(prodPriceInp - 1)
@@ -194,16 +200,21 @@ function ProdSingleInfo(props) {
                           -
                         </button>
                         <input
-                          defaultValue={prodPriceInp ? prodPriceInp + 1 : ''}
+                          // defaultValue={
+                          //   prodPriceInp ? Number(prodPriceInp + 1) : ''
+                          // }
+                          value={prodPriceInp + 1}
                           ref={bidRef}
                           name="price"
-                          type="number"
-                          // ref={refValue}
+                          type="Number"
+                          // onBlur={(e) => {
+                          //   setProdPriceInp(Number(e.target.value + 1))
+                          // }}
                           // type="Number"
                           // onChange={() => {
-                          //   setProdPriceInp(bidRef);
+                          //   setProdPriceInp()
                           // }}
-                          className="form-control border-0 text-center text-decoration-none bg- bg-white"
+                          className="fw-bolder form-control border-0 text-center text-decoration-none bg- bg-white"
                           id="bidPriceInp"
                         />
 
@@ -212,7 +223,7 @@ function ProdSingleInfo(props) {
                           onClick={() => {
                             setProdPriceInp(prodPriceInp + 1)
                           }}
-                          className="btn shadow-none"
+                          className="btn shadow-none fw-bolder"
                         >
                           +
                         </button>
@@ -222,10 +233,6 @@ function ProdSingleInfo(props) {
                       <button
                         type="submit"
                         className="bi bi-hammer btn btn-danger rounded-pill  w-50"
-                        onClick={() => {
-                          // console.log(refValue.current.value)
-                          // setProdPriceInp(refValue.current.value)
-                        }}
                       ></button>
 
                       <button
@@ -234,7 +241,7 @@ function ProdSingleInfo(props) {
                       ></button>
                     </div>
 
-                    <div className="col-lg-6 float-lg-end">
+                    <div className="col-lg-5 p-lg-0  float-lg-end">
                       <button
                         onClick={buyNow}
                         type="button"
@@ -251,11 +258,17 @@ function ProdSingleInfo(props) {
                         .substring(item._id.length - 8, item._id.length)
                         .toUpperCase()}
                     </p>
-                    <p className="mb-0 mt-4">Category: {item.catName}</p>
+                    <p className="mb-0 mt-4">
+                      Category:{' '}
+                      <Link to={'/cat/' + item.category_s_id}>
+                        {item.catName}
+                      </Link>
+                    </p>
                     <p>Tags: {item.tags}</p>
                   </div>
                 </div>
               </div>
+
               <BottomTabs item={item} />
             </div>
           )

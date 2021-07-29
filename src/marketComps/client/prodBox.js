@@ -126,7 +126,7 @@ const modalElement = (item_modal) => {
                     <div className="w-100 p-4 shadow">
                       <div
                         className="
-                   justify-content-center mh-75 w-100 d-flex"
+                   justify-content-center  d-flex"
                       >
                         <InnerImageZoom
                           src={img}
