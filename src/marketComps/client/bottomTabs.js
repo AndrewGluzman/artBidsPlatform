@@ -104,7 +104,12 @@ function BottomTabs(props) {
                         <tr key={i}>
                           <th scope="row">{bid.length - i}</th>
                           <td>
-                            {bidDate(bidItem.date_created).toLocaleString()}
+                            {bidDate(bidItem.date_created).toLocaleString(
+                              'en-IL',
+                              {
+                                timeZone: 'Asia/Jerusalem',
+                              },
+                            )}
                           </td>
                           <td className="tw-bolder fs-6">
                             ${bidItem.price.toFixed(2)}
