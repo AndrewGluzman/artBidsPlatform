@@ -115,6 +115,7 @@ const modalElement = (item_modal) => {
     <>
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
+        <div closeButton></div>
         <div className="">
           {prodData.map((item) => {
             let img = item.img.includes('http') ? item.img : URL_API + item.img

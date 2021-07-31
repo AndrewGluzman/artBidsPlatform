@@ -11,6 +11,9 @@ import TimerSingleProd from './timerSingleProd'
 import ReactImageZoom from 'react-image-zoom'
 import BottomTabs from './bottomTabs'
 
+import ReactBnbGallery from 'react-bnb-gallery'
+import './css/reactBnbGallery.css'
+
 function ProdSingleInfo(props) {
   let dispatch = useDispatch()
   let history = useHistory()
@@ -18,10 +21,12 @@ function ProdSingleInfo(props) {
   let [prodArrBids, setProdArrBids] = useState(Number)
   let [prodPriceInp, setProdPriceInp] = useState(Number)
   let [onloadPrice, setOnloadPrice] = useState()
-  const { register, handleSubmit, errors } = useForm()
+  let { register, handleSubmit, errors } = useForm()
 
   let bidRef = register({ required: true, min: onloadPrice + 1 })
   let prodId = props.match.params.id
+
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     doApiGetProdInfo()
@@ -33,7 +38,6 @@ function ProdSingleInfo(props) {
     let url_cat = URL_API + '/categories/single/' + data.category_s_id
     let dataCat = await doApiGet(url_cat)
     data.catName = dataCat.name
-
     data.imgArr.shift()
 
     setProdData([data])
@@ -101,9 +105,16 @@ function ProdSingleInfo(props) {
             zoomWidth: 350,
             img: img,
           } //Properties for zoom
-
+          const PHOTOS = [...item.imgArr, item.img]
           return (
             <div key={item._id}>
+              <ReactBnbGallery
+                show={isOpen}
+                photos={PHOTOS.map((photoItem) => URL_API + photoItem)}
+                onClose={() => setIsOpen(false)}
+                showThumbnails={false}
+                backgroundColor={'rgba(0, 0, 0, 0.575)'}
+              />
               <div className="breadcrumb">
                 <Link className="breadcrumb-item" to="/">
                   Home
@@ -141,8 +152,9 @@ function ProdSingleInfo(props) {
                     {item.imgArr.map((pic) => {
                       return (
                         <img
-                          className="col-3 p-3 mt-lg-1"
+                          className="col-3 p-3 mt-lg-1 btn"
                           src={URL_API + pic}
+                          onClick={() => setIsOpen(true)}
                         ></img>
                       )
                     })}
