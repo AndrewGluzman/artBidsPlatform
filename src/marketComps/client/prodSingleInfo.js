@@ -27,10 +27,13 @@ function ProdSingleInfo(props) {
   let prodId = props.match.params.id
 
   const [isOpen, setIsOpen] = useState(false)
+  const [stateFavorites, setstateFavorites] = useState(false)
 
   useEffect(() => {
     doApiGetProdInfo()
   }, [props.match.params.id, onloadPrice])
+  // useEffect(() => {
+  // }, [])
 
   const doApiGetProdInfo = async () => {
     let url = URL_API + '/prods/single/' + prodId
@@ -56,6 +59,13 @@ function ProdSingleInfo(props) {
       setOnloadPrice(resp)
       bidRef = register({ required: true, min: resp })
     })
+
+    //checks if favorites and makes css on button component
+    if (localStorage['favorites']) {
+      JSON.parse(localStorage.getItem('favorites')).includes(data._id)
+        ? setstateFavorites(true)
+        : setstateFavorites(false)
+    }
   }
 
   const onBidSub = async (dataBody) => {
@@ -92,6 +102,26 @@ function ProdSingleInfo(props) {
 
     return date
   }
+
+  const changeFavorites = async (prodId, state) => {
+    // !addFavorites ? setaddFavorites(true) : setaddFavorites(false)
+    // let url = URL_API + '/users/favorites/' + state + '/' + prodId
+    // let data = await doApiMethod(url, 'PUT', {})
+    // doApiGetProdInfo()
+
+    let favorites = !localStorage['favorites']
+      ? []
+      : JSON.parse(localStorage.getItem('favorites'))
+    if (state) {
+      console.log(favorites)
+      favorites = [...favorites, prodId]
+      localStorage.setItem('favorites', JSON.stringify(favorites))
+    } else {
+      console.log('here')
+      favorites = favorites.filter((item) => item != prodId)
+      localStorage.setItem('favorites', JSON.stringify(favorites))
+    }
+  }
   return (
     <React.Fragment>
       <Header />
@@ -106,6 +136,7 @@ function ProdSingleInfo(props) {
             img: img,
           } //Properties for zoom
           const PHOTOS = [...item.imgArr, item.img]
+
           return (
             <div key={item._id}>
               <ReactBnbGallery
@@ -244,10 +275,33 @@ function ProdSingleInfo(props) {
                         type="submit"
                         className="bi bi-hammer btn btn-danger rounded-pill  w-50"
                       ></button>
-
+                      {/* ///////////////////////////////////////////////////////// */}
                       <button
                         type="button"
-                        className=" bi bi-heart-fill btn btn-outline-dark  rounded-circle me-2"
+                        className={`bi bi-heart-fill btn btn-outline-dark  rounded-circle me-2 ${
+                          stateFavorites ? 'favorite' : ''
+                        }`}
+                        data-state={stateFavorites}
+                        onClick={(event) => {
+                          if (
+                            event.currentTarget.dataset.state.includes('true')
+                          ) {
+                            // event.currentTarget.dataset.state = false
+                            changeFavorites(item._id, false)
+                            setstateFavorites(false)
+
+                            return
+                          }
+                          if (
+                            event.currentTarget.dataset.state.includes('false')
+                          ) {
+                            event.currentTarget.dataset.state = true
+                            changeFavorites(item._id, true)
+                            setstateFavorites(true)
+
+                            return
+                          }
+                        }}
                       ></button>
                     </div>
 
