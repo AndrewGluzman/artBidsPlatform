@@ -127,10 +127,10 @@ function ProdBox(props) {
           <div className="card-body align-items-end bg bg-white  border-top">
             <Link
               to={'/single/' + item._id}
-              className=" text-dark text-decoration-none"
+              className=" text-dark text-decoration-none "
             >
               {' '}
-              <h5>{item.name}</h5>
+              <h5 className="prod_name_box">{item.name}</h5>
             </Link>
             {item.bids[0] ? (
               <h6>

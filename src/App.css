@@ -129,6 +129,9 @@
   background-color: rgb(212, 36, 36);
   color: #ffffff;
 }
+.prod_name_box:hover {
+  color: rgb(212, 36, 36);
+}
 
 .prod_box .bi-hammer {
   position: absolute;
