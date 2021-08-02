@@ -4,12 +4,20 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
+import {
+  doApiGet,
+  doApiMethod,
+  URL_API,
+  changeFavorites,
+  checkIfTokenValid,
+} from '../../services/apiSer'
 
 import Header from './header'
 import TimerSingleProd from './timerSingleProd'
 import ReactImageZoom from 'react-image-zoom'
 import BottomTabs from './bottomTabs'
+import InnerImageZoom from 'react-inner-image-zoom'
+import './css/zoomOnImagePlugin.css'
 
 import ReactBnbGallery from 'react-bnb-gallery'
 import './css/reactBnbGallery.css'
@@ -70,6 +78,10 @@ function ProdSingleInfo(props) {
 
   const onBidSub = async (dataBody) => {
     checkIfTokenValid()
+    if (!localStorage['tok']) {
+      history.push('/login')
+    }
+
     console.log(dataBody)
     postBid(dataBody)
   }
@@ -87,15 +99,6 @@ function ProdSingleInfo(props) {
     history.push('/checkout')
   }
 
-  const checkIfTokenValid = async () => {
-    if (!localStorage['tok']) history.push('/login')
-    let url = URL_API + '/users/myInfo'
-    let data = await doApiMethod(url, 'GET')
-    if (!data._id) {
-      localStorage.removeItem('tok')
-      history.push('/login')
-    }
-  }
   const deadline = (someDate) => {
     var date = new Date(someDate) // Now
     date.setDate(date.getDate() + 30)
@@ -103,38 +106,14 @@ function ProdSingleInfo(props) {
     return date
   }
 
-  const changeFavorites = async (prodId, state) => {
-    // !addFavorites ? setaddFavorites(true) : setaddFavorites(false)
-    // let url = URL_API + '/users/favorites/' + state + '/' + prodId
-    // let data = await doApiMethod(url, 'PUT', {})
-    // doApiGetProdInfo()
-
-    let favorites = !localStorage['favorites']
-      ? []
-      : JSON.parse(localStorage.getItem('favorites'))
-    if (state) {
-      console.log(favorites)
-      favorites = [...favorites, prodId]
-      localStorage.setItem('favorites', JSON.stringify(favorites))
-    } else {
-      console.log('here')
-      favorites = favorites.filter((item) => item != prodId)
-      localStorage.setItem('favorites', JSON.stringify(favorites))
-    }
-  }
   return (
     <React.Fragment>
       <Header />
 
       <div className="container mb-3">
         {prodData.map((item) => {
-          let img = item.img.includes('http') ? item.img : URL_API + item.img
-          const props = {
-            zoomPosition: 'original',
-            width: 350,
-            zoomWidth: 350,
-            img: img,
-          } //Properties for zoom
+          // let img = item.img.includes('http') ? item.img : URL_API + item.img
+
           const PHOTOS = [...item.imgArr, item.img]
 
           return (
@@ -171,9 +150,13 @@ function ProdSingleInfo(props) {
                       className="
                    justify-content-center w-100 d-flex"
                     >
-                      <ReactImageZoom {...props} />
+                      <InnerImageZoom
+                        src={URL_API + item.img}
+                        zoomSrc={URL_API + item.img}
+                        zoomType="hover"
+                        zoomPreload={true}
+                      />
                     </div>
-                    <i className="iconZoom bi bi-search rounded-circle py-1 px-2 bg-light"></i>
                     <div className="yflag bg-warning p-5 ps-1 col-5">
                       <h6 className="">NO RESERVE</h6>
                     </div>
@@ -183,6 +166,7 @@ function ProdSingleInfo(props) {
                     {item.imgArr.map((pic) => {
                       return (
                         <img
+                          key={pic}
                           className="col-3 p-3 mt-lg-1 btn"
                           src={URL_API + pic}
                           onClick={() => setIsOpen(true)}
@@ -281,23 +265,18 @@ function ProdSingleInfo(props) {
                         className={`bi bi-heart-fill btn btn-outline-dark  rounded-circle me-2 ${
                           stateFavorites ? 'favorite' : ''
                         }`}
-                        data-state={stateFavorites}
                         onClick={(event) => {
-                          if (
-                            event.currentTarget.dataset.state.includes('true')
-                          ) {
+                          if (stateFavorites) {
                             // event.currentTarget.dataset.state = false
-                            changeFavorites(item._id, false)
                             setstateFavorites(false)
+                            changeFavorites(item._id, false)
 
                             return
                           }
-                          if (
-                            event.currentTarget.dataset.state.includes('false')
-                          ) {
-                            event.currentTarget.dataset.state = true
-                            changeFavorites(item._id, true)
+                          if (!stateFavorites) {
+                            // event.currentTarget.dataset.state = false
                             setstateFavorites(true)
+                            changeFavorites(item._id, true)
 
                             return
                           }

@@ -162,3 +162,7 @@ input::-webkit-inner-spin-button {
   background-color: rgb(0, 0, 0);
   color: #ffffff;
 }
+.favorite2 {
+  background-color: rgb(212, 36, 36) !important;
+  color: #ffffff !important;
+}

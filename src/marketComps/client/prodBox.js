@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import LazyLoad from 'react-lazyload'
 import { Link } from 'react-router-dom'
-import { URL_API } from '../../services/apiSer'
+import {
+  URL_API,
+  changeFavorites,
+  doApiMethod,
+  checkIfTokenValid,
+} from '../../services/apiSer'
 import MyVerticallyCenteredModal from './modlal'
 import { Modal } from 'react-bootstrap'
 import './css/zoomOnImagePlugin.css'
+import '../../App.css'
 import InnerImageZoom from 'react-inner-image-zoom'
 
 function ProdBox(props) {
@@ -15,6 +21,7 @@ function ProdBox(props) {
   let [countProd, setCountProd] = useState(0)
   const [modalShow, setModalShow] = React.useState(false)
   let carts_ar = useSelector((mystore) => mystore.carts_ar)
+  const [stateFavorites, setstateFavorites] = useState(false)
 
   let item = props.item
 
@@ -27,7 +34,28 @@ function ProdBox(props) {
         setCountProd(prodItem.count)
       }
     })
+    checkFavorites()
   }, [carts_ar])
+
+  const checkFavorites = async () => {
+    // checkIfTokenValid()needed to check it in home page
+    if (localStorage['tok']) {
+      let url = URL_API + `/users/favorites`
+      let favorites = await doApiMethod(url, 'POST', {})
+      favorites.includes(item._id)
+        ? setstateFavorites(true)
+        : setstateFavorites(false)
+      return
+    }
+
+    if (localStorage['favorites']) {
+      JSON.parse(localStorage.getItem('favorites')).includes(item._id)
+        ? setstateFavorites(true)
+        : setstateFavorites(false)
+
+      console.log(stateFavorites)
+    }
+  }
 
   const addProd = () => {
     setCountProd(countProd + 1)
@@ -65,7 +93,27 @@ function ProdBox(props) {
             className="shadow py-1 px-2 bi bi-hammer  btn btn-danger rounded-circle text-decoration-none position-absolute"
           ></Link>
 
-          <button className="shadow py-1 px-2 bi bi-heart  btn btn-danger rounded-circle text-decoration-none position-absolute"></button>
+          <button
+            className={` shadow py-1 px-2 bi bi-heart  btn btn-danger rounded-circle text-decoration-none position-absolute ${
+              stateFavorites ? 'favorite2' : ''
+            }`}
+            onClick={(event) => {
+              if (stateFavorites) {
+                // event.currentTarget.dataset.state = false
+                setstateFavorites(false)
+                changeFavorites(item._id, false)
+
+                return
+              }
+              if (!stateFavorites) {
+                // event.currentTarget.dataset.state = false
+                setstateFavorites(true)
+                changeFavorites(item._id, true)
+
+                return
+              }
+            }}
+          ></button>
 
           {item.img.includes('http') ? (
             <img className=" h-100" src={item.img}></img>
