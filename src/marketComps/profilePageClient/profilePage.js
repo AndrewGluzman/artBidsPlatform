@@ -1,12 +1,13 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import EditProd from "./editProd";
-import HeaderAdmin from "../admin/headerAdmin";
-import AuthClient from "../client/authClient";
-import AccSettings from "./accSetings";
-import UserProducts from "./userProducts";
-import UserBidedProducts from "./userBoughtProds";
-import AddProd from "./addProd";
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import EditProd from './editProd'
+import HeaderAdmin from '../admin/headerAdmin'
+import AuthClient from '../client/authClient'
+import AccSettings from './accSetings'
+import UserProducts from './userProducts'
+import UserBidedProducts from './userBoughtProds'
+import AddProd from './addProd'
+import Header from '../client/header'
 
 // import Login from "./login";
 // import ListProdAdmin from "./listProdAdmin";
@@ -26,11 +27,12 @@ function ProfilePage(props) {
       <AuthClient />
       {/* סטריקט דואג שאנחנו באדמין ויו אר אל פנימי שלו */}
       <HeaderAdmin role="User Account" />
+      {/* <Header /> */}
       <div className="container-fluid">
         <div className="row">
           {/* ADD TO Comp sideNavAdmin */}
           {/* {localStorage["tok"] ? ( */}
-          <nav className="col-2  admin_nav_side" style={{ minHeight: "100vh" }}>
+          <nav className="col-2  admin_nav_side" style={{ minHeight: '100vh' }}>
             <Link className="d-block" to="/profile/accountSettings">
               Account Settings
             </Link>
@@ -106,7 +108,7 @@ function ProfilePage(props) {
       </div>
     </React.Fragment>
     // </Router>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage

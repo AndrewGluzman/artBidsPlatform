@@ -1,6 +1,11 @@
-/* body {
+body {
   background-color: rgba(255, 255, 255, 0.986);
-} */
+  font-family: Montserrat;
+}
+
+.logo {
+  max-height: 130px;
+}
 .admin_nav_side {
   background: black;
   color: white;
@@ -168,4 +173,24 @@ input::-webkit-inner-spin-button {
 .favorite2 {
   background-color: rgb(212, 36, 36) !important;
   color: #ffffff !important;
+}
+
+nav {
+  background-color: rgba(192, 3, 3, 0.849);
+  max-height: 62px;
+}
+
+p .nav-item {
+  vertical-align: middle;
+}
+
+.navbar-nav li:hover > .dropdown-menu {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+.cat_title {
+  max-height: 62px;
 }
