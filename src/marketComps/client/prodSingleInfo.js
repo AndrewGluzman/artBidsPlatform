@@ -14,7 +14,6 @@ import {
 
 import Header from './header'
 import TimerSingleProd from './timerSingleProd'
-import ReactImageZoom from 'react-image-zoom'
 import BottomTabs from './bottomTabs'
 import InnerImageZoom from 'react-inner-image-zoom'
 import './css/zoomOnImagePlugin.css'

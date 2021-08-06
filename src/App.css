@@ -123,6 +123,7 @@ body {
 .prod_box {
   height: 400px;
 }
+/* loupe */
 .prod_box .bi {
   background-color: #ffffff;
   color: rgba(136, 136, 136, 0.767);
@@ -156,6 +157,7 @@ body {
   top: 113px;
   font-weight: 400;
 }
+
 .modal-button-buynow {
   border-color: rgb(212, 36, 36);
 }
@@ -184,13 +186,193 @@ p .nav-item {
   vertical-align: middle;
 }
 
-.navbar-nav li:hover > .dropdown-menu {
-  display: block;
-}
-
 a {
   text-decoration: none;
 }
 .cat_title {
   max-height: 62px;
+}
+.drop_menue {
+  left: 4%;
+  top: 94%;
+  position: absolute;
+  z-index: 1000;
+  background-color: #ffffff;
+}
+
+/* butons and links red on hover */
+.drop_menue div .dropdown_item:hover,
+.moderncontemporary .btn:hover {
+  color: rgb(212, 36, 36) !important;
+}
+
+/* navbar links underline */
+
+.nav-item p:hover:after {
+  transform: scaleX(1);
+}
+
+.nav-item p:after {
+  display: block;
+  content: '';
+  border-radius: 1em;
+  border-bottom: solid 2px #ffffff;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+/* Home page CSS */
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.5)),
+    url('https://picsum.photos/600/300?random=3');
+  min-height: 521px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* lines over hammer icon */
+.title h2 {
+  overflow: hidden;
+  text-align: center;
+}
+
+.title h2:before,
+.title h2:after {
+  background-color: #000;
+  content: '';
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.title h2:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.title h2:after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+
+.contemporary {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.5)),
+    url('/src/marketComps/client/images/The_Structure.jpg');
+}
+.modern {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.5)),
+    url('/src/marketComps/client/images/classic.jpg');
+}
+.contemporary,
+.modern {
+  margin-top: 2em;
+  height: 380px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border: #ffffff 2px solid;
+}
+
+.contemporary .span1:before,
+.modern .span1:before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  width: 90%;
+  height: 1px;
+  background-color: transparent;
+  margin: 0 auto;
+  transition: 0.2s ease-in-out;
+}
+.contemporary .span1:after,
+.modern .span1:after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 1px;
+  height: 80%;
+  background-color: transparent;
+  margin: 0 auto;
+  transition: 0.2s ease-in-out;
+}
+.contemporary .span2:before,
+.modern .span2:before {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  left: 0;
+  width: 90%;
+  height: 1px;
+  background-color: transparent;
+  margin: 0 auto;
+  transition: 0.2s ease-in-out;
+}
+.contemporary .span2:after,
+.modern .span2:after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 1px;
+  height: 80%;
+  background-color: transparent;
+  margin: 0 auto;
+  transition: 0.2s ease-in-out;
+}
+.contemporary:hover .span1:before,
+.modern:hover .span1:before {
+  animation: border-top 0.2s linear;
+  background-color: #ffffff;
+}
+@keyframes border-top {
+  0% {
+    transform: scaleX(0);
+  }
+}
+.contemporary:hover .span1:after,
+.modern:hover .span1:after {
+  animation: border-right 0.2s linear;
+  background-color: #ffffff;
+}
+@keyframes border-right {
+  0%,
+  50% {
+    transform: scaleY(0);
+  }
+}
+.contemporary:hover .span2:before,
+.modern:hover .span2:before {
+  animation: border-bottom 0.2s linear;
+  background-color: #ffffff;
+}
+@keyframes border-bottom {
+  0%,
+  75% {
+    transform: scaleX(0);
+  }
+}
+.contemporary:hover .span2:after,
+.modern:hover .span2:after {
+  animation: border-left 0.2s linear;
+  background-color: #ffffff;
+}
+@keyframes border-left {
+  0%,
+  80% {
+    transform: scaleY(0);
+  }
+}
+
+.insideframe {
+  left: 12%;
+  top: 15%;
 }
