@@ -52,8 +52,6 @@ function ProdBoxSmallHorizontal(props) {
       JSON.parse(localStorage.getItem('favorites')).includes(item._id)
         ? setstateFavorites(true)
         : setstateFavorites(false)
-
-      console.log(stateFavorites)
     }
   }
 
@@ -72,7 +70,7 @@ function ProdBoxSmallHorizontal(props) {
   }
 
   return (
-    <LazyLoad height="100" className="col-md-6  p-2 ProdBoxSmallHorizontal">
+    <LazyLoad height="100" className="col-md-6  py-0 ProdBoxSmallHorizontal">
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -114,17 +112,16 @@ function ProdBoxSmallHorizontal(props) {
               ) : (
                 <h6>Starting Bid: ${item.price.toFixed(2)}</h6>
               )}
-              <div className="mt-3">
+              <div className="mt-3 card_small">
+                <Link
+                  to={'/single/' + item._id}
+                  className="shadow  py-1 px-2 bi bi-hammer  btn btn-danger rounded-circle text-decoration-none "
+                ></Link>
                 <button
                   onClick={() => setModalShow(true)}
                   to={'/single/' + item._id}
-                  className="shadow py-1 px-2 bi bi-eye btn btn-danger rounded-circle text-decoration-none "
+                  className="shadow py-1 mx-3 px-2 bi bi-eye btn btn-danger rounded-circle text-decoration-none "
                 ></button>
-
-                <Link
-                  to={'/single/' + item._id}
-                  className="shadow mx-3 py-1 px-2 bi bi-hammer  btn btn-danger rounded-circle text-decoration-none "
-                ></Link>
 
                 <button
                   className={` shadow py-1 px-2 bi bi-heart  btn btn-danger rounded-circle text-decoration-none ${

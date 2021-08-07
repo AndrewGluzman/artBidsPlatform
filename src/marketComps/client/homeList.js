@@ -8,7 +8,7 @@ import {
   checkIfTokenValid,
 } from '../../services/apiSer'
 import ProdBox from './prodBox'
-import HomeCategoryPreview from './homeCategoryPreview'
+import './css/form.css'
 
 function Homelist(props) {
   // const orderCategoriesId = ["3", "1", "2", "5"]
@@ -30,7 +30,6 @@ function Homelist(props) {
     let url = URL_API + '/prods/allonsale?perpage=4'
     let data = await doApiMethod(url, 'GET')
     setLatestProds(data)
-    console.log(data)
   }
 
   return (
@@ -39,14 +38,7 @@ function Homelist(props) {
         <section className="hero"></section>
 
         <section className="container text-center mb-5 mt-5">
-          <div className="title">
-            <h3 className="fw-bolder h2">ENDING AUCTIONS</h3>
-            <h2 className="col-4 mx-lg-auto">
-              <span>
-                <i style={{ color: '#BE263F' }} className="bi bi-hammer"></i>
-              </span>
-            </h2>
-          </div>
+          {middleTitleWithHammer('ENDING SOON AUCTIONS')}
           <div className=" ending-auctions row">
             {latestProds.map((item) => {
               return <ProdBox key={item._id} item={item} />
@@ -88,9 +80,151 @@ function Homelist(props) {
             </LazyLoad>
           )
         })}
+        <section className="container mb-5 mt-5">
+          {middleTitleWithHammer('NEED HELP? CONTACT US')}
+          <div class="container">
+            <div class="">
+              <div class="row">
+                {/* <!-- Section Titile --> */}
+                <div
+                  class="col-md-12 wow animated fadeInLeft"
+                  data-wow-delay=".2s"
+                ></div>
+              </div>
+              <div class="row">
+                {/* <!-- Section Titile --> */}
+                <div
+                  class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft"
+                  data-wow-delay=".2s"
+                >
+                  <p>
+                    If you ever dreamed to be well known artist? Making your own
+                    exhibition and turn your creations to a valuable works? We
+                    are here for you. $4ART work with us today.
+                  </p>
+
+                  <div class="find-widget">
+                    Company: <a href="#top">$4ART</a>
+                  </div>
+                  <div class="find-widget">
+                    Address: <a href="#">86194 Rechovot Smadar Avenue 19 </a>
+                  </div>
+                  <div class="find-widget">
+                    Phone: <a href="#">+972 054-459-8269</a>
+                  </div>
+
+                  <div class="find-widget">
+                    Website: <a href="#top">www.$4ART.com</a>
+                  </div>
+                  <div class="find-widget">
+                    Program: <a href="#">Mon to Sat: 09:30 AM - 10.30 PM</a>
+                  </div>
+                </div>
+                {/* <!-- contact form --> */}
+                <div
+                  class="col-md-6 wow animated fadeInRight shadow mt-3"
+                  data-wow-delay=".2s"
+                >
+                  <form
+                    class="shake"
+                    role="form"
+                    id="contactForm"
+                    name="contact-form"
+                    data-toggle="validator"
+                  >
+                    {/* <!-- Name --> */}
+                    <div class="form-group label-floating">
+                      <label class="control-label pt-2" forlable="name">
+                        Name
+                      </label>
+                      <input
+                        class="form-control"
+                        id="name"
+                        type="text"
+                        name="name"
+                        required
+                        data-error="Please enter your name"
+                      />
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    {/* <!-- email --> */}
+                    <div class="form-group label-floating">
+                      <label class="control-label" for="email">
+                        Email
+                      </label>
+                      <input
+                        class="form-control"
+                        id="email"
+                        type="email"
+                        name="email"
+                        required
+                        data-error="Please enter your Email"
+                      />
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    {/* <!-- Subject --> */}
+                    <div class="form-group label-floating">
+                      <label class="control-label">Subject</label>
+                      <input
+                        class="form-control"
+                        id="msg_subject"
+                        type="text"
+                        name="subject"
+                        required
+                        data-error="Please enter your message subject"
+                      />
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    {/* <!-- Message --> */}
+                    <div class="form-group label-floating">
+                      <label for="message" class="control-label">
+                        Message
+                      </label>
+                      <textarea
+                        class="form-control"
+                        rows="3"
+                        id="message"
+                        name="message"
+                        required
+                        data-error="Write your message"
+                      ></textarea>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    {/* <!-- Form Submit --> */}
+                    <div class="form-submit mt-5">
+                      <button
+                        class="btn btn-light"
+                        type="submit"
+                        id="form-submit"
+                      >
+                        <i class="material-icons mdi mdi-message-outline"></i>
+                        Send Message
+                      </button>
+                      <div id="msgSubmit" class="h3 text-center hidden"></div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   )
 }
 
 export default Homelist
+
+const middleTitleWithHammer = (title) => {
+  return (
+    <div className="title my-5">
+      <h3 className="fw-bolder h2 text-center">{title}</h3>
+      <h2 className="col-4 mx-lg-auto">
+        <span>
+          <i style={{ color: '#BE263F' }} className="bi bi-hammer"></i>
+        </span>
+      </h2>
+    </div>
+  )
+}

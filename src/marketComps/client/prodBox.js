@@ -52,8 +52,6 @@ function ProdBox(props) {
       JSON.parse(localStorage.getItem('favorites')).includes(item._id)
         ? setstateFavorites(true)
         : setstateFavorites(false)
-
-      console.log(stateFavorites)
     }
   }
 
@@ -72,7 +70,7 @@ function ProdBox(props) {
   }
 
   return (
-    <LazyLoad height="500" className="col-lg-3  p-2 text-center">
+    <LazyLoad height="500" className="col-lg-3 p-2 text-center">
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -141,14 +139,6 @@ function ProdBox(props) {
             )}
           </div>
         </div>
-
-        {/* <div>Info: {item.info.substr(0, 50)}</div> */}
-        {/* <div className="my-3 d-flex justify-content-center align-items-center">
-          <button className="btn btn-outline-success rounded-circle me-3" onClick={reduceProd}>-</button>
-          <span className="h4 mt-1"> {countProd} </span>
-          <button className="btn btn-outline-success rounded-circle ms-3" onClick={addProd} >+</button>
-        </div>
-        <Link to={"/single/"+item._id} className="text-success text-decoration-none">More info</Link> */}
       </div>
     </LazyLoad>
   )
@@ -238,4 +228,16 @@ const modalElement = (item_modal) => {
       </Modal.Body>
     </>
   )
+}
+
+{
+  /* <div>Info: {item.info.substr(0, 50)}</div> */
+}
+{
+  /* <div className="my-3 d-flex justify-content-center align-items-center">
+          <button className="btn btn-outline-success rounded-circle me-3" onClick={reduceProd}>-</button>
+          <span className="h4 mt-1"> {countProd} </span>
+          <button className="btn btn-outline-success rounded-circle ms-3" onClick={addProd} >+</button>
+        </div>
+        <Link to={"/single/"+item._id} className="text-success text-decoration-none">More info</Link> */
 }

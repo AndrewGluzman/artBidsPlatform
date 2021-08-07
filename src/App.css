@@ -124,27 +124,38 @@ body {
   height: 400px;
 }
 /* loupe */
-.prod_box .bi {
+.prod_box .bi,
+.card_small .bi {
   background-color: #ffffff;
   color: rgba(136, 136, 136, 0.767);
   border: 0;
   right: 81%;
 }
 
-.prod_box .bi:hover {
+.prod_box .bi:hover,
+.card_small .bi:hover {
   background-color: rgb(212, 36, 36);
   color: #ffffff;
 }
+.prod_box .bi:active,
+.card_small .bi:active {
+  background-color: rgb(177, 31, 31);
+  color: #ffffff;
+}
+/* title on card */
 .prod_name_box:hover {
   color: rgb(212, 36, 36);
 }
 
-.prod_box .bi-hammer {
-  position: absolute;
-  top: 18px;
+.prod_box .bi-hammer,
+.card_small .bi-hammer {
   font-weight: 400;
   background-color: rgb(212, 36, 36);
   color: #ffffff;
+}
+.prod_box .bi-hammer {
+  position: absolute;
+  top: 18px;
 }
 
 .prod_box .bi-heart {
@@ -202,7 +213,7 @@ a {
 
 /* butons and links red on hover */
 .drop_menue div .dropdown_item:hover,
-.moderncontemporary .btn:hover {
+.moderncontemporary .read-more:hover {
   color: rgb(212, 36, 36) !important;
 }
 
