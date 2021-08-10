@@ -7,7 +7,7 @@ body {
   max-height: 130px;
 }
 .admin_nav_side {
-  background: black;
+  background: rgba(167, 8, 8, 0.849);
   color: white;
 }
 
@@ -19,7 +19,8 @@ body {
 }
 
 .admin_nav_side a:hover {
-  background: #444;
+  background: #ffffff;
+  color: rgba(167, 8, 8, 0.849);
 }
 
 /* scroll bar */
@@ -386,4 +387,92 @@ a {
 .insideframe {
   left: 12%;
   top: 15%;
+}
+.circleB {
+  width: 90%; /* half of width*/
+  height: 40px;
+  border-radius: 150px 0 0 150px;
+  border: none;
+  -webkit-box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  padding-left: 20px;
+}
+.circleB::placeholder {
+  color: rgba(136, 136, 136, 0.603);
+}
+.circleB:focus {
+  /* box-shadow: none; */
+  outline: none;
+}
+.search_btn {
+  width: 50px; /* half of width*/
+  height: 40px;
+  border-radius: 0 150px 150px 0;
+  background-color: rgba(192, 31, 31, 0.795);
+  border: none;
+  -webkit-box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+}
+.search_btn:hover,
+.search_before_footer .search_btn:hover {
+  background-color: rgb(136, 22, 22);
+}
+
+.search_before_footer {
+  background-color: rgba(192, 3, 3, 0.849);
+}
+
+.search_before_footer .search_btn {
+  background-color: rgb(233, 79, 79);
+}
+
+.easy_shadow {
+  -webkit-box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+}
+.small_timer span span {
+  color: rgba(192, 3, 3, 0.849);
+}
+.small_timer p {
+  font-size: 0.8em;
+}
+.btn_filter {
+  background-color: rgba(192, 3, 3, 0.849);
+  font-size: 0.9em;
+}
+.btn_filter:hover {
+  background-color: white;
+  color: rgba(192, 3, 3, 0.849) !important;
+  box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+}
+.pages_nav span {
+  font-size: 0.9em;
+}
+
+/* toggle button to change view in category */
+.toggle_btn_left {
+  /* half of width*/
+  height: 40px;
+  border-radius: 150px 0 0 150px;
+  border: none;
+  -webkit-box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  padding-left: 20px;
+}
+.toggle_btn_right {
+  /* half of width*/
+  height: 40px;
+  border-radius: 0 150px 150px 0;
+  background-color: rgba(192, 31, 31, 0.795);
+  border: none;
+  -webkit-box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 7px 30px -12px rgba(0, 0, 0, 0.26);
+}
+.toggle_true {
+  background-color: rgba(192, 3, 3, 0.849);
+  color: white;
+}
+.toggle_false {
+  background-color: white;
+  color: rgba(192, 3, 3, 0.849);
 }

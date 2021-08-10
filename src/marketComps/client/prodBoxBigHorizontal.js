@@ -13,8 +13,9 @@ import { Modal } from 'react-bootstrap'
 import './css/zoomOnImagePlugin.css'
 import '../../App.css'
 import InnerImageZoom from 'react-inner-image-zoom'
+import TimerSingleProd from './timerSingleProd'
 
-function ProdBox(props) {
+function ProdBoxBigHorizontal(props) {
   let dispatch = useDispatch()
 
   // let cartProd = props.item.count || 0
@@ -70,7 +71,7 @@ function ProdBox(props) {
   }
 
   return (
-    <LazyLoad height="300" className="col-lg-3 p-2 text-center">
+    <LazyLoad height="100" className="col-md-12  py-3  ProdBoxBigHorizontal">
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -78,65 +79,81 @@ function ProdBox(props) {
         animation={true}
       />
 
-      <div className=" px-3 shadow prod_box w-100 card position-relative col-sm-3 ">
-        <div className="p-3 overflow-hidden h-100 d-flex justify-content-center ">
-          <button
-            onClick={() => setModalShow(true)}
-            to={'/single/' + item._id}
-            className="shadow py-1 px-2 bi bi-eye btn btn-danger rounded-circle text-decoration-none position-absolute"
-          ></button>
-
-          <Link
-            to={'/single/' + item._id}
-            className="shadow py-1 px-2 bi bi-hammer  btn btn-danger rounded-circle text-decoration-none position-absolute"
-          ></Link>
-
-          <button
-            className={` shadow py-1 px-2 bi bi-heart  btn btn-danger rounded-circle text-decoration-none position-absolute ${
-              stateFavorites ? 'favorite2' : ''
-            }`}
-            onClick={(event) => {
-              if (stateFavorites) {
-                // event.currentTarget.dataset.state = false
-                setstateFavorites(false)
-                changeFavorites(item._id, false)
-
-                return
-              }
-              if (!stateFavorites) {
-                // event.currentTarget.dataset.state = false
-                setstateFavorites(true)
-                changeFavorites(item._id, true)
-
-                return
-              }
-            }}
-          ></button>
-
-          {item.img.includes('http') ? (
-            <img className=" h-100" src={item.img}></img>
-          ) : (
-            <img className=" h-100 " src={URL_API + item.img}></img>
-          )}
-        </div>
-
-        {/* <div className="card-body align-items-end"></div> */}
-        <div className="h-25 align-items-end d-flex">
-          <div className="card-body align-items-end bg bg-white  border-top">
-            <Link
-              to={'/single/' + item._id}
-              className=" text-dark text-decoration-none "
-            >
-              {' '}
-              <h5 className="prod_name_box">{item.name}</h5>
-            </Link>
-            {item.bids[0] ? (
-              <h6>
-                Current Bid: ${item.bids[item.bids.length - 1].price.toFixed(2)}
-              </h6>
+      <div className="card  rounded-0 border-0 shadow position-relative ">
+        <div style={{ minHeight: '300px' }} className="d-flex g-0">
+          <div className="col-md-4 align-self-center d-flex ms-2">
+            {item.img.includes('http') ? (
+              <img
+                className=" img-fluid mx-auto  my-3"
+                style={{ maxHeight: '250px', maxWidth: '200px' }}
+                src={item.img}
+              ></img>
             ) : (
-              <h6>Starting Bid: ${item.price.toFixed(2)}</h6>
+              <img
+                className=" img-fluid mx-auto  my-3"
+                style={{ maxHeight: '250px', maxWidth: '200px' }}
+                src={URL_API + item.img}
+              ></img>
             )}
+          </div>
+          <div className="col-md-8 d-flex align-items-center">
+            <div className="card-body " style={{ maxHeight: '250px' }}>
+              <div className="d-flex">
+                <div className="d-flex pt-1 px-4 col-7 easy_shadow justify-content-between text-center mb-3 bg-body rounded small_timer">
+                  <TimerSingleProd date={item.date_created} />
+                </div>
+                {/* Buttons bid, view, fav*/}
+                <div className=" col-5 card_small d-flex align-items-center justify-content-center mb-3">
+                  <Link
+                    to={'/single/' + item._id}
+                    className="shadow  py-1 px-2 bi bi-hammer  btn btn-danger rounded-circle text-decoration-none "
+                  ></Link>
+                  <button
+                    onClick={() => setModalShow(true)}
+                    to={'/single/' + item._id}
+                    className="shadow py-1 mx-4 px-2 bi bi-eye btn btn-danger rounded-circle text-decoration-none "
+                  ></button>
+
+                  <button
+                    className={` shadow py-1 px-2 bi bi-heart  btn btn-danger rounded-circle text-decoration-none ${
+                      stateFavorites ? 'favorite2' : ''
+                    }`}
+                    onClick={(event) => {
+                      if (stateFavorites) {
+                        // event.currentTarget.dataset.state = false
+                        setstateFavorites(false)
+                        changeFavorites(item._id, false)
+
+                        return
+                      }
+                      if (!stateFavorites) {
+                        // event.currentTarget.dataset.state = false
+                        setstateFavorites(true)
+                        changeFavorites(item._id, true)
+
+                        return
+                      }
+                    }}
+                  ></button>
+                </div>
+              </div>
+              <Link
+                to={'/single/' + item._id}
+                className=" text-dark text-decoration-none "
+              >
+                <h5 className="prod_name_box">{item.name}</h5>
+              </Link>
+              <p className="text-secondary mt-3 fw-light">{item.info} </p>
+
+              {item.bids[0] ? (
+                <h6>
+                  Current Bid: $
+                  {item.bids[item.bids.length - 1].price.toFixed(2)}
+                </h6>
+              ) : (
+                <h6>Starting Bid: ${item.price.toFixed(2)}</h6>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -144,7 +161,7 @@ function ProdBox(props) {
   )
 }
 
-export default ProdBox
+export default ProdBoxBigHorizontal
 
 const modalElement = (item_modal) => {
   let prodData = [item_modal]
@@ -177,7 +194,7 @@ const modalElement = (item_modal) => {
                     </div>
                   </div>
                   <div className="col-lg-6 text-center text-lg-start ms-4 p-lg-0 text-secondary">
-                    <p className="h2 tw-bold text-dark ">{item.name}</p>
+                    <p className="h2 fw-bolder text-dark ">{item.name}</p>
                     {/* //checks if there is bids exist if no shows starting price */}
                     <div className="border-bottom pb-3">
                       {item.bids != 0 ? (
@@ -228,16 +245,4 @@ const modalElement = (item_modal) => {
       </Modal.Body>
     </>
   )
-}
-
-{
-  /* <div>Info: {item.info.substr(0, 50)}</div> */
-}
-{
-  /* <div className="my-3 d-flex justify-content-center align-items-center">
-          <button className="btn btn-outline-success rounded-circle me-3" onClick={reduceProd}>-</button>
-          <span className="h4 mt-1"> {countProd} </span>
-          <button className="btn btn-outline-success rounded-circle ms-3" onClick={addProd} >+</button>
-        </div>
-        <Link to={"/single/"+item._id} className="text-success text-decoration-none">More info</Link> */
 }

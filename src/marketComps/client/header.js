@@ -29,28 +29,45 @@ function Header(props) {
   return (
     <div className="container-fluid">
       <div className="container-fluid">
+        <div className="d-flex row align-items-center my-2">
+          <div className="row d-flex col-md-9 align-items-center">
+            <p className="col-md-4 align-items-center m-0 text-secondary">
+              Call us toll free: +972-541-754-3010
+            </p>
+            <p className="col-md-6 align-items-center m-0 text-secondary fw-light">
+              Send us an email: $4art@$gmail.com
+            </p>
+          </div>
+          <div className="col-md-3 m-0 d-flex justify-content-md-end text-secondary">
+            <i className="bi bi-heart pe-2"></i>Whishlist
+          </div>
+        </div>
+
+        <hr className="m-0" />
+
         <div className="row  align-items-center p-2">
-          <div className="col-lg-6 row align-items-center  justify-content-center m-0">
+          <div className="col-md-4 row align-items-center  ms-2">
             <Link to="/" className="col-lg-6 justify-content-start">
               <img src="/logo1.png" className=" logo" />
             </Link>
-            <div className="col-lg-6 d-flex my-3 my-lg-0 justify-content-center">
-              <input
-                onKeyDown={(evt) => {
-                  if (evt.key == 'Enter') {
-                    onSearchClick()
-                  }
-                }}
-                ref={searchRef}
-                type="search"
-                className="form-control"
-              />
-              <button onClick={onSearchClick} className="btn btn-dark">
-                {searchIcon()}
-              </button>
-            </div>
           </div>
-          <div className="col-lg-6 d-flex justify-content-center justify-content-lg-end align-items-center my-2 my-lg-0">
+          <div className="col-md-4 d-flex my-3 my-lg-0 justify-content-center">
+            <input
+              onKeyDown={(evt) => {
+                if (evt.key == 'Enter') {
+                  onSearchClick()
+                }
+              }}
+              ref={searchRef}
+              type="search"
+              className="circleB"
+              placeholder="  Search products"
+            />
+            <button onClick={onSearchClick} className="btn btn-dark search_btn">
+              {searchIcon()}
+            </button>
+          </div>
+          <div className="col-md-4 d-flex justify-content-center justify-content-lg-end align-items-center my-2 my-lg-0">
             <h3
               className="cart_header_icon me-2 text-success"
               style={{ cursor: 'pointer' }}

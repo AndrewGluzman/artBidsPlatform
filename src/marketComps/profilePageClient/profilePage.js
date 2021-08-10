@@ -26,13 +26,15 @@ function ProfilePage(props) {
     <React.Fragment>
       <AuthClient />
       {/* סטריקט דואג שאנחנו באדמין ויו אר אל פנימי שלו */}
-      <HeaderAdmin role="User Account" />
+      {/* <HeaderAdmin role="User Account" /> */}
       {/* <Header /> */}
+      <Header />
       <div className="container-fluid">
-        <div className="row">
-          {/* ADD TO Comp sideNavAdmin */}
-          {/* {localStorage["tok"] ? ( */}
-          <nav className="col-2  admin_nav_side" style={{ minHeight: '100vh' }}>
+        <div className="row container-fluid pe-0">
+          <nav
+            className="col-2  me-4  admin_nav_side"
+            style={{ minHeight: '100vh' }}
+          >
             <Link className="d-block" to="/profile/accountSettings">
               Account Settings
             </Link>
@@ -66,7 +68,7 @@ function ProfilePage(props) {
             </nav>
           )} */}
 
-          <div className="col-10 px-0">
+          <div className="col-9 px-0">
             <Switch>
               <Route
                 exact

@@ -1,67 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
 function TimerSingleProd(props) {
-  let [counter, setCounter] = useState({});
+  let [counter, setCounter] = useState({})
 
   useEffect(() => {
     let timer = setInterval(function () {
-      dateCounter(props.date);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [props.date]);
+      dateCounter(props.date)
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [props.date])
 
   const dateCounter = (date) => {
-    let deadLine = new Date(date);
+    let deadLine = new Date(date)
 
-    deadLine.setDate(deadLine.getDate() + 30);
-    let curentDate = new Date().getTime();
+    deadLine.setDate(deadLine.getDate() + 30)
+    let curentDate = new Date().getTime()
 
-    let distance = deadLine.getTime() + 1 - curentDate;
+    let distance = deadLine.getTime() + 1 - curentDate
 
     // Time calculations for days, hours, minutes and seconds
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24))
     let hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    )
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
     let dateObj = {
       days: days,
       hours: hours,
       minutes: minutes,
       seconds: seconds,
-    };
+    }
 
-    setCounter(dateObj);
-  };
+    setCounter(dateObj)
+  }
   return (
     <React.Fragment>
       <span className="fw-bolder fs-6">
-        {counter.days}
+        <span>{counter.days}</span>
         <br />
         <p className=" h6">DAYS</p>
       </span>
       <span className="fw-bolder">
-        {counter.hours}
+        <span>{counter.hours}</span>
         <br />
         <p className=" h6">HOURS</p>
       </span>
       <span className="fw-bolder">
-        {counter.minutes}
+        <span>{counter.minutes}</span>
         <br />
         <p className=" h6">MINUTES</p>
       </span>
       <span className="fw-bolder">
-        {counter.seconds}
+        <span>{counter.seconds}</span>
         <br />
         <p className=" h6">SECONDS</p>
       </span>
     </React.Fragment>
-  );
+  )
 }
 
-export default TimerSingleProd;
+export default TimerSingleProd
 {
   /* <span>
 {counter.days}

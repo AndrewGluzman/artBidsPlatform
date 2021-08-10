@@ -31,7 +31,7 @@ function HomeCatList(props) {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.5)),
     url('${URL_API}/prods_images/${cat.name}.jpg')`,
           }}
-          className="modern category_img col-md-3 align-items-lg-center justify-content-md-center d-flex"
+          className="modern category_img col-12 col-md-3 align-items-lg-center justify-content-md-center d-flex"
         >
           <div className="insideframe   text-center align-items-lg-center ">
             <h2 className="category_name text-light fw-bolder">{cat.name}</h2>

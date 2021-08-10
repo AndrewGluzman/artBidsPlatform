@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import LazyLoad from 'react-lazyload'
 import HomeCatList from './homeCatList'
+
 import {
   doApiGet,
   doApiMethod,
@@ -9,6 +10,7 @@ import {
 } from '../../services/apiSer'
 import ProdBox from './prodBox'
 import './css/form.css'
+import Footer from './footer'
 
 function Homelist(props) {
   // const orderCategoriesId = ["3", "1", "2", "5"]
@@ -209,6 +211,7 @@ function Homelist(props) {
             </div>
           </div>
         </section>
+        <Footer />
       </div>
     </div>
   )
