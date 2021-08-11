@@ -10,9 +10,7 @@ import {
 } from '../../services/apiSer'
 import ProdBox from './prodBox'
 import './css/form.css'
-import './css/carusel.css'
 import Footer from './footer'
-import Carusel from './carusel'
 
 function Homelist(props) {
   // const orderCategoriesId = ["3", "1", "2", "5"]
@@ -39,8 +37,7 @@ function Homelist(props) {
   return (
     <div className="container-fluid">
       <div className="container-fluid">
-        <Carusel />
-        {/* <section className="hero text-white overflow-auto position-relative">
+        <section className="hero text-white overflow-auto position-relative">
           <h3>ART is Valuable</h3>
           <h5>BID,BUY,SELL</h5>
           <p>Van Goh dream</p>
@@ -49,7 +46,7 @@ function Homelist(props) {
             className="clearfix"
             src={URL_API + '/prods_images/drawing.jpg'}
           ></img>
-        </section> */}
+        </section>
 
         <section className="container text-center mb-5 mt-5">
           {middleTitleWithHammer('ENDING SOON AUCTIONS')}
