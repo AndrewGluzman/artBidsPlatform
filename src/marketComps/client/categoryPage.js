@@ -81,7 +81,7 @@ function CategoryPage(props) {
           )}
           <div className="row mt-3">
             {/* left section */}
-            <div className="col-md-3 mt-3">
+            <div className="col-md-3 mt-3 ">
               <div className="filter_sec">
                 <h5 className="fw-bolder">Filter by Price Range </h5>
                 <hr className="mt-1" />
@@ -110,7 +110,7 @@ function CategoryPage(props) {
               </div>
             </div>
             {/* Right section */}
-            <div className="row col-md-9 mb-5 px-1">
+            <div className="row col-md-9 mb-5 px-1 fit_content">
               <div className="px-3 w-100">
                 <div className="toggle_view_search easy_shadow  d-flex align-items-center py-3 px-1">
                   <div className="col-md-6 d-flex ">
@@ -118,7 +118,7 @@ function CategoryPage(props) {
                       onClick={() => {
                         setTogleView(true)
                       }}
-                      className={`toggle_btn_left col-1 p-0 align-items-center justify-content-center d-flex shadow ${
+                      className={`toggle_btn_left btn col-1 p-0 align-items-center justify-content-center d-flex shadow ${
                         togleView ? 'toggle_true' : 'toggle_false'
                       }`}
                     >
@@ -128,8 +128,8 @@ function CategoryPage(props) {
                       onClick={() => {
                         setTogleView(false)
                       }}
-                      className={`toggle_btn_right col-1 align-items-center justify-content-center d-flex shadow ${
-                        !togleView ? 'toggle_true' : 'toggle_false'
+                      className={`toggle_btn_right btn col-1 align-items-center justify-content-center d-flex shadow ${
+                        !togleView ? 'toggle_true' : 'toggle_false '
                       }`}
                     >
                       <i class="bi bi-grid-3x2-gap"></i>

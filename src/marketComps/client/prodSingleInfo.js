@@ -20,6 +20,7 @@ import './css/zoomOnImagePlugin.css'
 
 import ReactBnbGallery from 'react-bnb-gallery'
 import './css/reactBnbGallery.css'
+import Footer from './footer'
 
 function ProdSingleInfo(props) {
   let dispatch = useDispatch()
@@ -316,6 +317,8 @@ function ProdSingleInfo(props) {
           )
         })}
       </div>
+      <Footer />
+      <div className="container-fluid"></div>
     </React.Fragment>
   )
 }

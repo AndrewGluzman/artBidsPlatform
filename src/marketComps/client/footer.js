@@ -131,9 +131,9 @@ function Footer(props) {
               <div className="col-md-7 col-lg-8 text-center text-md-start">
                 {/* <!-- Copyright --> */}
                 <div className="p-3">
-                  © 2020 Copyright:
+                  Copyright:© 2021
                   <a className="text-white" href="https://mdbootstrap.com/">
-                    MDBootstrap.com
+                    $4Art.com
                   </a>
                 </div>
                 {/* <!-- Copyright --> */}

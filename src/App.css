@@ -476,3 +476,7 @@ a {
   background-color: white;
   color: rgba(192, 3, 3, 0.849);
 }
+
+.fit_content {
+  height: fit-content;
+}

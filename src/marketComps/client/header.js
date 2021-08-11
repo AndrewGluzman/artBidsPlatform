@@ -53,6 +53,7 @@ function Header(props) {
           </div>
           <div className="col-md-4 d-flex my-3 my-lg-0 justify-content-center">
             <input
+              autoFocus
               onKeyDown={(evt) => {
                 if (evt.key == 'Enter') {
                   onSearchClick()
