@@ -31,24 +31,24 @@ function Carusel(props) {
             aria-label="Slide 3"
           ></button>
         </div>
-        <div class="carousel-inner first_slide">
-          <div class="carousel-item active  position-relative text-white col col-md-12">
-            {/* <h3>ART IS VALUABLE</h3>
-            <h5>BID,BUY,SELL NOW!</h5> */}
-            <div className="text-center fw-bolder position-absolute slide-in-blurred-right name">
-              <p className="h3 ">JESSICA SOBOL</p>
-              <p className="mb-2">OIL ON CANVAS</p>
+        <div class="carousel-inner  first_slide">
+          <div align="center" class="carousel-item active   text-white">
+            <div className="designed_item position-relative">
+              <img src={URL_API + '/prods_images/slide1.jpg'}></img>
+              <div className="text-center fw-bolder position-absolute slide-in-blurred-right name">
+                <p className="h3 ">JESSICA SOBOL</p>
+                <p className="mb-2">OIL ON CANVAS</p>
+              </div>
+              <h2 className=" slide-in-blurred-left-slowest ">VAN GOH'S</h2>
+              <h1 className="slide-in-blurred-left"> DREAM</h1>
+              <div className="border-1 border border-light price position-absolute p-3  align-items-center slide-in-blurred-bottom">
+                <p className="m-0 p-0">
+                  SOLD AT:<span className=""> $1,350</span>
+                </p>
+              </div>
             </div>
-            <h2 className=" slide-in-blurred-left-slowest">VAN GOH'S</h2>
-            <h1 className="slide-in-blurred-left"> DREAM</h1>
-            <div className="border-1 border border-light price position-absolute p-3  align-items-center slide-in-blurred-bottom">
-              <p className="m-0 p-0">
-                SOLD AT:<span className="fw-bolder"> $1,350</span>
-              </p>
-            </div>
-            <img className="" src={URL_API + '/prods_images/slide1.jpg'}></img>
           </div>
-          <div class="carousel-item"></div>
+          {/* <div class="carousel-item"></div> */}
         </div>
         <button
           class="carousel-control-prev"
