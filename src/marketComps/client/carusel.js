@@ -31,24 +31,71 @@ function Carusel(props) {
             aria-label="Slide 3"
           ></button>
         </div>
-        <div class="carousel-inner  first_slide">
-          <div align="center" class="carousel-item active   text-white">
+        <div
+          class="carousel-inner  first_slide"
+          //   style={{ background: 'rgb(26, 119, 73)' }}
+        >
+          <div
+            id="slide_one"
+            align="center"
+            class="carousel-item active   text-white"
+          >
+            <div className="bgq1"></div>
+
             <div className="designed_item position-relative">
-              <img src={URL_API + '/prods_images/slide1.jpg'}></img>
-              <div className="text-center fw-bolder position-absolute slide-in-blurred-right name">
-                <p className="h3 ">JESSICA SOBOL</p>
-                <p className="mb-2">OIL ON CANVAS</p>
-              </div>
+              <img
+                id="slide_1"
+                src={URL_API + '/prods_images/slide1.jpg'}
+              ></img>
+
               <h2 className=" slide-in-blurred-left-slowest ">VAN GOH'S</h2>
               <h1 className="slide-in-blurred-left"> DREAM</h1>
               <div className="border-1 border border-light price position-absolute p-3  align-items-center slide-in-blurred-bottom">
                 <p className="m-0 p-0">
-                  SOLD AT:<span className=""> $1,350</span>
+                  SOLD AT:<span className=""> $5,950</span>
                 </p>
               </div>
             </div>
           </div>
-          {/* <div class="carousel-item"></div> */}
+          <div id="slide_two" class="carousel-item  text-white">
+            <div className="bgq2"></div>
+
+            <div className="designed_item position-relative">
+              <img
+                id="slide_2"
+                className="slide-in-br-slide2"
+                src={URL_API + '/prods_images/slide2.jpg'}
+              ></img>
+              {/* <div className="text-center fw-bolder position-absolute">
+                <p className="h3 ">@ HAL 2000</p>
+                <p className="mb-2 fw-light">digital art</p>
+              </div> */}
+              <h1
+                id="slide_two_h1"
+                className="position-absolute slide-in-blurred-left-slowest-most"
+              >
+                MOST
+              </h1>
+              <h1
+                id="slide_two_h12"
+                className="position-absolute slide-in-blurred-tr-wanted "
+              >
+                {' '}
+                WANTED
+              </h1>
+              <h2 id="bidnow_h2" className="position-absolute bounce-in-fwd">
+                BID NOW!
+              </h2>
+              <div
+                id="current_div"
+                className="price position-absolute p-3  align-items-center slide-in-blurred-bottom-now"
+              >
+                <p className="m-0 p-0">
+                  NOW AT:<span className=""> $1,350</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         <button
           class="carousel-control-prev"

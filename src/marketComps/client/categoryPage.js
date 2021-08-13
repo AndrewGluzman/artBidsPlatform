@@ -52,7 +52,7 @@ function CategoryPage(props) {
       <Header />
       <CartSide />
       <div className="container-fluid">
-        <div className="container-fluid">
+        <div className="container-md">
           <div className="breadcrumb">
             <Link className="breadcrumb-item text-secondary" to="/">
               Home/

@@ -38,7 +38,7 @@ function Homelist(props) {
 
   return (
     <div className="container-fluid">
-      <div className="container-fluid">
+      <div className="container-xxl">
         <Carusel />
         {/* <section className="hero text-white overflow-auto position-relative">
           <h3>ART is Valuable</h3>

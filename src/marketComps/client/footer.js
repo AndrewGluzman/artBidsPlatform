@@ -16,7 +16,7 @@ function Footer(props) {
 
   return (
     <>
-      <section className="search_before_footer p-2 border border-1 justify-content-md-end d-flex pe-4 my-5">
+      <section className="search_before_footer p-2 border border-1 justify-content-md-end d-flex pe-4 my-5 container-xxl">
         <div className="col-md-4 d-flex my-3 my-lg-0 ">
           <input
             onKeyDown={(evt) => {

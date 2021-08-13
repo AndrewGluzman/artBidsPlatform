@@ -1,57 +1,72 @@
 .carousel-inner {
   height: 600px;
+  font-family: 'Poppins', sans-serif;
 }
-.first_slide img {
-  max-height: 400px;
+.designed_item {
+  width: 800px;
+}
+#slide_1 {
+  filter: brightness(85%);
+  max-height: 28em;
   position: absolute;
   animation-name: imganimation;
   transition-delay: 2s;
-  animation-duration: 2s;
+  animation-duration: 4s;
   border-radius: 0 100% 0 0;
   transition-property: all;
   animation-fill-mode: forwards;
-  transition-timing-function: ease-in;
+  transition-timing-function: ease-in-out;
   clip-path: circle(0 at 50% 50%);
+  z-index: 1;
+
   /* transform: translateY(-30%) translateX(120%); */
   /* animation-iteration-count: infinite;
   animation-direction: alternate; */
 }
 @keyframes imganimation {
   0% {
-    transform: translateY(60%) translateX(92%);
+    transform: translateY(60%) translateX(-30%);
+
     border-radius: 0 100% 0 100%;
     clip-path: circle(0 at 50% 50%);
   }
 
   100% {
-    transform: translateY(20%) translateX(92%);
+    transform: translateY(16%) translateX(-50%);
     border-radius: 0 0 0 0;
     clip-path: circle(100% at 50% 50%);
   }
 }
-.first_slide {
-  background-color: rgb(26, 119, 73);
-}
+
 /* text */
 .first_slide h1 {
   font-weight: 800;
-  font-size: 9em;
+  font-size: 7em;
   position: absolute;
   z-index: 1;
+  left: -170px;
+  top: 0px;
 }
 .first_slide h2 {
   font-weight: 800;
   font-size: 6em;
   position: absolute;
   z-index: 1;
+  left: -280px;
+  top: 17px;
 }
 .first_slide .price {
   z-index: 1;
   font-size: 2em;
+  left: 0px;
+  top: 43px;
   /* transform: translate(50%, 20%); */
 }
-.first_slide .name {
-  z-index: 1;
+.name {
+  left: -241px;
+  top: 15px;
+  z-index: 10;
+  font-weight: 300;
 }
 
 .slide-in-blurred-left {
@@ -64,13 +79,13 @@
 
 @keyframes slide-in-blurred-left {
   0% {
-    transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
-    transform-origin: 100% 50%;
+    transform: translateY(60%) translateX(-30%) scaleX(2.5) scaleY(0.2);
+    /* transform-origin: 100% 50%; */
     filter: blur(40px);
     opacity: 0;
   }
   100% {
-    transform: translateX(20%) translateY(120%) scaleY(1) scaleX(1);
+    transform: translateX(20%) translateY(154%) scaleY(1) scaleX(1);
     transform-origin: 50% 50%;
     filter: blur(0);
     opacity: 1;
@@ -101,7 +116,7 @@
     opacity: 0;
   }
   100% {
-    transform: translateX(85%) translateY(380px) scaleY(1) scaleX(1);
+    transform: translateX(233%) translateY(361px) scaleY(1) scaleX(1);
     transform-origin: 50% 50%;
     filter: blur(0);
     opacity: 1;
@@ -120,6 +135,182 @@
   }
   100% {
     transform: translateX(1000px) translateY(40px) scaleY(1) scaleX(1);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+#slide_2 {
+  filter: brightness(92%);
+  max-height: 41em;
+  position: absolute;
+  z-index: 5;
+  transform: rotate(20deg);
+  top: -38px;
+  left: 643px;
+
+  /* animation-name: imganimation;
+    transition-delay: 2s;
+    animation-duration: 4s;
+    border-radius: 0 100% 0 0;
+    transition-property: all;
+    animation-fill-mode: forwards;
+    transition-timing-function: ease-in-out;
+    clip-path: circle(0 at 50% 50%); */
+
+  /* transform: translateY(-30%) translateX(120%); */
+  /* animation-iteration-count: infinite;
+    animation-direction: alternate; */
+}
+/* #slide_one .carousel-item {
+  background-color: fuchsia !important;
+} */
+
+.bgq1 {
+  position: absolute;
+  height: 600px;
+  width: 100%;
+  background-color: rgb(26, 119, 73);
+  z-index: 1;
+}
+.bgq2 {
+  position: absolute;
+  height: 600px;
+  width: 100%;
+  background-color: lightgray;
+  z-index: 1;
+}
+#slide_two_h1,
+#slide_two_h12 {
+  /* transform: rotate(-70deg); */
+  font-size: 6em;
+  left: 236px;
+  top: 120px;
+}
+.slide-in-br-slide2 {
+  animation: slide-in-br-slide2 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes slide-in-br-slide2 {
+  0% {
+    transform: translateY(1000px) translateX(1000px);
+    opacity: 0;
+    filter: blur(40px);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(20deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+.slide-in-blurred-tr-wanted {
+  animation: slide-in-blurred-tr-wanted 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes slide-in-blurred-tr-wanted {
+  0% {
+    transform: translateX(1000px) translateY(-1000px) skew(-80deg, -10deg);
+    transform-origin: 0 0;
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(127px) translateY(106px) skew(0deg, 0deg)
+      rotate(-70deg);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-blurred-left-slowest-most {
+  0% {
+    transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+    transform-origin: 100% 50%;
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(20%) translateY(-55%) scaleY(1) scaleX(1);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+.slide-in-blurred-left-slowest-most {
+  animation: slide-in-blurred-left-slowest-most 1.5s
+    cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+#bidnow_h2 {
+  z-index: 10;
+  left: 80%;
+  top: 270px;
+  animation-delay: 1s;
+  color: brown;
+}
+.bounce-in-fwd {
+  animation: bounce-in-fwd 1.1s both;
+}
+@keyframes bounce-in-fwd {
+  0% {
+    transform: scale(0);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: scale(0.7);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: scale(0.84);
+    animation-timing-function: ease-in;
+  }
+  89% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: scale(0.95);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+#current_div {
+  border: 1px solid brown;
+  left: 0px;
+  top: -85px;
+  z-index: 10;
+}
+#current_div p {
+  color: brown;
+  font-size: 0.7em;
+  font-weight: 500;
+}
+
+.slide-in-blurred-bottom-now {
+  animation: slide-in-blurred-bottom-now 1.2s cubic-bezier(0.23, 1, 0.32, 1)
+    both;
+}
+@keyframes slide-in-blurred-bottom-now {
+  0% {
+    transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+    transform-origin: 50% 100%;
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(85%) translateY(378px) scaleY(1) scaleX(1);
     transform-origin: 50% 50%;
     filter: blur(0);
     opacity: 1;

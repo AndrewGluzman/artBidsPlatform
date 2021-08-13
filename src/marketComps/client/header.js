@@ -28,7 +28,7 @@ function Header(props) {
 
   return (
     <div className="container-fluid">
-      <div className="container-fluid">
+      <div className="container-xxl">
         <div className="d-flex row align-items-center my-2">
           <div className="row d-flex col-md-9 align-items-center">
             <p className="col-md-4 align-items-center m-0 text-secondary">
