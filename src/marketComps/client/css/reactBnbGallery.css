@@ -182,6 +182,9 @@
   height: 100%;
   padding: 50px;
 }
+.gallery .gallery-photo {
+  margin: 0 auto;
+}
 .gallery ul.gallery-images--ul {
   position: relative;
   height: 100%;

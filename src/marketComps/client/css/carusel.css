@@ -11,7 +11,7 @@
   position: absolute;
   animation-name: imganimation;
   transition-delay: 2s;
-  animation-duration: 4s;
+  animation-duration: 2s;
   border-radius: 0 100% 0 0;
   transition-property: all;
   animation-fill-mode: forwards;
@@ -25,7 +25,7 @@
 }
 @keyframes imganimation {
   0% {
-    transform: translateY(60%) translateX(-30%);
+    transform: translateY(60%) translateX(-30%) rotate(12deg);
 
     border-radius: 0 100% 0 100%;
     clip-path: circle(0 at 50% 50%);
@@ -171,7 +171,7 @@
   position: absolute;
   height: 600px;
   width: 100%;
-  background-color: rgb(26, 119, 73);
+  background-color: cadetblue;
   z-index: 1;
 }
 .bgq2 {
@@ -285,7 +285,7 @@
     animation-timing-function: ease-out;
   }
 }
-
+/* now at 1350 */
 #current_div {
   border: 1px solid brown;
   left: 0px;
@@ -297,6 +297,8 @@
   font-size: 0.7em;
   font-weight: 500;
 }
+
+/* now at 1350 section movement */
 
 .slide-in-blurred-bottom-now {
   animation: slide-in-blurred-bottom-now 1.2s cubic-bezier(0.23, 1, 0.32, 1)
@@ -310,9 +312,202 @@
     opacity: 0;
   }
   100% {
-    transform: translateX(85%) translateY(378px) scaleY(1) scaleX(1);
+    transform: translateX(112%) translateY(381px) scaleY(1.2) scaleX(1.2);
     transform-origin: 50% 50%;
     filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.bgq3 {
+  position: absolute;
+  height: 600px;
+  width: 100%;
+  background-color: rgb(95, 123, 160);
+  z-index: 1;
+}
+.bgq4 {
+  transform: rotate(15deg) translate(-70px, 524px);
+
+  position: absolute;
+  height: 740px;
+  width: 142%;
+  background-color: rgb(205, 143, 63);
+  z-index: 1;
+}
+.slide-in-bl-yellow-pyramid {
+  animation: slide-in-bl-yellow-pyramid 2s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes slide-in-bl-yellow-pyramid {
+  0% {
+    transform: translate(-100px, -3500px) rotate(15deg);
+    transform-origin: 0 0;
+    filter: blur(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-130px, 335px) rotate(15deg);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+#s4art {
+  font-weight: 600;
+  font-size: 12em;
+  z-index: 1;
+  left: 634px;
+  top: 27px;
+  color: rgb(209, 151, 75);
+}
+#sign_up_now {
+  font-size: 1.2em;
+  font-weight: 500;
+  border: 1px solid ghostwhite;
+  /* border: 1px solid rgb(209, 151, 75); */
+  left: 877px;
+  top: 244px;
+  z-index: 10;
+  color: ghostwhite;
+  /* color: rgb(209, 151, 75); */
+  width: max-content;
+}
+#sell,
+#bid,
+#buy {
+  font-weight: 500;
+}
+#sell {
+  left: 557px;
+  top: 219px;
+  color: rgb(95, 123, 160);
+  font-size: 22em;
+}
+#bid {
+  left: -7px;
+  top: 57px;
+  color: rgb(95, 123, 160);
+  font-size: 23em;
+}
+#buy {
+  left: -35px;
+  top: 353px;
+  color: rgb(95, 123, 160);
+  font-size: 20em;
+}
+.tracking-in-contract-bck {
+  animation: tracking-in-contract-bck 1s cubic-bezier(0.215, 0.61, 0.355, 1)
+    0.5s both;
+}
+@keyframes tracking-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    transform: translateZ(400px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+.flicker-in-1 {
+  animation: flicker-in-1 2.5s linear 1.5s both;
+}
+@keyframes flicker-in-1 {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  10.1% {
+    opacity: 1;
+  }
+  10.2% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  20.1% {
+    opacity: 1;
+  }
+  20.6% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  30.1% {
+    opacity: 1;
+  }
+  30.5% {
+    opacity: 1;
+  }
+  30.6% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0;
+  }
+  45.1% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  55.1% {
+    opacity: 0;
+  }
+  57% {
+    opacity: 0;
+  }
+  57.1% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  60.1% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0;
+  }
+  65.1% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  75.1% {
+    opacity: 0;
+  }
+  77% {
+    opacity: 0;
+  }
+  77.1% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  85.1% {
+    opacity: 0;
+  }
+  86% {
+    opacity: 0;
+  }
+  86.1% {
+    opacity: 1;
+  }
+  100% {
     opacity: 1;
   }
 }

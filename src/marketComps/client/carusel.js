@@ -31,10 +31,7 @@ function Carusel(props) {
             aria-label="Slide 3"
           ></button>
         </div>
-        <div
-          class="carousel-inner  first_slide"
-          //   style={{ background: 'rgb(26, 119, 73)' }}
-        >
+        <div class="carousel-inner  first_slide">
           <div
             id="slide_one"
             align="center"
@@ -57,7 +54,7 @@ function Carusel(props) {
               </div>
             </div>
           </div>
-          <div id="slide_two" class="carousel-item  text-white">
+          <div id="slide_two" class="carousel-item text-white">
             <div className="bgq2"></div>
 
             <div className="designed_item position-relative">
@@ -66,10 +63,6 @@ function Carusel(props) {
                 className="slide-in-br-slide2"
                 src={URL_API + '/prods_images/slide2.jpg'}
               ></img>
-              {/* <div className="text-center fw-bolder position-absolute">
-                <p className="h3 ">@ HAL 2000</p>
-                <p className="mb-2 fw-light">digital art</p>
-              </div> */}
               <h1
                 id="slide_two_h1"
                 className="position-absolute slide-in-blurred-left-slowest-most"
@@ -93,6 +86,26 @@ function Carusel(props) {
                 <p className="m-0 p-0">
                   NOW AT:<span className=""> $1,350</span>
                 </p>
+              </div>
+            </div>
+          </div>
+          <div id="slide_three" class="carousel-item text-white">
+            <div className="bgq3"></div>
+            <div className="bgq4 slide-in-bl-yellow-pyramid"></div>
+
+            <div className="designed_item position-relative">
+              <h1 id="s4art" className="tracking-in-contract-bck ">
+                $4ART
+              </h1>
+              <h1 id="sell">SELL</h1>
+              <h1 id="bid">BID</h1>
+              <h1 id="buy">BUY</h1>
+
+              <div
+                id="sign_up_now"
+                className="price position-absolute p-3  align-items-center flicker-in-1 glow"
+              >
+                <p className="m-0 p-0">SIGN UP NOW!</p>
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@ function NavBar(props) {
   }
   return (
     <>
-      <nav className="navbar p-0 navbar-expand-lg navbar-light shadow  mt-md-1">
+      <nav className="navbar p-0 navbar-expand-lg navbar-light shadow mb-md-5 mt-md-1">
         <div className="container-fluid p-sm-0 ">
           <a class="navbar-brand" href="#"></a>
 
