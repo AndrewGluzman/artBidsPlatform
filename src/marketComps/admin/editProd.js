@@ -1,92 +1,92 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { doApiGet, doApiMethod, URL_API } from "../../services/apiSer";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
+import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
+import { Link, useHistory } from 'react-router-dom'
 
 function EditProd(props) {
-  let [cat_ar, setCatAr] = useState([]);
-  let [prodData, setProdData] = useState({});
+  let [cat_ar, setCatAr] = useState([])
+  let [prodData, setProdData] = useState({})
 
-  let history = useHistory();
-  const { register, handleSubmit, errors } = useForm();
+  let history = useHistory()
+  const { register, handleSubmit, errors } = useForm()
 
-  let fileRef = useRef();
-  let nameRef = register({ required: true, minLength: 3 });
-  let infoRef = register({ required: true, minLength: 3 });
-  let priceRef = register({ required: true, min: 1 });
-  let imageRef = register({});
-  let qtyRef = register({ required: true, min: 1 });
-  let commentsRef = register({ minLength: 1 });
-  let catRef = register({ required: true });
+  let fileRef = useRef()
+  let nameRef = register({ required: true, minLength: 3 })
+  let infoRef = register({ required: true, minLength: 3 })
+  let priceRef = register({ required: true, min: 1 })
+  let imageRef = register({})
+  let qtyRef = register({ required: true, min: 1 })
+  let commentsRef = register({ minLength: 1 })
+  let catRef = register({ required: true })
 
   useEffect(() => {
-    doApiGetCat();
-    getInfoOfProdToEdit();
-  }, []);
+    doApiGetCat()
+    getInfoOfProdToEdit()
+  }, [])
 
   // COLLECT category from db
   const doApiGetCat = async () => {
-    let url = URL_API + "/categories";
-    let data = await doApiGet(url);
-    setCatAr(data);
-  };
+    let url = URL_API + '/categories'
+    let data = await doApiGet(url)
+    setCatAr(data)
+  }
 
   const getInfoOfProdToEdit = async () => {
-    let editId = props.match.params.id;
-    let url = URL_API + "/prods/single/" + editId;
-    let data = await doApiGet(url);
-    setProdData(data);
-  };
+    let editId = props.match.params.id
+    let url = URL_API + '/prods/single/' + editId
+    let data = await doApiGet(url)
+    setProdData(data)
+  }
 
   const onFormSub = (dataBody) => {
-    console.log(dataBody);
-    dataBody.starting_bid = dataBody.price;
+    console.log(dataBody)
+    dataBody.starting_bid = dataBody.price
 
-    doApi(dataBody);
+    doApi(dataBody)
     // doApi(dataBody);
-  };
+  }
 
   const doApi = async (dataBody) => {
-    let editId = props.match.params.id;
-    let url = URL_API + "/prods/" + editId;
-    let data = await doApiMethod(url, "PUT", dataBody);
+    let editId = props.match.params.id
+    let url = URL_API + '/prods/' + editId
+    let data = await doApiMethod(url, 'PUT', dataBody)
     // if succed we will get n = 1
     // console.log(data);
     if (data.n == 1) {
-      alert("prod updated");
-      history.push("/admin/list");
+      alert('prod updated')
+      history.push('/admin/list')
     } else {
-      alert("There is problem try again later");
+      alert('There is problem try again later')
     }
-  };
+  }
 
   const uploadFile = async () => {
     // ככה אוספים מידע מקובץ שרוצים לשלוח
-    let editId = props.match.params.id;
-    console.log(fileRef.current.files[0]);
+    let editId = props.match.params.id
+    console.log(fileRef.current.files[0])
     // שיטה לשליחת מידע כגון קובץ
-    const myData = new FormData();
+    const myData = new FormData()
     // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
-    myData.append("fileSend", fileRef.current.files[0]);
-    let url = URL_API + "/prods/upload/" + editId;
+    myData.append('fileSend', fileRef.current.files[0])
+    let url = URL_API + '/prods/upload/' + editId
     try {
       let resp = await axios.put(url, myData, {
         headers: {
-          "auth-token": localStorage["tok"],
-          "content-type": "multipart/form-data",
+          'auth-token': localStorage['tok'],
+          'content-type': 'multipart/form-data',
         },
-      });
+      })
       // אם הצליח נקבל 1
       if (resp.data.n == 1) {
         // כדי שירפרש את העריכה קראנו לפוקנציה שתביא שוב את המידע על המוצר
-        getInfoOfProdToEdit();
+        getInfoOfProdToEdit()
       }
-      console.log(resp.data);
+      console.log(resp.data)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   // 15:02
 
@@ -167,12 +167,12 @@ function EditProd(props) {
           <label>Upload image from computer</label>
           {/* אם הקובץ מקומי צריך להוסיף את הכתובת של השרת
           ואם זה יו אר לא  מהשרת שלנו אז אין צורך  */}
-          {prodData.img.includes("http") ? (
+          {prodData.img?.includes('http') ? (
             <img src={prodData.img} height="100" />
           ) : (
             // הוספנו את הקווארי סטרינג ? כדי שירפרש את התמונה כל פעם מחדש
             // כי שמעלים תמונה היא נשארת על אותה כתובת
-            <img src={URL_API + prodData.img + "?" + Date.now()} height="100" />
+            <img src={URL_API + prodData.img + '?' + Date.now()} height="100" />
           )}
           <br />
           <input
@@ -235,7 +235,7 @@ function EditProd(props) {
                 >
                   {item.name}
                 </option>
-              );
+              )
             })}
           </select>
           {errors.category_s_id && (
@@ -249,7 +249,7 @@ function EditProd(props) {
         </button>
       </form>
     </div>
-  );
+  )
 }
 
-export default EditProd;
+export default EditProd

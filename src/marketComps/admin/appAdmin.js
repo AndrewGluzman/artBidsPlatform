@@ -1,30 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./login";
-import ListProdAdmin from "./listProdAdmin";
-import HeaderAdmin from "./headerAdmin";
-import AuthAdmin from "./authAdmin";
-import AddProd from "./addProd";
-import CategoryList from "./categoryList";
-import AddCat from "./addCat";
-import UserList from "./usersList";
-import EditProd from "./editProd";
-import UserCartsOrders from "./userCartsOrders";
-import CartInfo from "./cartInfo";
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import Login from './login'
+import ListProdAdmin from './listProdAdmin'
+import HeaderAdmin from './headerAdmin'
+import AuthAdmin from './authAdmin'
+import AddProd from './addProd'
+import CategoryList from './categoryList'
+import AddCat from './addCat'
+import UserList from './usersList'
+import EditProd from './editProd'
+import UserCartsOrders from './userCartsOrders'
+import CartInfo from './cartInfo'
+import Header from '../client/header'
 
 function AppAdmin(props) {
   return (
     <React.Fragment>
       {/* סטריקט דואג שאנחנו באדמין ויו אר אל פנימי שלו */}
       <Route strict path={`/admin/`} component={AuthAdmin} />
-      <HeaderAdmin role="Admin panel" />
+      {/* <HeaderAdmin role="Admin panel" /> */}
+      <Header />
       <div className="container-fluid">
         <div className="row">
           {/* ADD TO Comp sideNavAdmin */}
-          {localStorage["tok"] ? (
+          {localStorage['tok'] ? (
             <nav
               className="col-2  admin_nav_side"
-              style={{ minHeight: "100vh" }}
+              style={{ minHeight: '100vh' }}
             >
               <Link className="d-block" to="/admin/list">
                 Products
@@ -42,7 +44,7 @@ function AppAdmin(props) {
           ) : (
             <nav
               className="col-2  admin_nav_side"
-              style={{ minHeight: "100vh" }}
+              style={{ minHeight: '100vh' }}
             >
               <Link className="d-block" to="/">
                 Home page
@@ -70,7 +72,7 @@ function AppAdmin(props) {
         </div>
       </div>
     </React.Fragment>
-  );
+  )
 }
 
-export default AppAdmin;
+export default AppAdmin

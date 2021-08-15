@@ -29,10 +29,10 @@ function ProfilePage(props) {
       {/* <HeaderAdmin role="User Account" /> */}
       {/* <Header /> */}
       <Header />
-      <div className="container-fluid">
-        <div className="row container-fluid pe-0">
+      <div className="container-xxl">
+        <div className="row container-fluid px-0">
           <nav
-            className="col-2  me-4  admin_nav_side"
+            className="col-2   admin_nav_side"
             style={{ minHeight: '100vh' }}
           >
             <Link className="d-block" to="/profile/accountSettings">
@@ -68,7 +68,7 @@ function ProfilePage(props) {
             </nav>
           )} */}
 
-          <div className="col-9 px-0">
+          <div className="col-10 px-0">
             <Switch>
               <Route
                 exact
