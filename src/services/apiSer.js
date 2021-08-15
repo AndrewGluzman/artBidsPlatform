@@ -14,7 +14,7 @@ export const doApiGet = async (_url) => {
     let data = await resp.json()
     return data
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     alert('there problem , come back tommrow!')
     return err
   }
@@ -33,7 +33,7 @@ export const doApiMethod = async (_url, _method, _body) => {
     let data = await resp.json()
     return data
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     alert('there problem , come back tommrow!')
     return err
   }

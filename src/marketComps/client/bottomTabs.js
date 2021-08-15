@@ -34,6 +34,14 @@ function BottomTabs(props) {
     return date
   }
 
+  //trigers lazyload for loading cards
+  const scroll = () => {
+    window.scroll({
+      top: window.pageYOffset + 1,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }
   return (
     <div className="container">
       <div className="bloc-tabs mt-lg-5">
@@ -57,7 +65,10 @@ function BottomTabs(props) {
         </button>
         <button
           className={toggleState === 4 ? 'tabs active-tabs' : 'tabs'}
-          onClick={() => toggleTab(4)}
+          onClick={() => {
+            toggleTab(4)
+            scroll()
+          }}
         >
           ARTIST WORKS
         </button>
