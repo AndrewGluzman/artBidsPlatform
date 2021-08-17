@@ -30,6 +30,7 @@ function ProdSingleInfo(props) {
   let [prodPriceInp, setProdPriceInp] = useState(Number)
   let [onloadPrice, setOnloadPrice] = useState()
   let { register, handleSubmit, errors } = useForm()
+  let [ended, setEnded] = useState(false)
 
   let bidRef = register({ required: true, min: onloadPrice + 1 })
   let prodId = props.match.params.id
@@ -193,7 +194,11 @@ function ProdSingleInfo(props) {
                   <p>Time left:</p>
 
                   <div className="d-flex py-3 px-4  w-100 justify-content-between text-center shadow  mb-3 bg-body rounded ">
-                    <TimerSingleProd date={item.date_created} />
+                    <TimerSingleProd
+                      date={item.date_created}
+                      setEnded={setEnded}
+                      ended={ended}
+                    />
                   </div>
                   <div>
                     <p className="mb-0 mt-4">
@@ -204,96 +209,106 @@ function ProdSingleInfo(props) {
                       {deadline(item.date_created).getTimezoneOffset() / 60}
                     </p>
                   </div>
-                  <form
-                    onSubmit={handleSubmit(onBidSub)}
-                    className="row d-flex ms-1 align-items-center"
-                  >
-                    <div
-                      className={`p-1 border my-3 ${
-                        prodPriceInp < 100000 ? 'col-lg-3' : 'col-lg-4'
-                      }`}
+                  {ended ? (
+                    ''
+                  ) : (
+                    <form
+                      onSubmit={handleSubmit(onBidSub)}
+                      className="row d-flex ms-1 align-items-center"
                     >
-                      <div className="d-flex w-100">
-                        <button
-                          type="button"
-                          className="btn shadow-none fw-bolder"
-                          onClick={() => {
-                            if (onloadPrice < prodPriceInp)
-                              setProdPriceInp(prodPriceInp - 1)
-                          }}
-                        >
-                          -
-                        </button>
-                        <input
-                          // defaultValue={
-                          //   prodPriceInp ? Number(prodPriceInp + 1) : ''
-                          // }
-                          value={prodPriceInp + 1}
-                          ref={bidRef}
-                          name="price"
-                          type="Number"
-                          // onBlur={(e) => {
-                          //   setProdPriceInp(Number(e.target.value + 1))
-                          // }}
-                          // type="Number"
-                          // onChange={() => {
-                          //   setProdPriceInp()
-                          // }}
-                          className="fw-bolder form-control border-0 text-center text-decoration-none bg- bg-white"
-                          id="bidPriceInp"
-                        />
+                      <div
+                        className={`p-1 border my-3 ${
+                          prodPriceInp < 100000 ? 'col-lg-3' : 'col-lg-4'
+                        }`}
+                      >
+                        <div className="d-flex w-100">
+                          <button
+                            type="button"
+                            className="btn shadow-none fw-bolder"
+                            onClick={() => {
+                              if (onloadPrice < prodPriceInp)
+                                setProdPriceInp(prodPriceInp - 1)
+                            }}
+                          >
+                            -
+                          </button>
+                          <input
+                            // defaultValue={
+                            //   prodPriceInp ? Number(prodPriceInp + 1) : ''
+                            // }
+                            value={prodPriceInp + 1}
+                            ref={bidRef}
+                            name="price"
+                            type="Number"
+                            // onBlur={(e) => {
+                            //   setProdPriceInp(Number(e.target.value + 1))
+                            // }}
+                            // type="Number"
+                            // onChange={() => {
+                            //   setProdPriceInp()
+                            // }}
+                            className="fw-bolder form-control border-0 text-center text-decoration-none bg- bg-white"
+                            id="bidPriceInp"
+                          />
 
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setProdPriceInp(prodPriceInp + 1)
+                            }}
+                            className="btn shadow-none fw-bolder"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div className="col-lg-3 px-lg-3 justify-content-md-between d-flex">
+                        <button
+                          onClick={() => {
+                            console.log(ended)
+                          }}
+                          type="submit"
+                          className={`${
+                            ended ? 'disabled' : ''
+                          } bi bi-hammer btn btn-danger rounded-pill  w-50`}
+                        ></button>
+
+                        {/* ///////////////////////////////////////////////////////// */}
                         <button
                           type="button"
-                          onClick={() => {
-                            setProdPriceInp(prodPriceInp + 1)
+                          className={`bi bi-heart-fill btn btn-outline-dark  rounded-circle me-2 ${
+                            stateFavorites ? 'favorite' : ''
+                          }`}
+                          onClick={(event) => {
+                            if (stateFavorites) {
+                              // event.currentTarget.dataset.state = false
+                              setstateFavorites(false)
+                              changeFavorites(item._id, false)
+
+                              return
+                            }
+                            if (!stateFavorites) {
+                              // event.currentTarget.dataset.state = false
+                              setstateFavorites(true)
+                              changeFavorites(item._id, true)
+
+                              return
+                            }
                           }}
-                          className="btn shadow-none fw-bolder"
+                        ></button>
+                      </div>
+
+                      <div className="col-lg-5 p-lg-0  float-lg-end">
+                        <button
+                          onClick={buyNow}
+                          type="button"
+                          className="float-lg-end ms-lg-1 btn btn-outline-secondary w-75 rounded-pill me-2"
                         >
-                          +
+                          BUY NOW FOR ${prodPriceInp + 100}
                         </button>
                       </div>
-                    </div>
-                    <div className="col-lg-3 px-lg-3 justify-content-md-between d-flex">
-                      <button
-                        type="submit"
-                        className="bi bi-hammer btn btn-danger rounded-pill  w-50"
-                      ></button>
-                      {/* ///////////////////////////////////////////////////////// */}
-                      <button
-                        type="button"
-                        className={`bi bi-heart-fill btn btn-outline-dark  rounded-circle me-2 ${
-                          stateFavorites ? 'favorite' : ''
-                        }`}
-                        onClick={(event) => {
-                          if (stateFavorites) {
-                            // event.currentTarget.dataset.state = false
-                            setstateFavorites(false)
-                            changeFavorites(item._id, false)
-
-                            return
-                          }
-                          if (!stateFavorites) {
-                            // event.currentTarget.dataset.state = false
-                            setstateFavorites(true)
-                            changeFavorites(item._id, true)
-
-                            return
-                          }
-                        }}
-                      ></button>
-                    </div>
-
-                    <div className="col-lg-5 p-lg-0  float-lg-end">
-                      <button
-                        onClick={buyNow}
-                        type="button"
-                        className="float-lg-end ms-lg-1 btn btn-outline-secondary w-75 rounded-pill me-2"
-                      >
-                        BUY NOW FOR ${prodPriceInp + 100}
-                      </button>
-                    </div>
-                  </form>
+                    </form>
+                  )}
                   <div>
                     <p>
                       SKU:

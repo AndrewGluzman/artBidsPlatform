@@ -2,22 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 
 function TimerSingleProd(props) {
   let [counter, setCounter] = useState({})
-  let [timerCountEnd, setTimerCountEnd] = useState(false)
   const timer = React.useRef(null)
 
-  const startTimer = () => {
-    timer.current = setInterval(() => {
+  useEffect(() => {
+    let timer = setInterval(function () {
       dateCounter(props.date)
     }, 1000)
-  }
-
-  useEffect(() => {
-    // let timer = setInterval(function () {
-    //   dateCounter(props.date)
-    // }, 1000)
     // checkIfEnded(timer)
-    startTimer()
-    return () => clearInterval(timer.current)
+    return () => clearInterval(timer)
   }, [props.date])
 
   const dateCounter = (date) => {
@@ -53,44 +45,34 @@ function TimerSingleProd(props) {
     console.log(deadLine.getTime() - Date.now())
 
     if (deadLine.getTime() - Date.now() <= 1) {
-      if (props.ended == false) {
-        props.setEnded(true)
-      }
-      setTimerCountEnd(true)
-      clearInterval(timer.current)
+      console.log(props.ended)
+      clearInterval(timer)
+      props.setEnded(true)
     }
   }
 
   return (
     <React.Fragment>
-      {timerCountEnd ? (
-        <div className="text-center w-100">
-          <h3 className="">Auction Ended</h3>
-        </div>
-      ) : (
-        <>
-          <span className="fw-bolder fs-6">
-            <span>{counter.days}</span>
-            <br />
-            <p className=" h6">DAYS</p>
-          </span>
-          <span className="fw-bolder">
-            <span>{counter.hours}</span>
-            <br />
-            <p className=" h6">HOURS</p>
-          </span>
-          <span className="fw-bolder">
-            <span>{counter.minutes}</span>
-            <br />
-            <p className=" h6">MINUTES</p>
-          </span>
-          <span className="fw-bolder">
-            <span>{counter.seconds}</span>
-            <br />
-            <p className=" h6">SECONDS</p>
-          </span>
-        </>
-      )}
+      <span className="fw-bolder fs-6">
+        <span>{counter.days}</span>
+        <br />
+        <p className=" h6">DAYS</p>
+      </span>
+      <span className="fw-bolder">
+        <span>{counter.hours}</span>
+        <br />
+        <p className=" h6">HOURS</p>
+      </span>
+      <span className="fw-bolder">
+        <span>{counter.minutes}</span>
+        <br />
+        <p className=" h6">MINUTES</p>
+      </span>
+      <span className="fw-bolder">
+        <span>{counter.seconds}</span>
+        <br />
+        <p className=" h6">SECONDS</p>
+      </span>
     </React.Fragment>
   )
 }

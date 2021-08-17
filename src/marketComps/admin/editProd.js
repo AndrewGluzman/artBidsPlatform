@@ -16,7 +16,6 @@ function EditProd(props) {
   let infoRef = register({ required: true, minLength: 3 })
   let priceRef = register({ required: true, min: 1 })
   let imageRef = register({})
-  let qtyRef = register({ required: true, min: 1 })
   let commentsRef = register({ minLength: 1 })
   let catRef = register({ required: true })
 
@@ -182,22 +181,7 @@ function EditProd(props) {
             className="me-3"
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="qty" className="form-label">
-            QTY:
-          </label>
-          <input
-            defaultValue={prodData.qty}
-            ref={qtyRef}
-            name="qty"
-            type="number"
-            className="form-control"
-            id="qty"
-          />
-          {errors.qty && (
-            <span className="text-danger">Enter valid qty higer than 0</span>
-          )}
-        </div>
+
         <div className="mb-3">
           <label htmlFor="comments" className="form-label">
             Comments:

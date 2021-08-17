@@ -54,7 +54,7 @@ function Carusel(props) {
               </div>
             </div>
           </div>
-          <div id="slide_two" class="carousel-item text-white">
+          <div id="slide_two" class="carousel-item  text-white">
             <div className="bgq2"></div>
 
             <div className="designed_item position-relative">
@@ -76,7 +76,7 @@ function Carusel(props) {
                 {' '}
                 WANTED
               </h1>
-              <h2 id="bidnow_h2" className="position-absolute bounce-in-fwd">
+              <h2 id="bidnow_h2" className="position-absolute bounce-in-top">
                 BID NOW!
               </h2>
               <div
