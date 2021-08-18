@@ -19,6 +19,7 @@ function AddProd(props) {
   let imageRef = register({})
   let commentsRef = register({ minLength: 1 })
   let catRef = register({ required: true })
+  let artTypeRef = register({ required: true })
   let sizeRef = register({ required: true })
   let techniqueRef = register({ required: true })
   let yearCreatedRef = register({ required: true, min: 1000 })
@@ -133,7 +134,6 @@ function AddProd(props) {
   //     console.log(err)
   //   }
   // }
-  // 15:02
 
   return (
     <div className="container">
@@ -271,7 +271,27 @@ function AddProd(props) {
             <br />
             <input ref={fileRef} type="file" className="me-3" multiple />
           </div>
-
+          <div className="mb-3">
+            <label htmlFor="art_type" className="form-label">
+              Art Type:
+            </label>
+            <select
+              ref={artTypeRef}
+              name="art_type"
+              id="art_type"
+              className="form-select"
+            >
+              <option value={'Contemporary Fine Art'}>
+                Contemporary Fine Art
+              </option>
+              <option value={'Decorative Art'}>Decorative Art</option>
+            </select>
+            {errors.art_type && (
+              <span className="text-danger">
+                Please choose art type of your work.
+              </span>
+            )}
+          </div>
           <div className="mb-3">
             <label htmlFor="category" className="form-label">
               Category
@@ -296,6 +316,7 @@ function AddProd(props) {
               </span>
             )}
           </div>
+
           <div className="mb-3">
             <label htmlFor="price" className="form-label">
               Starting price:

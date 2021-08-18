@@ -50,7 +50,7 @@ function ProdSingleInfo(props) {
     let url_cat = URL_API + '/categories/single/' + data.category_s_id
     let dataCat = await doApiGet(url_cat)
     data.catName = dataCat.name
-    data.imgArr.shift()
+    // data.imgArr.shift()
 
     setProdData([data])
     setProdArrBids(data.bids.length)

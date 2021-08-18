@@ -38,11 +38,12 @@ function ProdBox(props) {
   }, [carts_ar])
 
   const checkFavorites = async () => {
-    // checkIfTokenValid()needed to check it in home page
+    // needed to check it in home page
+    checkIfTokenValid()
     if (localStorage['tok']) {
       let url = URL_API + `/users/favorites`
       let favorites = await doApiMethod(url, 'POST', {})
-      favorites.includes(item._id)
+      favorites?.includes(item._id)
         ? setstateFavorites(true)
         : setstateFavorites(false)
       return

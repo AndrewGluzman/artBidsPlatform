@@ -43,7 +43,7 @@ function BottomTabs(props) {
     })
   }
   return (
-    <div className="container">
+    <div className="">
       <div className="bloc-tabs mt-lg-5">
         <button
           className={toggleState === 1 ? 'tabs active-tabs' : 'tabs'}
@@ -80,6 +80,10 @@ function BottomTabs(props) {
         >
           <h2>{props.item.name}</h2>
           <hr />
+          <p>
+            {props.item.size}, {props.item.technique}, {props.item.year_created}
+          </p>
+          <br />
           <p>{props.item.description}</p>
         </div>
 
