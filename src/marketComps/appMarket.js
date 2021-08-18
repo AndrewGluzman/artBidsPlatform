@@ -16,6 +16,9 @@ import ProdSingleInfo from './client/prodSingleInfo'
 import HomeSearch from './client/homeSearch'
 import ProfilePage from './profilePageClient/profilePage'
 import WhishList from './client/WhishList'
+import Artists from './client/Artists'
+import About from './client/About'
+import Contact from './client/Contact'
 
 let myStore = createStore(marketReducer, composeWithDevTools())
 
@@ -24,7 +27,6 @@ function AppMarket(props) {
     <Provider store={myStore}>
       <Router>
         {/* switch of the content */}
-
         <Switch>
           <Route exact path={`/`} component={Home} />
           <Route exact path={`/login`} component={LoginClient} />
@@ -35,6 +37,9 @@ function AppMarket(props) {
           <Route exact path={`/single/:id`} component={ProdSingleInfo} />
           <Route exact path={`/search/`} component={HomeSearch} />
           <Route exact path={`/whishlist/`} component={WhishList} />
+          <Route exact path={`/artists/`} component={Artists} />
+          <Route exact path={`/about/`} component={About} />
+          <Route exact path={`/contact/`} component={Contact} />
           <Route path={`/profile/`} component={ProfilePage} />
           {/* show appADmin when there /admin in the url */}
           <Route path={`/admin`} component={AppAdmin} />

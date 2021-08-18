@@ -28,7 +28,7 @@ function NavBar(props) {
     <>
       <nav className="navbar p-0 navbar-expand-lg navbar-light shadow mb-md-5 mt-md-1">
         <div className="container-fluid p-sm-0 ">
-          <a class="navbar-brand" href="#"></a>
+          <a className="navbar-brand" href="#"></a>
 
           <button
             className="navbar-toggler .navbar-brand m-2 bg-white"
@@ -140,63 +140,61 @@ function NavBar(props) {
                   )}
                 </div>
                 <li className="nav-item ">
-                  <a className="nav-link active " aria-current="page" href="#">
-                    <Link to="/">
-                      <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
-                        Home
-                      </p>
-                    </Link>
-                  </a>
+                  <Link to="/">
+                    <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
+                      Home
+                    </p>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active " aria-current="page" href="#">
+                  <Link to="/artists">
                     <p className="navbar-text fw-bolder m-2 text-light ">
                       Artists
                     </p>
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active " aria-current="page" href="#">
+                  <Link to="/about">
                     <p className="navbar-text fw-bolder m-2 text-light ">
                       About
                     </p>
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active " aria-current="page" href="#">
+                  <Link to="/contact">
                     <p className="navbar-text fw-bolder m-2 text-light ">
                       Contact
                     </p>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
             <div className="col-md-5 align-items-center  ">
-              <ul className="navbar-nav justify-content-sm-center justify-content-lg-end ">
+              <ul className="navbar-nav justify-content-sm-center justify-content-lg-end align-items-center ">
                 {!localStorage['tok'] ? (
                   <li className="nav-item text-center">
-                    <a className="nav-link active " aria-current="page">
-                      <Link to="/login">
-                        <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
-                          Sign in
-                        </p>
-                      </Link>
-                    </a>
+                    {/* <a className="nav-link active " aria-current="page"> */}
+                    <Link to="/login">
+                      <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
+                        Sign in
+                      </p>
+                    </Link>
+                    {/* </a> */}
                   </li>
                 ) : (
                   <>
                     <li className="nav-item text-center">
-                      <a className="nav-link active " aria-current="page">
-                        <Link to="/profile/accountSettings">
-                          <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
-                            Account
-                          </p>
-                        </Link>
-                      </a>
+                      {/* <a className="nav-link active " aria-current="page"> */}
+                      <Link to="/profile/accountSettings">
+                        <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
+                          Account
+                        </p>
+                      </Link>
+                      {/* </a> */}
                     </li>
                     <li className="nav-item">
                       <a
-                        className="nav-link active btn p-0 pt-2 "
+                        className="nav-link active btn  "
                         aria-current="page"
                         onClick={props.onLogOut}
                       >

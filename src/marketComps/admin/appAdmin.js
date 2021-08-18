@@ -16,8 +16,10 @@ import Header from '../client/header'
 function AppAdmin(props) {
   return (
     <React.Fragment>
+      <AuthAdmin />
       {/* סטריקט דואג שאנחנו באדמין ויו אר אל פנימי שלו */}
       <Route strict path={`/admin/`} component={AuthAdmin} />
+
       {/* <HeaderAdmin role="Admin panel" /> */}
       <Header />
       <div className="container-fluid">

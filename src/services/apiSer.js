@@ -65,3 +65,16 @@ export const checkIfTokenValid = async () => {
     // history.push('/login')
   }
 }
+
+export const checkIfAdmin = async (history) => {
+  if (!localStorage['tok']) {
+    history.push('/admin')
+  }
+  let url = URL_API + '/users/checkAdmin'
+  let data = await doApiMethod(url, 'POST', {})
+  // check if the token is valid and the user is admin
+  if (data.auth != 'success') {
+    localStorage.removeItem('tok')
+    history.push('/admin')
+  }
+}
