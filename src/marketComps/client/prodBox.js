@@ -101,6 +101,9 @@ function ProdBox(props) {
                 // event.currentTarget.dataset.state = false
                 setstateFavorites(false)
                 changeFavorites(item._id, false)
+                if (props.removed) {
+                  props.removed(false)
+                }
 
                 return
               }

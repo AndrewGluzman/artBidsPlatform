@@ -1,34 +1,60 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { doApiGet, URL_API } from '../../services/apiSer'
+import {
+  doApiGet,
+  URL_API,
+  checkIfTokenValid,
+  doApiMethod,
+} from '../../services/apiSer'
 import CartSide from './cartSide'
 import Header from './header'
 import ProdBox from './prodBox'
 
 function WhishList(props) {
-  let [search, setSearch] = useState('')
-  let [prods_ar, setProdsAr] = useState([])
-  // ישמש בשביל לדעת אם להציג את הלואדינג או לא
+  let [favorites, setFavorites] = useState([])
   let [loadingShow, setLoadingShow] = useState(true)
-
+  let [removed, setRemoved] = useState(false)
+  let counter = 1
   useEffect(() => {
-    // בשביל לאסוף קווארי סטרינג בצד לקוח
-    let urlParams = new URLSearchParams(window.location.search)
-    //?q=koko
     setLoadingShow(true)
-    setSearch(urlParams.get('q'))
-    doApiSearch(urlParams.get('q'))
-    // props.location -> ככה שאם אנחנו כבר בחיפוש אז הוא יתרנדר מחדש
-  }, [props.location])
+    loadFavorites()
+  }, [removed])
 
-  const doApiSearch = async (_searchFor) => {
-    let url = URL_API + '/prods/search?q=' + _searchFor
-    let data = await doApiGet(url)
-    setProdsAr(data)
-    setLoadingShow(false)
-    console.log(data)
+  const loadFavorites = async () => {
+    checkIfTokenValid()
+    if (localStorage['tok']) {
+      let url = URL_API + `/users/favorites`
+      let favoritesid = await doApiMethod(url, 'POST', {})
+      getFavorites(favoritesid)
+      //
+      // setLoadingShow(false)
+      return
+    }
+    if (localStorage['favorites']) {
+      let favoritesid = JSON.parse(localStorage.getItem('favorites'))
+      getFavorites(favoritesid)
+    }
   }
 
+  const getFavorites = async (favorites) => {
+    let url = URL_API + '/prods/whishlist'
+    let data = await doApiMethod(url, 'POST', { fav: favorites })
+    console.log(data)
+
+    setFavorites(data)
+    setLoadingShow(false)
+  }
+
+  const checkIfremoved = (data) => {
+    if (!data) {
+      if (!removed) {
+        setRemoved(true)
+      }
+      if (removed) {
+        setRemoved(false)
+      }
+    }
+  }
   return (
     <React.Fragment>
       <Header />
@@ -44,12 +70,14 @@ function WhishList(props) {
           </div>
         )}
         {/* במידה וסיים לקבל מידע והמערך הריק יציג הודעת אי מציאת מוצרים */}
-        {!loadingShow && prods_ar.length == 0 && (
+        {!loadingShow && favorites.length == 0 && (
           <div className="text-center">Not found products...</div>
         )}
         <div className="row mb-5">
-          {prods_ar.map((item) => {
-            return <ProdBox key={item._id} item={item} />
+          {favorites.map((item) => {
+            return (
+              <ProdBox key={item._id} item={item} removed={checkIfremoved} />
+            )
           })}
         </div>
       </div>
