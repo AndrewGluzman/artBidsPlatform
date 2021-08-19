@@ -19,6 +19,7 @@ import WhishList from './client/WhishList'
 import Artists from './client/Artists'
 import About from './client/About'
 import Contact from './client/Contact'
+import ArtByType from './client/ArtByType'
 
 let myStore = createStore(marketReducer, composeWithDevTools())
 
@@ -39,6 +40,7 @@ function AppMarket(props) {
           <Route exact path={`/whishlist/`} component={WhishList} />
           <Route exact path={`/artists/`} component={Artists} />
           <Route exact path={`/about/`} component={About} />
+          <Route exact path={`/art_type/:type/:page`} component={ArtByType} />
           <Route exact path={`/contact/`} component={Contact} />
           <Route path={`/profile/`} component={ProfilePage} />
           {/* show appADmin when there /admin in the url */}

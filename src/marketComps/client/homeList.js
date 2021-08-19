@@ -13,6 +13,7 @@ import './css/form.css'
 import './css/carusel.css'
 import Footer from './footer'
 import Carusel from './carusel'
+import { Link } from 'react-router-dom'
 
 function Homelist(props) {
   // const orderCategoriesId = ["3", "1", "2", "5"]
@@ -57,9 +58,11 @@ function Homelist(props) {
               Contemporary Fine Art
             </h2>
             <p className=" text-light">20 auctions</p>
-            <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
-              <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>
-            </span>
+            <Link to="art_type/Contemporary Fine Art/0">
+              <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
+                <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>
+              </span>{' '}
+            </Link>
           </div>
           <span className="span1"></span>
           <span className="span2"></span>
@@ -70,9 +73,11 @@ function Homelist(props) {
               Decorative Art
             </h2>
             <p className=" text-light">12 auctions</p>
-            <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
-              <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>
-            </span>
+            <Link to="art_type/Decorative Art/0">
+              <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
+                <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>
+              </span>
+            </Link>
           </div>
           <span className="span1"></span>
           <span className="span2"></span>
@@ -214,7 +219,6 @@ function Homelist(props) {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }

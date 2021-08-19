@@ -71,7 +71,10 @@ function ProdBox(props) {
   }
 
   return (
-    <LazyLoad height="300" className="col-lg-3 p-2 text-center">
+    <LazyLoad
+      height="300"
+      className={`${props.col ? props.col : 'col-lg-3'} p-2 text-center`}
+    >
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}

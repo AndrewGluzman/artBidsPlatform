@@ -19,10 +19,16 @@ function PageNav(props) {
   }, [])
 
   const doApi = async () => {
-    console.log(urlPageApi)
-    let data = await doApiGet(URL_API + urlPageApi)
-    console.log(data)
-    setPages(Math.ceil(data.count / perPage))
+    if (props.urlPageApi) {
+      console.log(urlPageApi)
+      let data = await doApiGet(URL_API + urlPageApi)
+      console.log(data)
+      setPages(Math.ceil(data.count / perPage))
+    } else {
+      console.log(props.total)
+
+      setPages(Math.ceil(props.total / perPage))
+    }
   }
 
   return (

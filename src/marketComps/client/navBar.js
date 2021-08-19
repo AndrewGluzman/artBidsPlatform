@@ -69,7 +69,7 @@ function NavBar(props) {
                     </div>
                   </li>
                   {dropMenue && (
-                    <div className="drop_menue text-decoration-none px-3 pt-2 mx-1 col-3 shadow">
+                    <div class="drop_menue text-decoration-none px-3 pt-4 mx-1 mt-2 col-3 shadow">
                       <div
                         onClick={() => {
                           setdropMenu(false)

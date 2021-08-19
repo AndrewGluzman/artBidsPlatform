@@ -11,13 +11,14 @@ import ProdBox from './prodBox'
 import ProdBoxBigHorizontal from './prodBoxBigHorizontal'
 import ProdBoxNewAuctions from './prodBoxNewAuctions'
 
-function CategoryPage(props) {
+function ArtByType(props) {
   let [cat, setCat] = useState({})
   let [prods_ar, setProdsAr] = useState([])
   let [togleView, setTogleView] = useState(true)
   let selectRef = useRef()
 
   useEffect(() => {
+    window.scroll({ top: 0, behavior: 'smooth' })
     doApi()
 
     // props.match -  חשוב מכיוון שנרצה שהפונקציה תפעל כל פעם שיו אר אל משתנה למעלה
@@ -25,17 +26,15 @@ function CategoryPage(props) {
 
   const doApi = async () => {
     // להוציא את המידע על הקטגוריה
-
-    let url1 = URL_API + '/categories/single/' + props.match.params.id
-    let dataCat = await doApiGet(url1)
-    setCat(dataCat)
+    console.log(props.match.params.page)
 
     // להוציא את כל המוצרים , נניח 8 בדף
     let currentPage = props.match.params.page || 0
+    let artTypeCat = props.match.params.type
     // sort -> לוקח מידע מהסלקט שלנו
     let url =
       URL_API +
-      `/prods/?cat=${dataCat.s_id}&perPage=8&page=${currentPage}&sort=${selectRef.current.value}`
+      `/prods/type?type=${artTypeCat}&perPage=8&page=${currentPage}&sort=${selectRef.current.value}`
 
     let prodsData = await doApiGet(url)
     setProdsAr(prodsData)
@@ -59,19 +58,21 @@ function CategoryPage(props) {
             </Link>
           </div>
           <h1 className="h3 fw-bolder mb-5">
-            <span>Category: {cat.name}</span>
+            <span>{props.match.params.type}</span>
           </h1>
           <hr className="mb-5" />
           <div className="text-center row">
             <div className="col-lg-6 text-center text-lg-start my-3 my-lg-0">
-              {cat.s_id && (
+              {
                 <PageNav
-                  urlPageApi={'/prods/count?cat=' + cat.s_id}
+                  urlPageApi={
+                    '/prods/arttype-count?type=' + props.match.params.type
+                  }
                   perPage="8"
                   // לאן הלינקים של הכפתורים של העמודים יקחו אותנו
-                  pageLinkStart={'/cat/' + cat.s_id + '/'}
+                  pageLinkStart={'/art_type/' + props.match.params.type + '/'}
                 />
-              )}
+              }
             </div>
           </div>
           {prods_ar.length == 0 && (
@@ -161,6 +162,20 @@ function CategoryPage(props) {
                 })}
             </div>
           </div>
+          <div className="text-center justify-content-center row">
+            <div className="col-lg-6 text-center  my-3 my-lg-0">
+              {
+                <PageNav
+                  urlPageApi={
+                    '/prods/arttype-count?type=' + props.match.params.type
+                  }
+                  perPage="8"
+                  // לאן הלינקים של הכפתורים של העמודים יקחו אותנו
+                  pageLinkStart={'/art_type/' + props.match.params.type + '/'}
+                />
+              }
+            </div>
+          </div>
           {/* <div className="row mb-5">
           {prods_ar.map((item) => {
             return <ProdBox key={item._id} item={item} />
@@ -173,4 +188,4 @@ function CategoryPage(props) {
   )
 }
 
-export default CategoryPage
+export default ArtByType
