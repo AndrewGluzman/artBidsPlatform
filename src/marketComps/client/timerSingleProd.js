@@ -51,7 +51,7 @@ function TimerSingleProd(props) {
   const checkIfEnded = (deadLine) => {
     // let deadLine = new Date(date)
 
-    if (deadLine.getTime() - Date.now() <= 1) {
+    if (deadLine.getTime() - Date.now() <= 1 || props.status > 0) {
       if (props.ended == false) {
         props.setEnded(true)
       }

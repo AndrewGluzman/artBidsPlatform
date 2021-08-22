@@ -203,6 +203,7 @@ function ProdSingleInfo(props) {
                       date={item.date_created}
                       setEnded={setEnded}
                       ended={ended}
+                      status={item.status}
                     />
                   </div>
                   <div>

@@ -16,12 +16,13 @@ function WhishList(props) {
   let [removed, setRemoved] = useState(false)
   let counter = 1
   useEffect(() => {
+    checkIfTokenValid()
+
     setLoadingShow(true)
     loadFavorites()
   }, [removed])
 
   const loadFavorites = async () => {
-    checkIfTokenValid()
     if (localStorage['tok']) {
       let url = URL_API + `/users/favorites`
       let favoritesid = await doApiMethod(url, 'POST', {})
