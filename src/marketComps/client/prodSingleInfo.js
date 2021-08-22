@@ -83,7 +83,6 @@ function ProdSingleInfo(props) {
       history.push('/login')
     }
 
-    console.log(dataBody)
     postBid(dataBody)
   }
 
@@ -91,11 +90,13 @@ function ProdSingleInfo(props) {
     let url = URL_API + '/prods/bidup/' + prodId
     let data = await doApiMethod(url, 'PUT', dataBody)
     doApiGetProdInfo()
-    console.log(data)
   }
 
   const buyNow = () => {
     prodData[0].count = 1
+    prodData[0].price = prodPriceInp * randomNumber
+    console.log(prodData[0].price)
+
     dispatch({ type: 'UPDATE_THE_CART', item: prodData[0] })
     history.push('/checkout')
   }
@@ -106,6 +107,10 @@ function ProdSingleInfo(props) {
 
     return date
   }
+  const rndNum = () => {
+    return Math.floor(Math.random() * 6) + 5
+  }
+  let randomNumber = rndNum()
 
   return (
     <React.Fragment>
@@ -304,7 +309,7 @@ function ProdSingleInfo(props) {
                           type="button"
                           className="float-lg-end ms-lg-1 btn btn-outline-secondary w-75 rounded-pill me-2"
                         >
-                          BUY NOW FOR ${prodPriceInp + 100}
+                          BUY NOW FOR ${prodPriceInp * randomNumber}
                         </button>
                       </div>
                     </form>

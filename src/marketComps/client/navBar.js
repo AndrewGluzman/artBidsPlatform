@@ -141,28 +141,28 @@ function NavBar(props) {
                 </div>
                 <li className="nav-item ">
                   <Link to="/">
-                    <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
+                    <p className="navbar-text fw-bolder m-2 me-3  text-light text-decoration-none ">
                       Home
                     </p>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/artists">
-                    <p className="navbar-text fw-bolder m-2 text-light ">
+                    <p className="navbar-text fw-bolder m-2  me-3 text-light ">
                       Artists
                     </p>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/about">
-                    <p className="navbar-text fw-bolder m-2 text-light ">
+                    <p className="navbar-text fw-bolder m-2  me-3 text-light ">
                       About
                     </p>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/contact">
-                    <p className="navbar-text fw-bolder m-2 text-light ">
+                    <p className="navbar-text fw-bolder m-2   text-light ">
                       Contact
                     </p>
                   </Link>

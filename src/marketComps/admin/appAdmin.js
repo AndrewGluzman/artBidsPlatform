@@ -22,7 +22,7 @@ function AppAdmin(props) {
 
       {/* <HeaderAdmin role="Admin panel" /> */}
       <Header />
-      <div className="container-fluid">
+      <div className="container-xxl">
         <div className="row">
           {/* ADD TO Comp sideNavAdmin */}
           {localStorage['tok'] ? (
@@ -44,14 +44,7 @@ function AppAdmin(props) {
               </Link>
             </nav>
           ) : (
-            <nav
-              className="col-2  admin_nav_side"
-              style={{ minHeight: '100vh' }}
-            >
-              <Link className="d-block" to="/">
-                Home page
-              </Link>
-            </nav>
+            ''
           )}
 
           <div className="col-10">

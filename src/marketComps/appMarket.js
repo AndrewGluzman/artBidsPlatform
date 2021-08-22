@@ -20,6 +20,8 @@ import Artists from './client/Artists'
 import About from './client/About'
 import Contact from './client/Contact'
 import ArtByType from './client/ArtByType'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 let myStore = createStore(marketReducer, composeWithDevTools())
 
@@ -47,6 +49,17 @@ function AppMarket(props) {
           <Route path={`/admin`} component={AppAdmin} />
         </Switch>
       </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Provider>
   )
 }

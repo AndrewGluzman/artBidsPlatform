@@ -11,14 +11,22 @@ function PayPalBtn(props) {
         onSuccess={(details, data) => {
           console.log('Transaction completed by ', details)
           console.log('data ', data)
-          props.successFunc(data.orderID)
+
+          // OPTIONAL: Call your server to save the transaction
+          return fetch('/paypal-transaction-complete', {
+            method: 'post',
+            body: JSON.stringify({
+              orderId: data.orderID,
+            }),
+          })
         }}
         onCancel={(err) => {
           // אם המשתמש ביטל
           console.log(err)
         }}
         options={{
-          clientId: props.clientId,
+          clientId:
+            'AdN9Nw8APc7nOYkqZA0mpCJt0I-ADKNqwYne-MJL4VDsHgFsGsLr4yeQM5BaGdX9vNg14Yk1AuhxX_To',
         }}
       />
     </div>

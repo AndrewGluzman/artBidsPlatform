@@ -1,43 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
-
-import { toast } from 'react-toastify'
 
 import Header from './header'
 import CartSide from './cartSide'
 import AuthClient from './authClient'
 import { doApiMethod, URL_API } from '../../services/apiSer'
-import PayPalBtn from '../common/paypalBtn'
-
 function Checkout(props) {
   let dispatch = useDispatch()
   let carts_ar = useSelector((myStore) => myStore.carts_ar)
   let totalCart = 0
-  let history = useHistory()
 
-  const checkoutReal = async (_id_paypalOrder = '00000') => {
+  // useEffect(() => {}, [carts_ar])
+
+  const checkoutReal = async () => {
     let obj = {
       carts_ar: JSON.stringify(carts_ar),
       total: totalCart,
-      paypal_id: _id_paypalOrder,
     }
     let url = URL_API + '/carts'
     try {
       let data = await doApiMethod(url, 'POST', obj)
       if (data.n == 1) {
-        toast.success('Your order been updated')
+        alert('Your order been updated')
       } else if (data._id) {
-        toast.success('Thank You for your Purchase!')
-
-        dispatch({ type: 'EMPTY_THE_CART', item: [] })
-        history.push('/')
+        alert(
+          'Your order on process we will contact you soon to get your money!',
+        )
       } else {
-        toast.error('there problem come back tommrow')
+        alert('there problem come back tommrow')
       }
     } catch (err) {
       console.log(err)
-      toast.error('there problem come back tommrow 222')
+      alert('there problem come back tommrow 222')
     }
   }
 
@@ -84,7 +78,7 @@ function Checkout(props) {
                       <td>{item.count}</td>
                       <td>{(item.count * item.price).toFixed(2)}</td>
                       <td className="w-25">
-                        <img src={item.img} className="w-50" />
+                        <img src={URL_API + item.img} className="w-50" />
                       </td>
                       <td>
                         <div className="d-flex">
@@ -117,13 +111,13 @@ function Checkout(props) {
             style={{ height: '300px' }}
           >
             <div>
-              <h3>Total price: ${totalCart.toFixed(2)}</h3>
-              {/* <button onClick={checkoutReal} className="btn btn-outline-info w-100">Commit buy</button> */}
-              <PayPalBtn
-                successFunc={checkoutReal}
-                total={totalCart.toFixed(2)}
-                clientId="AdN9Nw8APc7nOYkqZA0mpCJt0I-ADKNqwYne-MJL4VDsHgFsGsLr4yeQM5BaGdX9vNg14Yk1AuhxX_To"
-              />
+              <h3>Total price: {totalCart.toFixed(2)} nis</h3>
+              <button
+                onClick={checkoutReal}
+                className="btn btn-outline-info w-100"
+              >
+                Commit buy
+              </button>
             </div>
           </div>
         </div>
@@ -133,5 +127,3 @@ function Checkout(props) {
 }
 
 export default Checkout
-
-// AdN9Nw8APc7nOYkqZA0mpCJt0I-ADKNqwYne-MJL4VDsHgFsGsLr4yeQM5BaGdX9vNg14Yk1AuhxX_To
