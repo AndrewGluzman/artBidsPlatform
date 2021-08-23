@@ -49,7 +49,6 @@ function CategoryPage(props) {
 
   return (
     <React.Fragment>
-      <Header />
       <CartSide />
       <div className="container-fluid">
         <div className="container-md">
@@ -161,14 +160,8 @@ function CategoryPage(props) {
                 })}
             </div>
           </div>
-          {/* <div className="row mb-5">
-          {prods_ar.map((item) => {
-            return <ProdBox key={item._id} item={item} />
-          })}
-        </div> */}
         </div>
       </div>
-      <Footer />
     </React.Fragment>
   )
 }

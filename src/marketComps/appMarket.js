@@ -22,6 +22,9 @@ import Contact from './client/Contact'
 import ArtByType from './client/ArtByType'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Header from './client/header'
+import Footer from './client/footer'
+import { Link } from 'react-router-dom'
 
 let myStore = createStore(marketReducer, composeWithDevTools())
 
@@ -30,6 +33,7 @@ function AppMarket(props) {
     <Provider store={myStore}>
       <Router>
         {/* switch of the content */}
+        <Header />
         <Switch>
           <Route exact path={`/`} component={Home} />
           <Route exact path={`/login`} component={LoginClient} />
@@ -48,6 +52,7 @@ function AppMarket(props) {
           {/* show appADmin when there /admin in the url */}
           <Route path={`/admin`} component={AppAdmin} />
         </Switch>
+        <Footer />
       </Router>
       <ToastContainer
         position="top-right"

@@ -56,7 +56,6 @@ function Checkout(props) {
   return (
     <React.Fragment>
       <AuthClient />
-      <Header />
       <CartSide />
       <div className="container">
         <h1>Checkout</h1>

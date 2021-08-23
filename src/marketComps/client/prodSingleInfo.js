@@ -114,8 +114,6 @@ function ProdSingleInfo(props) {
 
   return (
     <React.Fragment>
-      <Header />
-
       <div className="container mb-3">
         {prodData.map((item) => {
           // let img = item.img.includes('http') ? item.img : URL_API + item.img

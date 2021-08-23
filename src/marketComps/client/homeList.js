@@ -61,7 +61,7 @@ function Homelist(props) {
             <Link to="art_type/Contemporary Fine Art/0">
               <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
                 <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>
-              </span>{' '}
+              </span>
             </Link>
           </div>
           <span className="span1"></span>

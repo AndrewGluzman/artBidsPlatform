@@ -280,7 +280,8 @@ a {
     url('/src/marketComps/client/images/classic.jpg');
 }
 .contemporary,
-.modern {
+.modern,
+.artist-image {
   margin-top: 2em;
   height: 380px;
   background-position: center;

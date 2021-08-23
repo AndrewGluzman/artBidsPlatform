@@ -7,10 +7,8 @@ import Homelist from './homeList'
 function Home(props) {
   return (
     <React.Fragment>
-      <Header />
       <CartSide />
       <Homelist />
-      <Footer />
     </React.Fragment>
   )
 }

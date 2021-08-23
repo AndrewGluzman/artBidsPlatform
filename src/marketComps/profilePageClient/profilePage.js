@@ -28,7 +28,6 @@ function ProfilePage(props) {
       {/* סטריקט דואג שאנחנו באדמין ויו אר אל פנימי שלו */}
       {/* <HeaderAdmin role="User Account" /> */}
       {/* <Header /> */}
-      <Header />
       <div className="container-xxl">
         <div className="row container-fluid px-0 easy_shadow">
           <div

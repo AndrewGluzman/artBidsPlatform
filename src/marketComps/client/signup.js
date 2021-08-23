@@ -1,49 +1,49 @@
-import React from "react";
-import Header from "./header";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
-import { doApiMethod, URL_API } from "../../services/apiSer";
+import React from 'react'
+import Header from './header'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router'
+import { doApiMethod, URL_API } from '../../services/apiSer'
 
 function SignUp(props) {
-  const { register, handleSubmit, errors, getValues } = useForm();
-  let history = useHistory();
+  const { register, handleSubmit, errors, getValues } = useForm()
+  let history = useHistory()
   // פונקציה בשיבל לקרוא לתצוגת ההודעות של הטוסט
   // let { addToast } = useToasts();
 
   let emailRef = register({
     required: true,
     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-  });
-  let passRef = register({ required: true, minLength: 3 });
+  })
+  let passRef = register({ required: true, minLength: 3 })
   let passRef2 = register({
     required: true,
     minLength: 3,
     validate: (val) => {
-      return val === getValues().pass;
+      return val === getValues().pass
     },
-  });
-  let nameRef = register({ required: true, minLength: 2 });
-  let phoneRef = register({ required: true, minLength: 3 });
-  let addressRef = register({ required: false, minLength: 3 });
+  })
+  let nameRef = register({ required: true, minLength: 2 })
+  let phoneRef = register({ required: true, minLength: 3 })
+  let addressRef = register({ required: false, minLength: 3 })
 
   const onFormSub = (dataBody) => {
     //dataBody -> מכיל אובייקט עם המאפיינים לפי השמות של האינפוטים והסלקטים
-    delete dataBody.pass2;
+    delete dataBody.pass2
 
-    console.log(dataBody);
-    doApi(dataBody);
-  };
+    console.log(dataBody)
+    doApi(dataBody)
+  }
   // 13:15
   const doApi = async (dataBody) => {
-    let url = URL_API + "/users/";
+    let url = URL_API + '/users/'
     // dataBody > אובייקט שמכיל את האימייל והסיסמא מהטופס
-    let data = await doApiMethod(url, "POST", dataBody);
-    console.log(data);
+    let data = await doApiMethod(url, 'POST', dataBody)
+    console.log(data)
     // sign up success
     if (data._id) {
-      history.push("/login");
+      history.push('/login')
     } else if (data.code == 11000) {
-      alert("Email already exists in system , try log in");
+      alert('Email already exists in system , try log in')
     } else {
       // addToast("Try again , user or password worng",
       //   {
@@ -52,12 +52,11 @@ function SignUp(props) {
       //   }
       // )
       // TODO : show toaste message
-      alert("There problem , come back next week :) ");
+      alert('There problem , come back next week :) ')
     }
-  };
+  }
   return (
     <React.Fragment>
-      <Header />
       <div className="container">
         <h1>Sign up:</h1>
         <form
@@ -170,7 +169,7 @@ function SignUp(props) {
         </form>
       </div>
     </React.Fragment>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

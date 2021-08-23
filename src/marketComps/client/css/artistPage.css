@@ -1,0 +1,7 @@
+.artist-image {
+  height: 300px;
+}
+.profile-artist-Img {
+  clip-path: circle(50px at center);
+  max-height: 150px;
+}

@@ -31,7 +31,6 @@ function About(props) {
 
   return (
     <React.Fragment>
-      <Header />
       <CartSide />
       <div className="container">
         <hr className="for_h2" />

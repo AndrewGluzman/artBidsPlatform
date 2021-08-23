@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import NavBar from './navBar'
 
@@ -9,12 +9,16 @@ function Header(props) {
   let carts_ar = useSelector((store) => store.carts_ar)
   let dispatch = useDispatch()
   let searchRef = useRef()
+  const location = useLocation()
+  useEffect(() => {
+    // checkIfTokenValid()
+  }, [location])
 
   const onLogOut = () => {
     // log out the user by delete the token
     localStorage.removeItem('tok')
     localStorage.removeItem('userName')
-    history.push('/login')
+    history.push('/')
   }
 
   const onSearchClick = () => {

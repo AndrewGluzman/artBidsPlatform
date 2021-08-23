@@ -48,7 +48,6 @@ function ArtByType(props) {
 
   return (
     <React.Fragment>
-      <Header />
       <CartSide />
       <div className="container-fluid">
         <div className="container-md">
@@ -183,7 +182,6 @@ function ArtByType(props) {
         </div> */}
         </div>
       </div>
-      <Footer />
     </React.Fragment>
   )
 }
