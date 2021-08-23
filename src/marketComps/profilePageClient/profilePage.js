@@ -30,10 +30,10 @@ function ProfilePage(props) {
       {/* <Header /> */}
       <Header />
       <div className="container-xxl">
-        <div className="row container-fluid px-0">
-          <nav
+        <div className="row container-fluid px-0 easy_shadow">
+          <div
             className="col-2   admin_nav_side"
-            style={{ minHeight: '100vh' }}
+            // style={{ minHeight: '100vh' }}
           >
             <Link className="d-block" to="/profile/accountSettings">
               Account Settings
@@ -56,7 +56,7 @@ function ProfilePage(props) {
             <Link className="d-block" to="/admin/userCarts">
               Users orders
             </Link> */}
-          </nav>
+          </div>
           {/* ) : (
             <nav
               className="col-2  admin_nav_side"

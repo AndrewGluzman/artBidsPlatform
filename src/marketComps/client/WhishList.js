@@ -74,13 +74,19 @@ function WhishList(props) {
         {!loadingShow && favorites.length == 0 && (
           <div className="text-center">Not found products...</div>
         )}
-        <div className="row mb-5">
-          {favorites.map((item) => {
-            return (
-              <ProdBox key={item._id} item={item} removed={checkIfremoved} />
-            )
-          })}
-        </div>
+        {favorites ? (
+          <div className="row mb-5">
+            {favorites?.map((item) => {
+              return (
+                <ProdBox key={item._id} item={item} removed={checkIfremoved} />
+              )
+            })}
+          </div>
+        ) : (
+          <div className="text-center">
+            <img src="/images/loading.gif" />
+          </div>
+        )}
       </div>
     </React.Fragment>
   )

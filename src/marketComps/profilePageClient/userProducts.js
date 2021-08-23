@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { doApiGet, doApiMethod, URL_API } from "../../services/apiSer";
-import Timer from "./timerProd";
-import UserProd from "./userProd";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
+import Timer from './timerProd'
+import UserProd from './userProd'
 
 function UserProducts(props) {
-  let [prods_ar, setProdsAr] = useState([]);
+  let [prods_ar, setProdsAr] = useState([])
 
   useEffect(() => {
-    doApi();
-  }, []);
+    doApi()
+  }, [])
 
   const doApi = async () => {
-    let url = URL_API + "/prods/userProds?sort=_id&reverse=yes&perPage=200";
-    let data = await doApiMethod(url, "GET");
-    setProdsAr(data);
-  };
+    let url = URL_API + '/prods/userProds?sort=_id&reverse=yes&perPage=200'
+    let data = await doApiMethod(url, 'GET')
+    setProdsAr(data)
+  }
 
   return (
-    <div>
+    <div className="ms-2">
       <h1>List of works:</h1>
-      <table className="table table-striped">
+      <table className="table table-striped table-borderless ">
         <thead>
           <tr>
             <th>#</th>
@@ -30,7 +30,6 @@ function UserProducts(props) {
             <th>Current bid</th>
             <th>Date added</th>
             <th>Status</th>
-            <th>del/edit</th>
           </tr>
         </thead>
         {/* TODO: add pagenation */}
@@ -38,12 +37,12 @@ function UserProducts(props) {
           {prods_ar.map((item, i) => {
             return (
               <UserProd key={item._id} prodNum={i} item={item} doApi={doApi} />
-            );
+            )
           })}
         </tbody>
       </table>
     </div>
-  );
+  )
 }
 
-export default UserProducts;
+export default UserProducts
