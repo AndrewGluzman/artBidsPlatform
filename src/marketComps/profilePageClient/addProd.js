@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { doApiGet, doApiMethod, URL_API } from '../../services/apiSer'
 import { Link, useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function AddProd(props) {
   let [cat_ar, setCatAr] = useState([])
@@ -12,6 +13,7 @@ function AddProd(props) {
 
   let fileRef = useRef()
   let fileRefProfile = useRef()
+  let fileRefProfileCover = useRef()
   let nameRef = register({ required: true, minLength: 3 })
   let infoRef = register({ required: true, minLength: 3 })
   let descriptionRef = register({ required: true, minLength: 3 })
@@ -67,21 +69,27 @@ function AddProd(props) {
     if (data._id) {
       uploadFile(data._id, 'upload', fileRef.current.files)
       uploadFile(data.artist_id, 'upload_profile', fileRefProfile.current.files)
+      uploadFile(
+        data.artist_id,
+        'upload_profile',
+        fileRefProfileCover.current.files,
+        'cover_img',
+      )
     } else {
       alert('There is problem try again later')
     }
   }
   ////////////////////////
-  const uploadFile = async (_idProd, location, arr) => {
+  const uploadFile = async (_idProd, location, arr, query) => {
     // ככה אוספים מידע מקובץ שרוצים לשלוח
     let editId = _idProd
-
+    let newQuery = query ? '?field=' + query : ''
     for (var i = 0; i < arr.length; i++) {
       // שיטה לשליחת מידע כגון קובץ
       const myData = new FormData()
       // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
       myData.append('fileSend', arr[i])
-      let url = URL_API + '/prods/' + location + '/' + editId
+      let url = URL_API + '/prods/' + location + '/' + editId + newQuery
       try {
         let resp = await axios.put(url, myData, {
           headers: {
@@ -91,8 +99,9 @@ function AddProd(props) {
         })
         // אם הצליח נקבל 1
         if (resp.data.n == 1) {
-          alert('prod added and image uploaded')
-          // history.push('/profile/userProducts')
+          toast.success('Files Uploaded')
+
+          history.push('/profile/userProducts')
         }
         console.log(resp.data)
       } catch (err) {
@@ -100,40 +109,6 @@ function AddProd(props) {
       }
     }
   }
-
-  /////////////////
-
-  // const uploadFile = async (_idProd) => {
-  //   // ככה אוספים מידע מקובץ שרוצים לשלוח
-  //   let editId = _idProd
-  //   // שיטה לשליחת מידע כגון קובץ
-  //   for (var i = 0; i < fileRef.current.files.length; i++) {
-  //     filesSendOnyByOne(i, editId)
-  //   }
-  // }
-
-  // const filesSendOnyByOne = async (fileArrayNumber, editId) => {
-  //   const myData = new FormData()
-  //   // fileSend -> הקיי של השם מאפיין בצד שרת של הקובץ
-  //   myData.append('fileSend', fileRef.current.files[fileArrayNumber])
-  //   let url = URL_API + '/prods/upload/' + editId
-  //   try {
-  //     let resp = await axios.put(url, myData, {
-  //       headers: {
-  //         'auth-token': localStorage['tok'],
-  //         'content-type': 'multipart/form-data',
-  //       },
-  //     })
-  //     // אם הצליח נקבל 1
-  //     if (resp.data.n == 1) {
-  //       alert('prod added and image uploaded')
-  //       // history.push('/profile/userProducts')
-  //     }
-  //     console.log(resp.data)
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   return (
     <div className="container">
@@ -427,6 +402,27 @@ function AddProd(props) {
             <label>Upload photo:</label>
             <br />
             <input ref={fileRefProfile} type="file" className="me-3" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="cover_img" className="form-label">
+              Creator's profile cover photo:
+            </label>
+            <input
+              defaultValue="http://"
+              ref={fileRefProfileCover}
+              name="cover_img"
+              type="text"
+              className="form-control"
+              id="cover_img"
+            />
+            {errors.img && (
+              <span className="text-danger">
+                Enter valid image higer than 0
+              </span>
+            )}
+            <label>Upload photo:</label>
+            <br />
+            <input ref={fileRefProfileCover} type="file" className="me-3" />
           </div>
         </div>
         <button type="submit" className="btn btn-primary">

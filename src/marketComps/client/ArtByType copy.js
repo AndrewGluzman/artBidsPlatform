@@ -4,51 +4,56 @@ import { Link } from 'react-router-dom'
 import { checkIfTokenValid, doApiGet, URL_API } from '../../services/apiSer'
 import PageNav from '../misc/pagesNav'
 import CartSide from './cartSide'
-import Footer from './footer'
-import Header from './header'
 import MultiRangeSlider from './multiRangeSlider'
 import ProdBox from './prodBox'
 import ProdBoxBigHorizontal from './prodBoxBigHorizontal'
 import ProdBoxNewAuctions from './prodBoxNewAuctions'
 
-function CategoryPage(props) {
-  let [cat, setCat] = useState({})
+function ArtByType(props) {
   let [prods_ar, setProdsAr] = useState([])
+  let [prodsNew, setProdsNew] = useState([])
   let [togleView, setTogleView] = useState(true)
+  // let [bigestPrice, setBigestPrice] = useState(5000)
   let selectRef = useRef()
 
   useEffect(() => {
-    window.scroll({ top: 250, behavior: 'smooth' })
-
     checkIfTokenValid()
-
+    window.scroll({ top: 250, behavior: 'smooth' })
     doApi()
 
     // props.match -  חשוב מכיוון שנרצה שהפונקציה תפעל כל פעם שיו אר אל משתנה למעלה
-  }, [props.match])
+  }, [props])
 
-  const doApi = async () => {
-    // להוציא את המידע על הקטגוריה
-
-    let url1 = URL_API + '/categories/single/' + props.match.params.id
-    let dataCat = await doApiGet(url1)
-    setCat(dataCat)
-
-    // להוציא את כל המוצרים , נניח 8 בדף
+  const doApi = async (min, max) => {
+    console.log(min + ' ' + max)
+    // checks current page
     let currentPage = props.match.params.page || 0
-    // sort -> לוקח מידע מהסלקט שלנו
+    let artTypeCat = props.match.params.type
+    // let routeLocation= artTypeCat < 50?'?cat=':'type?type='
+
     let url =
       URL_API +
-      `/prods/?cat=${dataCat.s_id}&perPage=8&page=${currentPage}&sort=${selectRef.current.value}`
-
+      `/prods/type?type=${artTypeCat}&perPage=8&page=${currentPage}&sort=${selectRef.current.value}&minPrice=${min}&maxPrice=${max}&range=yes`
     let prodsData = await doApiGet(url)
+
     setProdsAr(prodsData)
-    // לעשות פג'ניישן
+    let url2 =
+      URL_API + `/prods/type?type=${artTypeCat}&perPage=14&page=${currentPage}`
+    let newProdsData = await doApiGet(url2)
+    setProdsNew(newProdsData)
+    //Object with bigestPrice
+    // let getBigestPrice =
+    //   URL_API +
+    //   `/prods/type?type=${artTypeCat}&perPage=1&sort=price&reverse=yes`
+    // let bigestPriceData = await doApiGet(getBigestPrice)
+
+    // console.log(bigestPriceData)
+
+    // setBigestPrice(bigestPriceData.price)
   }
 
   const onSortchange = () => {
     doApi()
-    // alert(selectRef.current.value);
   }
 
   return (
@@ -62,19 +67,21 @@ function CategoryPage(props) {
             </Link>
           </div>
           <h1 className="h3 fw-bolder mb-5">
-            <span>Category: {cat.name}</span>
+            <span>{props.match.params.type}</span>
           </h1>
           <hr className="mb-5" />
           <div className="text-center row">
             <div className="col-lg-6 text-center text-lg-start my-3 my-lg-0">
-              {cat.s_id && (
+              {
                 <PageNav
-                  urlPageApi={'/prods/count?cat=' + cat.s_id}
+                  urlPageApi={
+                    '/prods/arttype-count?type=' + props.match.params.type
+                  }
                   perPage="8"
                   // לאן הלינקים של הכפתורים של העמודים יקחו אותנו
-                  pageLinkStart={'/cat/' + cat.s_id + '/'}
+                  pageLinkStart={'/art_type/' + props.match.params.type + '/'}
                 />
-              )}
+              }
             </div>
           </div>
           {prods_ar.length == 0 && (
@@ -92,22 +99,17 @@ function CategoryPage(props) {
                   <MultiRangeSlider
                     min={0}
                     max={1000}
-                    onChange={({ min, max }) =>
-                      console.log(`min = ${min}, max = ${max}`)
-                    }
-                  />{' '}
-                </div>
-                <div className="d-flex align-items-center justify-content-center mt-4">
-                  <button className="btn btn_filter text-white rounded-pill px-4 py-2  fw-bold">
-                    FILTER
-                  </button>
-                  <p className=" ms-3 my-0 p-0">Price:$1,500-$2,500</p>
+                    doApi={doApi}
+                    onChange={(e) => {
+                      // console.log(`min = ${min}, max = ${max}`)
+                    }}
+                  />
                 </div>
               </div>
               <div className="new_auctions_sec mt-5">
                 <h5 className="fw-bolder">New Auctions </h5>
                 <hr className="mt-1" />
-                {prods_ar.map((item) => {
+                {prodsNew.map((item) => {
                   return <ProdBoxNewAuctions key={item._id} item={item} />
                 })}
               </div>
@@ -144,7 +146,7 @@ function CategoryPage(props) {
                     <select
                       onChange={onSortchange}
                       ref={selectRef}
-                      className="form-select w-50"
+                      className="form-select w-50 "
                     >
                       <option value="name">Name</option>
                       <option value="bids">Popular</option>
@@ -164,10 +166,24 @@ function CategoryPage(props) {
                 })}
             </div>
           </div>
+          <div className="text-center justify-content-center row">
+            <div className="col-lg-6 text-center  my-3 my-lg-0">
+              {
+                <PageNav
+                  urlPageApi={
+                    '/prods/arttype-count?type=' + props.match.params.type
+                  }
+                  perPage="8"
+                  // לאן הלינקים של הכפתורים של העמודים יקחו אותנו
+                  pageLinkStart={'/art_type/' + props.match.params.type + '/'}
+                />
+              }
+            </div>
+          </div>
         </div>
       </div>
     </React.Fragment>
   )
 }
 
-export default CategoryPage
+export default ArtByType

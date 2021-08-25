@@ -1,5 +1,7 @@
 .artist-image {
   height: 300px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .profile-artist-Img {
   clip-path: circle(50px at center);

@@ -58,19 +58,21 @@ function WhishList(props) {
   }
   return (
     <React.Fragment>
-      <Header />
       <CartSide />
       <div className="container">
-        <hr className="for_h2" />
-        <h2 className="h2_hr">
-          <span>Whishlist 💖 :</span>
-        </h2>
+        <div className="breadcrumb">
+          <Link className="breadcrumb-item text-secondary" to="/">
+            Home/
+          </Link>
+        </div>
+        <h1 className="h3 fw-bolder mb-5">
+          <span>Whishlist:</span>
+        </h1>
         {loadingShow && (
           <div className="text-center">
             <img src="/images/loading.gif" />
           </div>
         )}
-        {/* במידה וסיים לקבל מידע והמערך הריק יציג הודעת אי מציאת מוצרים */}
         {!loadingShow && favorites.length == 0 && (
           <div className="text-center">Not found products...</div>
         )}

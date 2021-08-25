@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './header'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { doApiMethod, URL_API } from '../../services/apiSer'
 
 function SignUp(props) {
@@ -58,7 +59,14 @@ function SignUp(props) {
   return (
     <React.Fragment>
       <div className="container">
-        <h1>Sign up:</h1>
+        <div className="breadcrumb">
+          <Link className="breadcrumb-item text-secondary" to="/">
+            Home/
+          </Link>
+        </div>
+        <h1 className="h3 fw-bolder mb-5">
+          <span>Sign Up:</span>
+        </h1>
         <form
           onSubmit={handleSubmit(onFormSub)}
           className="col-lg-6 mx-auto p-2 shadow mt-3"

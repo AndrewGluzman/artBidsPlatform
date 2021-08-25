@@ -173,7 +173,7 @@ const modalElement = (item_modal) => {
         <div closeButton></div>
         <div className="">
           {prodData.map((item) => {
-            let img = item.img.includes('http') ? item.img : URL_API + item.img
+            let img = item.img?.includes('http') ? item.img : URL_API + item.img
 
             return (
               <div key={item._id}>

@@ -1,10 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-
 import { toast } from 'react-toastify'
-
-import Header from './header'
 import CartSide from './cartSide'
 import AuthClient from './authClient'
 import { doApiMethod, URL_API } from '../../services/apiSer'
@@ -82,8 +79,8 @@ function Checkout(props) {
                       <td>{item.name}</td>
                       <td>{item.count}</td>
                       <td>{(item.count * item.price).toFixed(2)}</td>
-                      <td className="w-25">
-                        <img src={item.img} className="w-50" />
+                      <td className="w-25 p-3">
+                        <img src={URL_API + item.img} className="w-50" />
                       </td>
                       <td>
                         <div className="d-flex">
@@ -91,18 +88,18 @@ function Checkout(props) {
                             onClick={() => {
                               reduceProd(item)
                             }}
-                            className="btn btn-danger"
+                            className="btn btn-outline-danger rounded-circle px-3 py-2"
                           >
-                            -
+                            <span className="">X</span>
                           </button>
-                          <button
+                          {/* <button
                             onClick={() => {
                               addProd(item)
                             }}
                             className="btn btn-info"
                           >
                             +
-                          </button>
+                          </button> */}
                         </div>
                       </td>
                     </tr>

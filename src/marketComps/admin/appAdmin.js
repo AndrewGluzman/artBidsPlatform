@@ -21,7 +21,6 @@ function AppAdmin(props) {
       <Route strict path={`/admin/`} component={AuthAdmin} />
 
       {/* <HeaderAdmin role="Admin panel" /> */}
-      <Header />
       <div className="container-xxl">
         <div className="row">
           {/* ADD TO Comp sideNavAdmin */}

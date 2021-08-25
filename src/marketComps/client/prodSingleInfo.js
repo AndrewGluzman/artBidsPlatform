@@ -17,10 +17,8 @@ import TimerSingleProd from './timerSingleProd'
 import BottomTabs from './bottomTabs'
 import InnerImageZoom from 'react-inner-image-zoom'
 import './css/zoomOnImagePlugin.css'
-
 import ReactBnbGallery from 'react-bnb-gallery'
 import './css/reactBnbGallery.css'
-import Footer from './footer'
 
 function ProdSingleInfo(props) {
   let dispatch = useDispatch()
@@ -39,6 +37,8 @@ function ProdSingleInfo(props) {
   const [stateFavorites, setstateFavorites] = useState(false)
 
   useEffect(() => {
+    window.scroll({ top: 250, behavior: 'auto' })
+
     doApiGetProdInfo()
   }, [props.match.params.id, onloadPrice])
   // useEffect(() => {
@@ -336,7 +336,6 @@ function ProdSingleInfo(props) {
           )
         })}
       </div>
-      <Footer />
       <div className="container-fluid"></div>
     </React.Fragment>
   )
