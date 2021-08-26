@@ -205,13 +205,12 @@ const modalElement = (item_modal) => {
                     <p className="text-secondary mt-3">{item.info} </p>
 
                     <div className="col-lg-5 p-lg-0  float-lg-end ">
-                      <button
-                        // onClick={}
-                        type="button"
-                        className="float-lg-end ms-lg-1 btn btn-outline-danger tw-bold w-75 rounded-pill me-2 modal-button-buynow"
+                      <Link
+                        to={'/single/' + item._id}
+                        className=" float-lg-end ms-lg-1 btn btn-outline-danger tw-bold w-75 rounded-pill me-2 modal-button-buynow "
                       >
-                        BUY NOW FOR ${item.price + 100}
-                      </button>
+                        <i class="bi bi-hammer"></i> BID NOW!
+                      </Link>
                     </div>
                     <div>
                       <p>

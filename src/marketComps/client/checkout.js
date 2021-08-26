@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import CartSide from './cartSide'
 import AuthClient from './authClient'
@@ -55,65 +56,57 @@ function Checkout(props) {
       <AuthClient />
       <CartSide />
       <div className="container">
-        <h1>Checkout</h1>
-        <h3>List of product in your cart:</h3>
-        <div className="row">
+        <div className="breadcrumb">
+          <Link className="breadcrumb-item text-secondary" to="/">
+            Home/
+          </Link>
+        </div>
+        <h1 className="h3 fw-bolder mb-5">
+          <span>Checkout:</span>
+        </h1>
+        <div className="row ">
           <div className="col-lg-9 p-2">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>img</th>
-                  <th>---</th>
-                </tr>
-              </thead>
-              <tbody>
-                {carts_ar.map((item, i) => {
-                  totalCart += item.count * item.price
-                  return (
-                    <tr>
-                      <td>{i + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.count}</td>
-                      <td>{(item.count * item.price).toFixed(2)}</td>
-                      <td className="w-25 p-3">
-                        <img src={URL_API + item.img} className="w-50" />
-                      </td>
-                      <td>
-                        <div className="d-flex">
-                          <button
-                            onClick={() => {
-                              reduceProd(item)
-                            }}
-                            className="btn btn-outline-danger rounded-circle px-3 py-2"
-                          >
-                            <span className="">X</span>
-                          </button>
-                          {/* <button
-                            onClick={() => {
-                              addProd(item)
-                            }}
-                            className="btn btn-info"
-                          >
-                            +
-                          </button> */}
-                        </div>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
+            {carts_ar.map((item, i) => {
+              totalCart += item.count * item.price
+              return (
+                <div className="d-flex align-items-center">
+                  <div className="me-3">
+                    <button
+                      onClick={() => {
+                        reduceProd(item)
+                      }}
+                      className="btn"
+                    >
+                      <i class="h3 bi bi-x-circle"></i>
+                    </button>
+                  </div>
+                  <div className="col-2">
+                    <img
+                      src={URL_API + item.img}
+                      className="w-100 p-4 easy_shadow"
+                    />
+                  </div>
+                  <div className="">
+                    <Link
+                      to={'/single/' + item._id}
+                      className=" text-dark text-decoration-none "
+                    >
+                      <h4 className="ms-5 h4 prod_name_box">{item.name}</h4>
+                    </Link>
+                    <p className="ms-5 h5">
+                      ${(item.count * item.price).toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
           <div
-            className="col-lg-3 border p-2 d-flex justify-content-center align-items-center text-center"
+            className="col-lg-3 mt-5 p-2 d-flex justify-content-center align-items-end text-center"
             style={{ height: '300px' }}
           >
             <div>
-              <h3>Total price: ${totalCart.toFixed(2)}</h3>
+              <h3 className="my-4">Total price: ${totalCart.toFixed(2)}</h3>
               {/* <button onClick={checkoutReal} className="btn btn-outline-info w-100">Commit buy</button> */}
               <PayPalBtn
                 successFunc={checkoutReal}

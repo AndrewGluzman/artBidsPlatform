@@ -74,7 +74,9 @@ function WhishList(props) {
           </div>
         )}
         {!loadingShow && favorites.length == 0 && (
-          <div className="text-center">Not found products...</div>
+          <div className="text-center">
+            Please sign in to see your wishlist...
+          </div>
         )}
         {favorites ? (
           <div className="row mb-5">

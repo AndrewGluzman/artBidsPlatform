@@ -112,12 +112,9 @@ function AddProd(props) {
 
   return (
     <div className="container">
-      <h1>Upload new work</h1>
+      {/* <h3>Upload new work</h3> */}
 
-      <form
-        onSubmit={handleSubmit(onFormSub)}
-        className="col-lg-8  p-2 shadow mt-3"
-      >
+      <form onSubmit={handleSubmit(onFormSub)} className="col-lg-8  p-2  mt-3">
         <div className="row d-flex">
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
@@ -425,7 +422,10 @@ function AddProd(props) {
             <input ref={fileRefProfileCover} type="file" className="me-3" />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn_filter text-white rounded-pill px-4 py-2 my-4 fw-bol"
+        >
           Add product
         </button>
       </form>

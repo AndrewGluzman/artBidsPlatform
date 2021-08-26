@@ -10,7 +10,7 @@ import Home from './client/home'
 import LoginClient from './client/loginClient'
 import './client/css/homeList.css'
 import SignUp from './client/signup'
-import CategoryPage from './client/categoryPage'
+// import CategoryPage from './client/categoryPage'
 import Checkout from './client/checkout'
 import ProdSingleInfo from './client/prodSingleInfo'
 import HomeSearch from './client/homeSearch'
@@ -18,13 +18,14 @@ import ProfilePage from './profilePageClient/profilePage'
 import WhishList from './client/WhishList'
 import Artists from './client/Artists'
 import About from './client/About'
-import Contact from './client/Contact'
+// import Contact from './client/Contact'
 import ArtByType from './client/ArtByType'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Header from './client/header'
 import Footer from './client/footer'
 import { Link } from 'react-router-dom'
+import GetInTouch from './client/getInTouch'
 
 let myStore = createStore(marketReducer, composeWithDevTools())
 
@@ -38,8 +39,8 @@ function AppMarket(props) {
           <Route exact path={`/`} component={Home} />
           <Route exact path={`/login`} component={LoginClient} />
           <Route exact path={`/signup`} component={SignUp} />
-          <Route exact path={`/cat/:id`} component={CategoryPage} />
-          <Route exact path={`/cat/:id/:page`} component={CategoryPage} />
+          {/* <Route exact path={`/cat/:id`} component={CategoryPage} /> */}
+          {/* <Route exact path={`/cat/:id/:page`} component={CategoryPage} /> */}
           <Route exact path={`/checkout`} component={Checkout} />
           <Route exact path={`/single/:id`} component={ProdSingleInfo} />
           <Route exact path={`/search/`} component={HomeSearch} />
@@ -47,7 +48,7 @@ function AppMarket(props) {
           <Route exact path={`/artists/`} component={Artists} />
           <Route exact path={`/about/`} component={About} />
           <Route exact path={`/art_type/:type/:page`} component={ArtByType} />
-          <Route exact path={`/contact/`} component={Contact} />
+          <Route exact path={`/contact/`} component={GetInTouch} />
           <Route path={`/profile/`} component={ProfilePage} />
           {/* show appADmin when there /admin in the url */}
           <Route path={`/admin`} component={AppAdmin} />

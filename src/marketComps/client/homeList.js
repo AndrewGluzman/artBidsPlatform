@@ -43,7 +43,7 @@ function Homelist(props) {
         <Carusel />
       </div>
 
-      <section className=" text-center mb-5 mt-5">
+      <section className=" text-center mb-5 mt-5 gap6rem">
         {middleTitleWithHammer('ENDING SOON AUCTIONS')}
         <div className=" ending-auctions row">
           {latestProds.map((item) => {
@@ -90,21 +90,21 @@ function Homelist(props) {
           </LazyLoad>
         )
       })}
-      <section className=" mb-5 mt-5">
+      <section className=" mb-5 mt-5 gap6rem ">
         {middleTitleWithHammer('NEED HELP? CONTACT US')}
-        <div class="container">
-          <div class="">
-            <div class="row">
+        <div className="">
+          <div className="">
+            <div className="row">
               {/* <!-- Section Titile --> */}
               <div
-                class="col-md-12 wow animated fadeInLeft"
+                className="col-md-12 wow animated fadeInLeft"
                 data-wow-delay=".2s"
               ></div>
             </div>
-            <div class="row">
+            <div className="row">
               {/* <!-- Section Titile --> */}
               <div
-                class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft"
+                className="col-md-4 mt-3 me-5 contact-widget-section2 wow animated fadeInLeft"
                 data-wow-delay=".2s"
               >
                 <p>
@@ -113,105 +113,105 @@ function Homelist(props) {
                   here for you. $4ART work with us today.
                 </p>
 
-                <div class="find-widget">
+                <div className="find-widget">
                   Company: <a href="#top">$4ART</a>
                 </div>
-                <div class="find-widget">
+                <div className="find-widget">
                   Address: <a href="#">86194 Rechovot Smadar Avenue 19 </a>
                 </div>
-                <div class="find-widget">
+                <div className="find-widget">
                   Phone: <a href="#">+972 054-459-8269</a>
                 </div>
 
-                <div class="find-widget">
+                <div className="find-widget">
                   Website: <a href="#top">www.$4ART.com</a>
                 </div>
-                <div class="find-widget">
+                <div className="find-widget">
                   Program: <a href="#">Mon to Sat: 09:30 AM - 10.30 PM</a>
                 </div>
               </div>
               {/* <!-- contact form --> */}
               <div
-                class="col-md-6 wow animated fadeInRight shadow mt-3"
+                className="col-md-7 wow animated fadeInRight shadow mt-3"
                 data-wow-delay=".2s"
               >
                 <form
-                  class="shake"
+                  className="shake p-3"
                   role="form"
                   id="contactForm"
                   name="contact-form"
                   data-toggle="validator"
                 >
                   {/* <!-- Name --> */}
-                  <div class="form-group label-floating">
-                    <label class="control-label pt-2" forlable="name">
+                  <div className="form-group label-floating">
+                    <label className="control-label pt-2" forlable="name">
                       Name
                     </label>
                     <input
-                      class="form-control"
+                      className="form-control"
                       id="name"
                       type="text"
                       name="name"
                       required
                       data-error="Please enter your name"
                     />
-                    <div class="help-block with-errors"></div>
+                    <div className="help-block with-errors"></div>
                   </div>
                   {/* <!-- email --> */}
-                  <div class="form-group label-floating">
-                    <label class="control-label" for="email">
+                  <div className="form-group label-floating">
+                    <label className="control-label" for="email">
                       Email
                     </label>
                     <input
-                      class="form-control"
+                      className="form-control"
                       id="email"
                       type="email"
                       name="email"
                       required
                       data-error="Please enter your Email"
                     />
-                    <div class="help-block with-errors"></div>
+                    <div className="help-block with-errors"></div>
                   </div>
                   {/* <!-- Subject --> */}
-                  <div class="form-group label-floating">
-                    <label class="control-label">Subject</label>
+                  <div className="form-group label-floating">
+                    <label className="control-label">Subject</label>
                     <input
-                      class="form-control"
+                      className="form-control"
                       id="msg_subject"
                       type="text"
                       name="subject"
                       required
                       data-error="Please enter your message subject"
                     />
-                    <div class="help-block with-errors"></div>
+                    <div className="help-block with-errors"></div>
                   </div>
                   {/* <!-- Message --> */}
-                  <div class="form-group label-floating">
-                    <label for="message" class="control-label">
+                  <div className="form-group label-floating">
+                    <label for="message" className="control-label">
                       Message
                     </label>
                     <textarea
-                      class="form-control"
+                      className="form-control"
                       rows="3"
                       id="message"
                       name="message"
                       required
                       data-error="Write your message"
                     ></textarea>
-                    <div class="help-block with-errors"></div>
+                    <div className="help-block with-errors"></div>
                   </div>
                   {/* <!-- Form Submit --> */}
-                  <div class="form-submit mt-5">
+                  <div className="form-submit mt-5">
                     <button
-                      class="btn btn-light"
+                      className="btn btn_filter text-white rounded-pill px-4 py-2 my-4 fw-bol"
                       type="submit"
                       id="form-submit"
                     >
-                      <i class="material-icons mdi mdi-message-outline"></i>
+                      <i className="material-icons mdi mdi-message-outline"></i>
                       Send Message
                     </button>
-                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                    <div class="clearfix"></div>
+                    <div id="msgSubmit" className="h3 text-center hidden"></div>
+                    <div className="clearfix"></div>
                   </div>
                 </form>
               </div>

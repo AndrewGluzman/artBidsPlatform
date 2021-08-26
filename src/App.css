@@ -235,13 +235,12 @@ a {
 
 /* Home page CSS */
 .hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.5)),
-    url('https://picsum.photos/600/300?random=3');
-  min-height: 521px;
+  background-image: url('/src/marketComps/client/images/team.jpg');
+  min-height: 621px;
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
 }
 
 /* lines over hammer icon */
@@ -484,4 +483,32 @@ a {
 .form-select {
   box-shadow: none !important;
   outline: none !important;
+}
+/* Contact Section */
+
+.red-rectangle {
+  top: 90px;
+  left: -120px;
+  position: absolute;
+  min-height: 30rem;
+  background-color: rgba(175, 10, 10, 0.863);
+}
+
+.motive_color {
+  color: rgba(175, 10, 10, 0.863);
+  /* color: rgba(192, 3, 3, 0.849); */
+}
+
+.devops_img {
+  max-height: 32rem;
+  overflow: hidden;
+}
+.gap6rem {
+  margin: 6rem 0 !important;
+}
+.gap5rem {
+  margin: 5rem 0 2rem !important;
+}
+.my-input::focus {
+  outline-color: rgb(175, 10, 10, 0.863) !important;
 }

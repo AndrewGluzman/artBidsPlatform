@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { URL_API } from '../../services/apiSer'
 
 function Carusel(props) {
@@ -42,10 +43,12 @@ function Carusel(props) {
             <div className="designed_item position-relative">
               <img
                 id="slide_1"
-                src={URL_API + '/prods_images/slide1.jpg'}
+                src={
+                  URL_API + '/prods_images/photo-1559102877-4a2cc0e37fce.jpg'
+                }
               ></img>
 
-              <h2 className=" slide-in-blurred-left-slowest ">VAN GOH'S</h2>
+              <h2 className=" slide-in-blurred-left-slowest ">PICCASO'S</h2>
               <h1 className="slide-in-blurred-left"> DREAM</h1>
               <div className="border-1 border border-light price position-absolute p-3  align-items-center slide-in-blurred-bottom">
                 <p className="m-0 p-0">
@@ -100,13 +103,14 @@ function Carusel(props) {
               <h1 id="sell">SELL</h1>
               <h1 id="bid">BID</h1>
               <h1 id="buy">BUY</h1>
-
-              <div
-                id="sign_up_now"
-                className="price position-absolute p-3  align-items-center flicker-in-1 glow"
-              >
-                <p className="m-0 p-0">SIGN UP NOW!</p>
-              </div>
+              <Link to="/signup" className="">
+                <div
+                  id="sign_up_now"
+                  className="price position-absolute p-3  align-items-center flicker-in-1 glow"
+                >
+                  <p className="m-0 p-0">SIGN UP NOW!</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

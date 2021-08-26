@@ -19,7 +19,7 @@ function UserProducts(props) {
 
   return (
     <div className="ms-2">
-      <h1>List of works:</h1>
+      <h3>Sales status:</h3>
       <table className="table table-striped table-borderless ">
         <thead>
           <tr>

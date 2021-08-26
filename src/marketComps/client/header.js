@@ -42,8 +42,8 @@ function Header(props) {
           </p>
         </div>
         <div className="col-md-3 m-0 d-flex justify-content-md-end text-secondary">
-          <Link className="text-secondary" to="/whishlist">
-            <i className="bi bi-heart pe-2"></i>Whishlist
+          <Link className="text-secondary prod_name_box" to="/whishlist">
+            <i className="bi bi-heart motive_color pe-2"></i>Whishlist
           </Link>
         </div>
       </div>
@@ -69,7 +69,10 @@ function Header(props) {
             className="circleB"
             placeholder="  Search products"
           />
-          <button onClick={onSearchClick} className="btn btn-dark search_btn">
+          <button
+            onClick={onSearchClick}
+            className="btn btn_filter text-white search_btn"
+          >
             {searchIcon()}
           </button>
         </div>
@@ -83,18 +86,21 @@ function Header(props) {
           >
             {/* פונקציה שיש בה את האייקון
               של הקניות נמצא למטה בקובץ */}
-            {cartIcon()}
+            <i class="bi bi-handbag"></i>
             {
               // רק אם יש מוצרים בעגלה יוצג האייקון
               carts_ar.length > 0 && (
-                <div className="badge bg-danger" style={{ fontSize: '0.5em' }}>
+                <div
+                  className="badge bg-danger rounded-circle"
+                  style={{ fontSize: '0.5em' }}
+                >
                   {cartTotal(carts_ar)}
                 </div>
               )
             }
           </h3>
           {localStorage['tok'] ? (
-            <Link to="/checkout" className="btn btn-outline-success me-2">
+            <Link to="/checkout" className="text-success me-2">
               Checkout
             </Link>
           ) : (

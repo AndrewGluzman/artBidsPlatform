@@ -75,7 +75,7 @@ function NavBar(props) {
                           setdropMenu(false)
                         }}
                       >
-                        <Link to="/cat/10">
+                        <Link to={`/art_type/10/0`}>
                           <p className="fw-bold text-secondary px-1 dropdown_item">
                             Paintings
                           </p>
@@ -86,7 +86,7 @@ function NavBar(props) {
                           setdropMenu(false)
                         }}
                       >
-                        <Link to="/cat/1">
+                        <Link to={`/art_type/1/0`}>
                           <p className="fw-bold text-secondary px-1 dropdown_item">
                             Photography
                           </p>
@@ -97,7 +97,7 @@ function NavBar(props) {
                           setdropMenu(false)
                         }}
                       >
-                        <Link to="/cat/2">
+                        <Link to={`/art_type/2/0`}>
                           <p className="fw-bold text-secondary px-1 dropdown_item">
                             Digital Art
                           </p>
@@ -108,7 +108,7 @@ function NavBar(props) {
                           setdropMenu(false)
                         }}
                       >
-                        <Link to="/cat/3">
+                        <Link to={`/art_type/3/0`}>
                           <p className="fw-bold text-secondary px-1 dropdown_item">
                             Sculpture
                           </p>
@@ -119,7 +119,7 @@ function NavBar(props) {
                           setdropMenu(false)
                         }}
                       >
-                        <Link to="/cat/5">
+                        <Link to={`/art_type/5/0`}>
                           <p className="fw-bold text-secondary px-1 dropdown_item">
                             Drawing
                           </p>
@@ -130,7 +130,7 @@ function NavBar(props) {
                           setdropMenu(false)
                         }}
                       >
-                        <Link to="/cat/4">
+                        <Link to={`/art_type/4/0`}>
                           <p className="fw-bold text-secondary px-1 dropdown_item">
                             Installations
                           </p>

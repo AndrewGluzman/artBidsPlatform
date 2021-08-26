@@ -99,7 +99,7 @@ function AddProd(props) {
 
   return (
     <div className="container">
-      <h1>Upload new work</h1>
+      <h3>Upload new work</h3>
 
       <form
         onSubmit={handleSubmit(onFormSub)}

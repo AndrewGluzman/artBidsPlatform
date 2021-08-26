@@ -93,8 +93,8 @@ function UserBidedProducts(props) {
   //
 
   return (
-    <div className="">
-      <h1>My Bids:</h1>
+    <div className="ms-2">
+      <h3>Bids staus:</h3>
       <table className="table table-striped">
         {/* TODO: mouseover will shoe info of prod */}
         <thead>

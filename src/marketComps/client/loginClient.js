@@ -65,7 +65,7 @@ function LoginClient(props) {
         <div style={{ minHeight: '50vh' }}>
           <form
             onSubmit={handleSubmit(onFormSub)}
-            className="col-lg-6 mx-auto p-2 shadow mt-3"
+            className="col-lg-6 mx-auto p-5 shadow mt-3"
           >
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
@@ -101,10 +101,16 @@ function LoginClient(props) {
               )}
             </div>
             <div className="d-flex justify-content-between">
-              <button type="submit" className="btn btn-primary">
-                Log in
+              <button
+                type="submit"
+                className="btn btn-light  rounded-pill fw-bol"
+              >
+                Sign in
               </button>
-              <Link to="/signup" className="btn btn-danger">
+              <Link
+                to="/signup"
+                className="btn btn_filter text-white rounded-pill  py-2  fw-bol"
+              >
                 Sign up
               </Link>
             </div>

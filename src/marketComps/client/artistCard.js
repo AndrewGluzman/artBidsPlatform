@@ -13,7 +13,7 @@ function ArtistCard({ item, i }) {
           src={URL_API + item.avatar}
           // src={URL_API + '/prods_images/611c28af76eb6f5efcbbbb66.jpg'}
         ></img>
-        <h4>{item.artist_name}</h4>
+        <h5 className="motive_color artist_name">{item.artist_name}</h5>
       </div>
       <div
         className="artist-image mt-0 category_img "

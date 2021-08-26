@@ -106,8 +106,8 @@ fieldset[disabled] .form-group .form-control {
       linear,
       left top,
       left bottom,
-      from(#009688),
-      to(#009688)
+      from(#96000c),
+      to(#960019)
     ),
     -webkit-gradient(linear, left top, left bottom, from(#d2d2d2), to(#d2d2d2));
   background-image: -webkit-linear-gradient(#009688, #009688),
@@ -126,12 +126,12 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .form-group.is-focused .form-control .material-input:after {
-  background-color: #009688;
+  background-color: #960007;
 }
 
 .form-group.is-focused label,
 .form-group.is-focused label.control-label {
-  color: #009688;
+  color: #960000;
 }
 
 .form-group.is-focused.label-placeholder label,

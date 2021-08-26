@@ -58,19 +58,19 @@ function Footer(props) {
               {/* <!-- Grid column --> */}
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 className="text-uppercase mb-4 font-weight-bold">
-                  Products
+                  services
                 </h6>
                 <p>
-                  <a className="text-secondary">MDBootstrap</a>
+                  <a className="text-secondary">Art-Wault</a>
                 </p>
                 <p>
-                  <a className="text-secondary">MDWordPress</a>
+                  <a className="text-secondary">24h Pick-Up</a>
                 </p>
                 <p>
-                  <a className="text-secondary">BrandFlow</a>
+                  <a className="text-secondary">Fast delivery</a>
                 </p>
                 <p>
-                  <a className="text-secondary">Bootstrap Angular</a>
+                  <a className="text-secondary">Price estimation</a>
                 </p>
               </div>
               {/* <!-- Grid column --> */}

@@ -31,20 +31,20 @@ function ProfilePage(props) {
       <div className="container-xxl">
         <div className="row container-fluid px-0 easy_shadow">
           <div
-            className="col-2   admin_nav_side"
+            className="col-2  pt-3 admin_nav_side"
             // style={{ minHeight: '100vh' }}
           >
             <Link className="d-block" to="/profile/accountSettings">
               Account Settings
             </Link>
             <Link className="d-block" to="/profile/userProducts">
-              My works for sale.
+              Sales status.
             </Link>
             <Link className="d-block" to="/profile/userbids">
-              My Bids.
+              Bids.
             </Link>
             <Link className="d-block" to="/profile/addProd">
-              Upload new work.
+              Create new...
             </Link>
             {/* <Link className="d-block" to="/admin/category">
               Category

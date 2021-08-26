@@ -69,7 +69,7 @@ function SignUp(props) {
         </h1>
         <form
           onSubmit={handleSubmit(onFormSub)}
-          className="col-lg-6 mx-auto p-2 shadow mt-3"
+          className="col-lg-6 mx-auto p-5  mt-1"
         >
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -171,7 +171,10 @@ function SignUp(props) {
             )}
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn_filter text-white rounded-pill px-4 py-2 my-4 fw-bol"
+          >
             Submit
           </button>
         </form>
