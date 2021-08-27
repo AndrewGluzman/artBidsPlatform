@@ -27,6 +27,8 @@ function ProdBoxBigHorizontal(props) {
   let item = props.item
 
   useEffect(() => {
+    checkIfTokenValid()
+
     // check if the product in the cart from redux
     // and update the counter of prod
 

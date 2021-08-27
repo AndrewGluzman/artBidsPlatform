@@ -28,13 +28,12 @@ function ProdBoxSmallHorizontal(props) {
   useEffect(() => {
     // check if the product in the cart from redux
     // and update the counter of prod
-
+    checkFavorites()
     carts_ar.map((prodItem) => {
       if (prodItem._id == item._id) {
         setCountProd(prodItem.count)
       }
     })
-    checkFavorites()
   }, [carts_ar])
 
   const checkFavorites = async () => {

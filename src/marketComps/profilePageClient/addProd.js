@@ -310,7 +310,17 @@ function AddProd(props) {
           </div>
         </div>
         <div>
-          <h3>Save for future uploaded works</h3>
+          <div className="d-flex align-items-center">
+            <h5>Save for future uploaded works </h5>
+
+            <div className="ms-4 form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="flexSwitchCheckDefault"
+              />
+            </div>
+          </div>
 
           <div className="mb-3">
             <label htmlFor="artist_name" className="form-label">
@@ -426,7 +436,7 @@ function AddProd(props) {
           type="submit"
           className="btn btn_filter text-white rounded-pill px-4 py-2 my-4 fw-bol"
         >
-          Add product
+          Add sale
         </button>
       </form>
     </div>

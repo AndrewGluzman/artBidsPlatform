@@ -12,12 +12,12 @@ import {
   checkIfTokenValid,
 } from '../../services/apiSer'
 
-import Header from './header'
 import TimerSingleProd from './timerSingleProd'
 import BottomTabs from './bottomTabs'
 import InnerImageZoom from 'react-inner-image-zoom'
-import './css/zoomOnImagePlugin.css'
 import ReactBnbGallery from 'react-bnb-gallery'
+import { io } from 'socket.io-client'
+import './css/zoomOnImagePlugin.css'
 import './css/reactBnbGallery.css'
 
 function ProdSingleInfo(props) {
@@ -41,8 +41,26 @@ function ProdSingleInfo(props) {
 
     doApiGetProdInfo()
   }, [props.match.params.id, onloadPrice])
-  // useEffect(() => {
-  // }, [])
+
+  useEffect(() => {
+    const socket = io(URL_API)
+
+    socket.on('connnection', () => {
+      console.log('connected to server')
+    })
+
+    socket.on('bid-added', (updatedProduct) => {
+      setProdData([updatedProduct])
+    })
+
+    socket.on('message', (message) => {
+      console.log(message)
+    })
+
+    socket.on('disconnect', () => {
+      console.log('Socket disconnecting')
+    })
+  }, [])
 
   const doApiGetProdInfo = async () => {
     let url = URL_API + '/prods/single/' + prodId

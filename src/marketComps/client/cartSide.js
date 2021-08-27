@@ -47,15 +47,18 @@ function CartSide(props) {
           <div className="d-flex justify-content-between mt-2 align-items-center">
             <h4 className="mt-2">Total: {total.toFixed(2)} Nis</h4>
             {localStorage['tok'] ? (
-              <Link to="/checkout" className="btn btn-outline-success me-2">
+              <Link
+                to="/checkout"
+                className="btn btn-outline-success rounded-pill me-2"
+              >
                 Checkout
               </Link>
             ) : (
               <Link
                 to="/login"
-                className="btn btn_filter text-white rounded-pill  p-2 mx-2"
+                className="btn btn_filter text-white rounded-pill mb-2 p-2 mx-2"
               >
-                Sign in for checkout
+                Sign in..
               </Link>
             )}
           </div>

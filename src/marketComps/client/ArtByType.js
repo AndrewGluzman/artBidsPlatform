@@ -54,9 +54,10 @@ function ArtByType(props) {
     setProdsAr(prodsData)
     let url2 =
       URL_API +
-      `/prods/type?type=${artTypeCat}&perPage=14&page=${currentPage}&cat=${routeQuery}`
+      `/prods/type?type=${artTypeCat}&perPage=14&page=${currentPage}&cat=${routeQuery}&reverse=yes`
     let newProdsData = await doApiGet(url2)
     setProdsNew(newProdsData)
+
     //Object with bigestPrice
     // let getBigestPrice =
     //   URL_API +

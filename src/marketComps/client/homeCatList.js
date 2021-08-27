@@ -7,6 +7,7 @@ import ProdBoxSmallHorizontal from './prodBoxSmallHorizontal'
 function HomeCatList(props) {
   let [cat, setCat] = useState({})
   let [prods_ar, setProdsAr] = useState([])
+  let [totalProd, setTotalProd] = useState({})
 
   useEffect(() => {
     doApi()
@@ -21,6 +22,10 @@ function HomeCatList(props) {
     let url = URL_API + '/prods/?cat=' + props.catId + '&perPage=4'
     let prodsData = await doApiGet(url)
     setProdsAr(prodsData)
+    let getTotalprod = await doApiGet(
+      URL_API + '/prods/count?cat=' + props.catId,
+    )
+    setTotalProd(getTotalprod)
   }
 
   return (
@@ -35,7 +40,7 @@ function HomeCatList(props) {
         >
           <div className="insideframe   text-center align-items-lg-center ">
             <h2 className="category_name text-light fw-bolder">{cat.name}</h2>
-            <p className=" text-light">12 auctions</p>
+            <p className=" text-light">{totalProd.count} auctions</p>
             {/* <Link className=" " to={'/cat/' + cat.s_id}> */}
             <Link to={`/art_type/${cat.s_id}/0`}>
               <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold text-light">

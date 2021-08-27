@@ -19,6 +19,8 @@ function Homelist(props) {
   // const orderCategoriesId = ["3", "1", "2", "5"]
   let [cat_ar, setcatAr] = useState([])
   const [latestProds, setLatestProds] = useState([])
+  const [fineArtTotal, setfineArtTotal] = useState(0)
+  const [decArtTotal, setDecArtTotal] = useState(0)
 
   useEffect(() => {
     doApi()
@@ -30,6 +32,16 @@ function Homelist(props) {
     let url = URL_API + '/categories'
     let data = await doApiGet(url)
     setcatAr(data)
+
+    let getTotalConterporary = await doApiGet(
+      URL_API + '/prods/arttype-count?type=Contemporary Fine Art',
+    )
+    setfineArtTotal(getTotalConterporary.count)
+
+    let getTotalDecorative = await doApiGet(
+      URL_API + '/prods/arttype-count?type=Decorative Art',
+    )
+    setDecArtTotal(getTotalDecorative.count)
   }
   const getLatestProds = async () => {
     let url = URL_API + '/prods/allonsale?perpage=4'
@@ -57,7 +69,7 @@ function Homelist(props) {
             <h2 className="category_name text-light fw-bolder">
               Contemporary Fine Art
             </h2>
-            <p className=" text-light">20 auctions</p>
+            <p className=" text-light">{fineArtTotal} auctions</p>
             <Link to="art_type/Contemporary Fine Art/0">
               <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
                 <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>
@@ -72,7 +84,7 @@ function Homelist(props) {
             <h2 className="category_name text-light fw-bolder">
               Decorative Art
             </h2>
-            <p className=" text-light">12 auctions</p>
+            <p className=" text-light">{decArtTotal} auctions</p>
             <Link to="art_type/Decorative Art/0">
               <span className="read-more btn btn-outline-light rounded-pill px-4 py-2 mt-4 fw-bold">
                 <span style={{ fontSize: 'smaller' }}> VIEW MORE</span>

@@ -20,7 +20,7 @@ function UserProducts(props) {
   return (
     <div className="ms-2">
       <h3>Sales status:</h3>
-      <table className="table table-striped table-borderless ">
+      <table className="table table-hover table-borderless text-secondary py-0 ">
         <thead>
           <tr>
             <th>#</th>
