@@ -102,7 +102,7 @@ function Homelist(props) {
           </LazyLoad>
         )
       })}
-      <section className=" mb-5 mt-5 gap6rem ">
+      <section className=" mb-5 mt-5 gap6rem">
         {middleTitleWithHammer('NEED HELP? CONTACT US')}
         <div className="">
           <div className="">
@@ -113,7 +113,7 @@ function Homelist(props) {
                 data-wow-delay=".2s"
               ></div>
             </div>
-            <div className="row">
+            <div className="row justify-content-center">
               {/* <!-- Section Titile --> */}
               <div
                 className="col-md-4 mt-3 me-5 contact-widget-section2 wow animated fadeInLeft"
@@ -144,7 +144,7 @@ function Homelist(props) {
               </div>
               {/* <!-- contact form --> */}
               <div
-                className="col-md-7 wow animated fadeInRight shadow mt-3"
+                className="col-md-5 wow animated fadeInRight shadow mt-3"
                 data-wow-delay=".2s"
               >
                 <form

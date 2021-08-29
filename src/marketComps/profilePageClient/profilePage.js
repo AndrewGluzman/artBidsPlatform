@@ -29,7 +29,7 @@ function ProfilePage(props) {
       {/* <HeaderAdmin role="User Account" /> */}
       {/* <Header /> */}
       <div className="container-xxl">
-        <div className="row container-fluid px-0 easy_shadow">
+        <div className="row container-fluid px-0 m-0 easy_shadow">
           <div
             className="col-2  pt-3 admin_nav_side"
             // style={{ minHeight: '100vh' }}

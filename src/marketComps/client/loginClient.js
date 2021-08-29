@@ -40,14 +40,7 @@ function LoginClient(props) {
 
       history.push('/')
     } else {
-      // addToast("Try again , user or password worng",
-      //   {
-      //     appearance: 'error',
-      //     autoDismiss: true
-      //   }
-      // )
-      // TODO : show toaste message
-      alert('try again , user or password worng')
+      toast.error('Sorry, wrong:Password or Username')
     }
   }
   return (

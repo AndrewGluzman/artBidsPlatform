@@ -1,3 +1,5 @@
+import { useHistory } from 'react-router'
+
 // export const URL_API = "http://monkeys.co.il";
 
 let myApi = 'http://localhost:3004'
@@ -57,11 +59,11 @@ export const changeFavorites = async (prodId, state) => {
   }
 }
 export const checkIfTokenValid = async () => {
-  // if (!localStorage['tok']) history.push('/login')
   let url = URL_API + '/users/myInfo'
   let data = await doApiMethod(url, 'GET')
   if (!data._id) {
     localStorage.removeItem('tok')
-    // history.push('/login')
+    return false
   }
+  return true
 }

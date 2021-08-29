@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import LazyLoad from 'react-lazyload'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
+
 import {
   URL_API,
   changeFavorites,
@@ -22,13 +24,16 @@ function ProdBoxSmallHorizontal(props) {
   const [modalShow, setModalShow] = React.useState(false)
   let carts_ar = useSelector((mystore) => mystore.carts_ar)
   const [stateFavorites, setstateFavorites] = useState(false)
+  let history = useHistory()
 
   let item = props.item
 
   useEffect(() => {
+    returnesToHomeIfNoToken()
+
+    checkFavorites()
     // check if the product in the cart from redux
     // and update the counter of prod
-    checkFavorites()
     carts_ar.map((prodItem) => {
       if (prodItem._id == item._id) {
         setCountProd(prodItem.count)
@@ -36,6 +41,12 @@ function ProdBoxSmallHorizontal(props) {
     })
   }, [carts_ar])
 
+  const returnesToHomeIfNoToken = () => {
+    let check = checkIfTokenValid()
+    if (check == false) {
+      history.push('/')
+    }
+  }
   const checkFavorites = async () => {
     // checkIfTokenValid()needed to check it in home page
     if (localStorage['tok']) {

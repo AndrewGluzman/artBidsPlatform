@@ -21,32 +21,29 @@ function AppAdmin(props) {
       <Route strict path={`/admin/`} component={AuthAdmin} />
 
       {/* <HeaderAdmin role="Admin panel" /> */}
-      <div className="container-xxl">
-        <div className="row">
+      <div className="container-xxl pe-0 ">
+        <div className="row container-fluid px-0 m-0 ">
           {/* ADD TO Comp sideNavAdmin */}
           {localStorage['tok'] ? (
-            <nav
-              className="col-2  admin_nav_side"
-              style={{ minHeight: '100vh' }}
-            >
+            <div className="col-2  pt-3  admin_nav_side">
               <Link className="d-block" to="/admin/list">
-                Products
+                Sales
               </Link>
               <Link className="d-block" to="/admin/category">
-                Category
+                Categories
               </Link>
               <Link className="d-block" to="/admin/users">
-                Users
+                Accounts
               </Link>
               <Link className="d-block" to="/admin/userCarts">
-                Users orders
+                Payed sales
               </Link>
-            </nav>
+            </div>
           ) : (
             ''
           )}
 
-          <div className="col-10">
+          <div className="col-10  px-0" style={{ minHeight: '100vh' }}>
             <Switch>
               <Route exact path={`/admin`} component={Login} />
               <Route exact path={`/admin/list`} component={ListProdAdmin} />

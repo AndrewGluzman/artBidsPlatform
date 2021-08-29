@@ -168,12 +168,27 @@
 } */
 
 .bgq1 {
+  background-image: linear-gradient(
+      rgba(208, 208, 214, 0.5),
+      rgba(187, 188, 192, 0.616),
+      rgba(107, 117, 139, 0.5)
+    ),
+    url('/src/marketComps/client/images/gallery.jpg');
+  /* min-height: 621px; */
+  background-position: center;
+  background-size: cover;
+
   position: absolute;
   height: 600px;
   width: 100%;
-  background-color: rgba(49, 117, 119, 0.842);
+  /* background-color: rgba(87, 131, 133, 0.842); */
   z-index: 1;
 }
+
+/* background-image: url('/src/marketComps/client/images/team.jpg');
+  min-height: 621px;
+  background-position: center;
+  background-size: cover; */
 .bgq2 {
   position: absolute;
   height: 600px;
@@ -414,7 +429,7 @@
   }
 }
 .flicker-in-1 {
-  animation: flicker-in-1 2.5s linear 1.5s both;
+  animation: flicker-in-1 2.5s linear 1s both;
 }
 @keyframes flicker-in-1 {
   0% {

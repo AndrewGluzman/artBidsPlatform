@@ -45,7 +45,7 @@ function About(props) {
           <div className="">
             <div class="col-lg-8 mx-auto mt-5">
               <h1
-                className="motive_color gap5rem"
+                className=" gap5rem fw-bolder"
                 style={{ textAlign: 'center', whiteSpace: 'pre-wrap' }}
               >
                 Coming onboard means joining the family
@@ -80,7 +80,7 @@ function About(props) {
           </div>
           <div className="mx-auto text-center my-5 gap6rem">
             <p>MEET</p>
-            <h1 className="motive_color">The Team</h1>
+            <h1 className="motive_color fw-bolder">The Team</h1>
           </div>
           <div className="mt-5 d-flex row">
             <div className="col-4  mb-4 overflow-cover">

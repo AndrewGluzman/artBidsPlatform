@@ -69,7 +69,7 @@ function SignUp(props) {
         </h1>
         <form
           onSubmit={handleSubmit(onFormSub)}
-          className="col-lg-6 mx-auto p-5  mt-1"
+          className="col-lg-6 mx-auto p-5  mt-1 easy_shadow"
         >
           <div className="mb-3">
             <label htmlFor="email" className="form-label">

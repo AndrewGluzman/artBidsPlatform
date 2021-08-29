@@ -37,12 +37,14 @@ function ProdSingleInfo(props) {
   const [stateFavorites, setstateFavorites] = useState(false)
 
   useEffect(() => {
-    window.scroll({ top: 250, behavior: 'auto' })
+    checkIfTokenValid()
 
     doApiGetProdInfo()
   }, [props.match.params.id, onloadPrice])
 
   useEffect(() => {
+    window.scroll({ top: 250, behavior: 'auto' })
+
     const socket = io(URL_API)
 
     socket.on('connnection', () => {
@@ -153,7 +155,7 @@ function ProdSingleInfo(props) {
                 </Link>
                 <Link
                   className="breadcrumb-item"
-                  to={'/cat/' + item.category_s_id}
+                  to={'/art_type/' + item.category_s_id + '/0'}
                 >
                   {item.catName}
                 </Link>
@@ -214,7 +216,7 @@ function ProdSingleInfo(props) {
                   )}
                   <p>Time left:</p>
 
-                  <div className="d-flex py-3 px-4  w-100 justify-content-between text-center shadow  mb-3 bg-body rounded ">
+                  <div className="d-flex py-3 px-4  w-100 justify-content-between text-center shadow  mb-3 bg-body rounded big_timer">
                     <TimerSingleProd
                       date={item.date_created}
                       setEnded={setEnded}

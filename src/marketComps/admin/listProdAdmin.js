@@ -32,8 +32,10 @@ function ListProdAdmin(props) {
   }
 
   return (
-    <>
-      <table className="table table-striped">
+    <div className="ms-2 easy_shadow pt-1">
+      <h3>Sales status:</h3>
+
+      <table className="table table-hover table-borderless text-secondary py-0 ">
         <thead>
           <tr>
             <th>#</th>
@@ -43,7 +45,7 @@ function ListProdAdmin(props) {
             <th>Current bid</th>
             <th>Date added</th>
             <th>Status</th>
-            <th>del/edit</th>
+            <th>Controls/Timer</th>
           </tr>
         </thead>
         {/* TODO: add pagenation */}
@@ -60,57 +62,8 @@ function ListProdAdmin(props) {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 
 export default ListProdAdmin
-{
-  /* <div>
-<h1>List of Prod in shop:</h1>
-<Link to="/admin/addProd">add new prod</Link>
-<table className="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>name</th>
-      <th>category</th>
-      <th>price</th>
-      <th>qty</th>
-      <th>user</th>
-      <th>del/edit</th>
-    </tr>
-  </thead>
-  <tbody>
-    {prods_ar.map((item, i) => {
-      return (
-        <tr key={item._id}>
-          <td>{i + 1}</td>
-          <td>{item.name}</td>
-          <td>{item.category_s_id}</td>
-          <td>{item.price}</td>
-          <td>{item.qty}</td>
-          <td>{item.ownerEmail}</td>
-          <td>
-            <button
-              onClick={() => {
-                delProd(item._id);
-              }}
-              className="btn btn-danger"
-            >
-              del
-            </button>
-            <Link
-              to={"/admin/editProd/" + item._id}
-              className="btn btn-dark"
-            >
-              edit
-            </Link>
-          </td>
-        </tr>
-      );
-    })}
-  </tbody>
-</table>
-</div> */
-}

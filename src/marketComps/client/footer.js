@@ -132,7 +132,7 @@ function Footer(props) {
                 {/* <!-- Copyright --> */}
                 <div className="p-3">
                   Copyright:© 2021
-                  <a className="text-white" href="https://mdbootstrap.com/">
+                  <a className="text-white" href="#top">
                     $4Art.com
                   </a>
                 </div>
@@ -148,7 +148,7 @@ function Footer(props) {
                   className="text-secondary"
                   role="button"
                 >
-                  <i className="fab fa-facebook-f"></i>
+                  <i class="bi bi-facebook"></i>
                 </a>
 
                 {/* <!-- Twitter --> */}
@@ -157,7 +157,7 @@ function Footer(props) {
                   className="text-secondary"
                   role="button"
                 >
-                  <i className="fab fa-twitter"></i>
+                  <i class="bi bi-twitter"></i>
                 </a>
 
                 {/* <!-- Google --> */}
@@ -166,7 +166,7 @@ function Footer(props) {
                   className="text-secondary"
                   role="button"
                 >
-                  <i className="fab fa-google"></i>
+                  <i class="bi bi-google"></i>
                 </a>
 
                 {/* <!-- Instagram --> */}
@@ -175,7 +175,7 @@ function Footer(props) {
                   className="text-secondary"
                   role="button"
                 >
-                  <i className="fab fa-instagram"></i>
+                  <i class="bi bi-instagram"></i>
                 </a>
               </div>
               {/* <!-- Grid column --> */}

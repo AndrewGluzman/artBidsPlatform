@@ -47,7 +47,7 @@ function Timer(props) {
   }
   return (
     <span>
-      {counter.days} days {counter.hours} hours {counter.minutes} min{' '}
+      {counter.days} days {counter.hours} hr {counter.minutes} min{' '}
       {counter.seconds} sec
     </span>
   )

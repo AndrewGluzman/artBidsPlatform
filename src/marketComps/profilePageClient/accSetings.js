@@ -61,7 +61,7 @@ function AccSettings(props) {
   return (
     <div className="container">
       <div>
-        <h3>Profile information</h3>
+        <h3>Account info:</h3>
         <hr />
       </div>
       <form onSubmit={handleSubmit(onFormSub)} className="col-lg-6  p-2  mt-3">
