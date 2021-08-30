@@ -216,7 +216,7 @@ function ProdSingleInfo(props) {
                   )}
                   <p>Time left:</p>
 
-                  <div className="d-flex py-3 px-4  w-100 justify-content-between text-center shadow  mb-3 bg-body rounded big_timer">
+                  <div className="d-flex py-3 px-5  w-100 justify-content-between text-center shadow  mb-3 bg-body rounded big_timer">
                     <TimerSingleProd
                       date={item.date_created}
                       setEnded={setEnded}

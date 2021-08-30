@@ -172,15 +172,26 @@ function NavBar(props) {
             <div className="col-md-5 align-items-center  ">
               <ul className="navbar-nav justify-content-sm-center justify-content-lg-end align-items-center ">
                 {!localStorage['tok'] ? (
-                  <li className="nav-item text-center">
-                    {/* <a className="nav-link active " aria-current="page"> */}
-                    <Link to="/login">
-                      <p className="navbar-text fw-bolder m-2  text-light text-decoration-none ">
-                        Sign in
-                      </p>
-                    </Link>
-                    {/* </a> */}
-                  </li>
+                  <>
+                    <li className="nav-item text-center">
+                      {/* <a className="nav-link active " aria-current="page"> */}
+                      <Link to="/login">
+                        <p className="navbar-text fw-bolder my-2  text-light text-decoration-none ">
+                          Sign in
+                        </p>
+                      </Link>
+                      {/* </a> */}
+                    </li>
+                    <li className="nav-item text-center">
+                      {/* <a className="nav-link active " aria-current="page"> */}
+                      <Link to="/signup">
+                        <p className="navbar-text fw-bolder my-2 me-2 ms-1  text-light text-decoration-none ">
+                          / up
+                        </p>
+                      </Link>
+                      {/* </a> */}
+                    </li>
+                  </>
                 ) : (
                   <>
                     <li className="nav-item text-center">

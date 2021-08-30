@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import NavBar from './navBar'
+import { toast } from 'react-toastify'
 
 function Header(props) {
   let history = useHistory()
@@ -17,7 +18,9 @@ function Header(props) {
   const onLogOut = () => {
     // log out the user by delete the token
     localStorage.removeItem('tok')
+    toast.success('You Successfuly Signed Out')
     localStorage.removeItem('userName')
+
     history.push('/')
   }
 

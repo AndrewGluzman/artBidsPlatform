@@ -83,7 +83,7 @@ function LoginClient(props) {
               <input
                 ref={passRef}
                 name="pass"
-                type="text"
+                type="password"
                 className="form-control"
                 id="pass"
               />
@@ -96,16 +96,16 @@ function LoginClient(props) {
             <div className="d-flex justify-content-between">
               <button
                 type="submit"
-                className="btn btn-light  rounded-pill fw-bol"
+                className="btn btn_filter text-white rounded-pill  py-2  fw-bol"
               >
                 Sign in
               </button>
-              <Link
+              {/* <Link
                 to="/signup"
                 className="btn btn_filter text-white rounded-pill  py-2  fw-bol"
               >
                 Sign up
-              </Link>
+              </Link> */}
             </div>
           </form>
         </div>

@@ -165,7 +165,7 @@ function ArtByType(props) {
                     >
                       <option value="name">Name</option>
                       <option value="bids">Popular</option>
-                      <option value="date_created">Latest</option>
+                      <option value="date_created">Ending Soon</option>
                     </select>
                   </div>
                 </div>

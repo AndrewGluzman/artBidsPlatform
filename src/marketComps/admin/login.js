@@ -86,7 +86,7 @@ function Login(props) {
             <input
               ref={passRef}
               name="pass"
-              type="text"
+              type="password"
               className="form-control"
               id="pass"
             />

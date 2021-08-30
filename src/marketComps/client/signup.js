@@ -175,7 +175,7 @@ function SignUp(props) {
             type="submit"
             className="btn btn_filter text-white rounded-pill px-4 py-2 my-4 fw-bol"
           >
-            Submit
+            Sign Up
           </button>
         </form>
       </div>

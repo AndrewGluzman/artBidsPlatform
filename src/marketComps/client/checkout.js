@@ -31,11 +31,11 @@ function Checkout(props) {
         dispatch({ type: 'EMPTY_THE_CART', item: [] })
         history.push('/')
       } else {
-        toast.error('there problem come back tommrow')
+        toast.error('There is a problem please try again later')
       }
     } catch (err) {
       console.log(err)
-      toast.error('there problem come back tommrow 222')
+      toast.error('There is a problem please try again later')
     }
   }
 
